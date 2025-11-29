@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
 import { KaiaPricing } from '../components/KaiaPricing';

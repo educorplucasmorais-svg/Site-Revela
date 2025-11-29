@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const features = [
   { title: 'Atendimento 24/7', desc: 'Bots inteligentes que respondem rápido e com contexto.' },

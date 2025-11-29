@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PaymentModal from './PaymentModal';
 
 export function KaiaPricing() {
