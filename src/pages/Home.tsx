@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 import ServicesGrid from '../components/ServicesGrid';
 import PricingSection from '../components/PricingSection';
 import ProductsArea from '../components/ProductsArea';
 import { Testimonials } from '../components/Testimonials';
+import { RevelaHero } from '../components/RevelaHero';
 
 function Home() {
-    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        setIsVisible(true);
-
         // Header scroll effect
         const header = document.getElementById('header');
         const handleScroll = () => {
@@ -31,30 +29,8 @@ function Home() {
 
     return (
         <>
-            {/* Hero Section - Estilo Revela */}
-            <section className="hero">
-                <div className="container">
-                    <div className={`hero-content ${isVisible ? 'fade-in-up' : ''}`}>
-                        <span className="hero-label">— INTELIGÊNCIA ESTRATÉGICA</span>
-                        <h1 className="hero-title">
-                            Revele o potencial
-                            <span className="hero-title-highlight">oculto do seu negócio.</span>
-                        </h1>
-                        <p className="hero-subtitle">
-                            Sua equipe completa de marketing e estratégia, agora potencializada pela IA.
-                            Estruturamos processos, desenvolvemos pessoas e comunicamos sua essência.
-                        </p>
-                        <div className="hero-cta">
-                            <button onClick={scrollToContact} className="btn btn-primary">
-                                Iniciar Diagnóstico →
-                            </button>
-                            <a href="#servicos" className="btn btn-secondary">
-                                Saiba Mais
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* Hero Section - Novo Design Tech com Árvore */}
+            <RevelaHero onContactClick={scrollToContact} />
 
             {/* Services Section */}
             <section id="servicos" className="section-dark">
