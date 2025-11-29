@@ -50,8 +50,11 @@ const __dirname = path.dirname(__filename);
 
 // Serve static files from the React app (production only)
 if (process.env.NODE_ENV === 'production') {
-    const clientDistPath = path.join(__dirname, '../../client');
+    const clientDistPath = path.join(__dirname, '../dist/client');
     app.use(express.static(clientDistPath));
+
+    // Serve public folder too
+    app.use(express.static(path.join(__dirname, '../public')));
 
     app.get('*', (req, res) => {
         // Don't intercept API routes
