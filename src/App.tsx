@@ -1,3 +1,4 @@
+import Kaia from "./pages/Kaia";
 import { Route, Switch, Link } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
@@ -19,6 +20,7 @@ function App() {
                         </Link>
                         <ul className="nav-links">
                             <li><Link href="/" className="nav-link">Início</Link></li>
+                            <li><Link href="/kaia" className="nav-link">Kaia</Link></li>
                             <li><Link href="#servicos" className="nav-link">Serviços</Link></li>
                             <li><Link href="#sobre" className="nav-link">Sobre</Link></li>
                             <li><Link href="#contato" className="nav-link">Contato</Link></li>
@@ -35,6 +37,9 @@ function App() {
             <main>
                 <Switch>
                     <Route path="/" component={Home} />
+                        <Route path="/kaia">
+                            <Kaia />
+                        </Route>
                     <Route>
                         <div className="container" style={{ paddingTop: '150px', textAlign: 'center', minHeight: '100vh' }}>
                             <h1>404</h1>

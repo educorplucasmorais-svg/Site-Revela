@@ -2,6 +2,7 @@ import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
 import Stripe from 'stripe';
 import type { Context } from './context';
+import { query as dbQuery } from './lib/db';
 
 const t = initTRPC.context<Context>().create();
 
@@ -27,14 +28,24 @@ export const appRouter = router({
             })
         )
         .mutation(async ({ input }) => {
-            console.log('Contact form submission:', input);
+                console.log('Contact form submission:', input);
 
-            await new Promise((resolve) => setTimeout(resolve, 500));
+                try {
+                    // Try to persist to MySQL if configured
+                    await dbQuery(
+                        `INSERT INTO contacts (name, email, phone, company, message, created_at) VALUES (?, ?, ?, ?, ?, NOW())`,
+                        [input.name, input.email, input.phone || null, input.company || null, input.message]
+                    );
+                } catch (e: any) {
+                    console.warn('Failed to persist contact to DB:', e?.message || e);
+                }
 
-            return {
-                success: true,
-                message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
-            };
+                await new Promise((resolve) => setTimeout(resolve, 500));
+
+                return {
+                    success: true,
+                    message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.',
+                };
         }),
 
     // Get services/features

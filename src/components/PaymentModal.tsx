@@ -70,7 +70,7 @@ function PaymentModal({ plan, onClose }: PaymentModalProps) {
                         onClose();
                     }
                 } else if (paymentMethod === 'pix') {
-                    const { error, paymentIntent } = await stripe.confirmPixPayment(result.clientSecret, {
+                    const { error } = await stripe.confirmPixPayment(result.clientSecret, {
                         payment_method: {
                             billing_details: {
                                 name: customerInfo.name,
@@ -88,6 +88,9 @@ function PaymentModal({ plan, onClose }: PaymentModalProps) {
                 } else if (paymentMethod === 'boleto') {
                     const { error } = await stripe.confirmBoletoPayment(result.clientSecret, {
                         payment_method: {
+                            boleto: {
+                                tax_id: customerInfo.cpf || '',
+                            },
                             billing_details: {
                                 name: customerInfo.name,
                                 email: customerInfo.email,

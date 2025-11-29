@@ -1,6 +1,6 @@
 # 🚀 Site Revela - Landing Page Premium
 
-Landing page profissional inspirada no design da Revela Consultoria, construída com as mais recentes tecnologias web, pronta para deploy em Vercel, GitHub Pages e Hostinger com banco de dados Supabase.
+Este README está sendo atualizado conforme os códigos e integrações do app avançam (MySQL Hostinger, Stripe, preview e deploy). Use esta versão como referência prática.
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -42,7 +42,8 @@ Muted Text:      #B8B8B8  /* Cinza claro */
 - **tRPC** - APIs type-safe end-to-end
 - **Express** - Framework web Node.js
 - **Zod** - Validação de schemas
-- **Supabase** - Banco de dados PostgreSQL na nuvem
+- **MySQL (Hostinger)** - Integração via `mysql2` (opção atual)
+- **Supabase/Postgres** - Alternativa opcional
 
 ### Deploy
 - **Vercel** - Frontend hosting
@@ -74,7 +75,7 @@ npm install
 
 # 2. Configurar ambiente
 cp .env.example .env
-# Edite .env com suas credenciais do Supabase
+# Edite `.env` com suas credenciais (Stripe/Supabase ou MySQL Hostinger)
 
 # 3. Iniciar backend (Terminal 1)
 npm run server
@@ -83,11 +84,11 @@ npm run server
 npm run dev
 
 # 5. Acessar
-# Frontend: http://localhost:5173
+# Frontend (Vite dev): http://localhost:3050
 # Backend: http://localhost:3000
 ```
 
-## 🗄️ Configuração do Supabase
+## 🗄️ Configuração do Supabase (opcional)
 
 ### 1. Criar Projeto no Supabase
 
@@ -109,7 +110,56 @@ VITE_SUPABASE_URL=https://seu-projeto.supabase.co
 VITE_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
 PORT=3000
 NODE_ENV=development
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
 ```
+
+## 🗄️ Configuração MySQL (Hostinger)
+1. Defina no `.env`:
+```
+DATABASE_URL=mysql://<user>:<pass>@srv1079.hstgr.io:3306/<db>
+# ou
+DB_HOST=srv1079.hstgr.io
+DB_USER=<user>
+DB_PASSWORD=<pass>
+DB_PORT=3306
+DB_NAME=<db>
+```
+2. Aplique o schema:
+```
+npm run apply-schema-mysql
+```
+3. Valide em phpMyAdmin: tabelas `users`, `contacts`, `payments`, `sessions`.
+4. O backend (`server/router.ts`) insere contatos em `contacts`.
+
+## 🔧 Scripts úteis
+```
+npm run server         # backend
+npm run dev            # frontend (http://localhost:3050)
+npm run build          # build produção (dist/client)
+npm run preview        # preview (http://localhost:4173)
+npm run apply-schema   # Supabase/Postgres (opcional)
+npm run apply-schema-mysql  # Hostinger MySQL
+npm run test-stripe    # cria PaymentIntent e imprime client_secret
+```
+
+## 🧪 Testes rápidos
+- Backend health: `Invoke-WebRequest http://localhost:3000/api/health -UseBasicParsing`
+- Formulário: enviar no site e verificar `contacts` no phpMyAdmin.
+- Stripe: preencher `.env` e `node scripts/test_stripe.js`.
+
+## 🧩 Preview / Troubleshooting
+- Se `ERR_CONNECTION_REFUSED` no dev (`3050`):
+  - `Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force`
+  - Testar Edge/Chrome e desativar VPN temporariamente
+  - Usar `npm run preview` (porta `4173`) para isolar
+
+## 📁 Sincronização com Desktop
+Copiar para `C:\Users\Pichau\Desktop\Site Revela`:
+```
+Copy-Item -Path "C:\Users\Pichau\Documents\GitHub\Site-Revela\*" -Destination "C:\Users\Pichau\Desktop\Site Revela" -Recurse -Force
+```
+Na pasta Desktop: `npm install`, `npm run server`, `npm run dev`.
 
 ## 🚀 Deploy
 
@@ -162,6 +212,10 @@ site-revela/
 │   ├── index.ts           # Servidor Express
 │   ├── router.ts          # Rotas tRPC
 │   └── context.ts         # Contexto tRPC
+│   └── lib/db.ts          # Conexão pool MySQL
+├── scripts/
+│   ├── apply_schema_mysql.cjs  # Aplica schema MySQL
+│   └── test_stripe.js          # Teste PaymentIntent
 ├── supabase/
 │   └── schema.sql         # Schema do banco
 ├── .github/
@@ -217,14 +271,11 @@ O projeto usa **Montserrat** do Google Fonts. Para mudar:
 
 ```bash
 # Desenvolvimento
-npm run dev          # Inicia o frontend (Vite)
-npm run server       # Inicia o backend (tRPC)
+Consulte a seção "Scripts úteis" acima.
 
-# Build
-npm run build        # Build de produção
-
-# Preview
-npm run preview      # Preview do build de produção
+Links rápidos:
+- Dev: http://localhost:3050
+- Preview: http://localhost:4173
 ```
 
 ## 📊 Performance
@@ -289,3 +340,4 @@ Veja [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes sobre como contribuir.
 ⭐ Se este projeto te ajudou, considere dar uma estrela!
 
 **Desenvolvido com ❤️ usando React, TypeScript, tRPC e Supabase**
+**Integrações ativas:** MySQL Hostinger, Stripe (test), Vite dev/preview

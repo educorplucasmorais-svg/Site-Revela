@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { toast } from 'sonner';
-import { trpc } from '../lib/trpc';
 import ContactForm from '../components/ContactForm';
 import ServicesGrid from '../components/ServicesGrid';
 import PricingSection from '../components/PricingSection';
+import ProductsArea from '../components/ProductsArea';
 
 function Home() {
     const [isVisible, setIsVisible] = useState(false);
@@ -259,6 +258,9 @@ function Home() {
                     <PricingSection />
                 </div>
             </section>
+
+            {/* Products / Apps (iPhone mockup) */}
+            <ProductsArea />
 
             {/* Contact Section */}
             <section id="contato" className="section-dark">
