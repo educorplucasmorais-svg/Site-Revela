@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { KaiaAppDemo } from '../components/KaiaAppDemo';
 import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
@@ -8,29 +8,21 @@ import '../styles/kaia.css';
 
 export default function KaiaPage() {
   const [showDemo, setShowDemo] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (showDemo) {
     return (
       <div style={{ marginTop: '-80px' }}>
         <KaiaAppDemo />
-        {/* Floating back button */}
         <button
           onClick={() => setShowDemo(false)}
-          style={{
-            position: 'fixed',
-            top: '100px',
-            left: '280px',
-            padding: '10px 20px',
-            background: 'rgba(99, 102, 241, 0.2)',
-            border: '1px solid rgba(99, 102, 241, 0.3)',
-            borderRadius: '10px',
-            color: 'white',
-            cursor: 'pointer',
-            zIndex: 1001,
-            fontSize: '0.85rem',
-            fontWeight: 600,
-            fontFamily: 'inherit',
-          }}
+          className="kaia-back-btn"
         >
           ← Voltar para Landing Page
         </button>
@@ -39,7 +31,39 @@ export default function KaiaPage() {
   }
 
   return (
-    <div style={{ marginTop: '-96px' }}>
+    <div className="kaia-page" style={{ marginTop: '-96px' }}>
+      {/* Background Tree Image - Parallax */}
+      <div 
+        className="kaia-bg-tree"
+        style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+      >
+        <img src="/hero-tree.jpg" alt="" className="kaia-bg-tree-img" />
+        <div className="kaia-bg-tree-overlay" />
+      </div>
+
+      {/* Floating Leaves Animation */}
+      <div className="kaia-leaves">
+        {[...Array(25)].map((_, i) => (
+          <div key={i} className="kaia-leaf" />
+        ))}
+      </div>
+
+      {/* Kaia Logo Header */}
+      <header className="kaia-header">
+        <div className="kaia-logo">
+          <span className="kaia-logo-icon">🤖</span>
+          <span className="kaia-logo-text">Kaia</span>
+          <span className="kaia-logo-badge">IA</span>
+        </div>
+        <nav className="kaia-nav">
+          <a href="#features">Recursos</a>
+          <a href="#pricing">Planos</a>
+          <button onClick={() => setShowDemo(true)} className="kaia-nav-demo">
+            Ver Demo
+          </button>
+        </nav>
+      </header>
+
       <KaiaHero onDemoClick={() => setShowDemo(true)} />
       <KaiaFeatures />
       <KaiaPricing />
