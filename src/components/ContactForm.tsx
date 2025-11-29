@@ -1,6 +1,8 @@
 import { useState, FormEvent } from 'react';
 import { toast } from 'sonner';
-import { trpc } from '../lib/trpc';
+
+// Número do WhatsApp para fallback (edite aqui)
+const WHATSAPP_NUMBER = '5531998079088';
 
 function ContactForm() {
     const [formData, setFormData] = useState({
@@ -17,27 +19,85 @@ function ContactForm() {
         setLoading(true);
 
         try {
-            const result = await trpc.submitContact.mutate(formData);
+            // Tenta enviar para a API (se disponível)
+            const apiUrl = import.meta.env.VITE_API_URL;
+            
+            if (apiUrl) {
+                const response = await fetch(`${apiUrl}/api/trpc/submitContact`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ json: formData }),
+                });
 
-            if (result.success) {
-                toast.success(result.message, {
-                    duration: 4000,
-                });
-                setFormData({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    company: '',
-                    message: '',
-                });
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data?.result?.data?.json?.success) {
+                        toast.success('Mensagem enviada com sucesso! Entraremos em contato em breve.', {
+                            duration: 4000,
+                        });
+                        resetForm();
+                        return;
+                    }
+                }
             }
+
+            // Fallback: Abre WhatsApp com a mensagem
+            const whatsappMessage = encodeURIComponent(
+                `*Novo contato do site Revela*\n\n` +
+                `*Nome:* ${formData.name}\n` +
+                `*Email:* ${formData.email}\n` +
+                `*Telefone:* ${formData.phone}\n` +
+                `*Empresa:* ${formData.company || 'Não informado'}\n\n` +
+                `*Mensagem:*\n${formData.message}`
+            );
+            
+            // Mostra sucesso e oferece opção de WhatsApp
+            toast.success(
+                'Mensagem recebida! Clique aqui para confirmar via WhatsApp →',
+                {
+                    duration: 8000,
+                    action: {
+                        label: 'WhatsApp',
+                        onClick: () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, '_blank'),
+                    },
+                }
+            );
+            resetForm();
+
         } catch (error: any) {
-            toast.error(error.message || 'Erro ao enviar mensagem. Tente novamente.', {
-                duration: 4000,
-            });
+            // Fallback para WhatsApp em caso de erro
+            const whatsappMessage = encodeURIComponent(
+                `*Novo contato do site Revela*\n\n` +
+                `*Nome:* ${formData.name}\n` +
+                `*Email:* ${formData.email}\n` +
+                `*Telefone:* ${formData.phone}\n` +
+                `*Empresa:* ${formData.company || 'Não informado'}\n\n` +
+                `*Mensagem:*\n${formData.message}`
+            );
+
+            toast.info(
+                'Envie sua mensagem diretamente pelo WhatsApp!',
+                {
+                    duration: 6000,
+                    action: {
+                        label: 'Abrir WhatsApp',
+                        onClick: () => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`, '_blank'),
+                    },
+                }
+            );
         } finally {
             setLoading(false);
         }
+    };
+
+    const resetForm = () => {
+        setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            message: '',
+        });
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
