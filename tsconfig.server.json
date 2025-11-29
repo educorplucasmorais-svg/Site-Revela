@@ -1,12 +1,14 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "module": "CommonJS",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "outDir": "dist/server",
         "noEmit": false,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": false
     },
     "include": [
-        "server"
+        "server/**/*"
     ]
 }

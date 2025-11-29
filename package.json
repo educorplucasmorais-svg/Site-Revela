@@ -7,7 +7,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "server": "tsx server/index.ts",
-    "apply-schema": "node scripts/apply_schema.js",
+    "server:prod": "node dist/server/index.js",
+    "build:server": "tsc -p tsconfig.server.json",
+    "start": "npm run build && npm run server:prod",
     "apply-schema-mysql": "node scripts/apply_schema_mysql.cjs",
     "test-stripe": "node scripts/test_stripe.js"
   },
