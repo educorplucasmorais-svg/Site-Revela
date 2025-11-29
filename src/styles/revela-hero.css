@@ -219,13 +219,18 @@
   height: auto;
   max-height: 100%;
   object-fit: contain;
-  object-position: bottom;
+  object-position: center;
+  border-radius: 20px;
   filter: 
     drop-shadow(0 0 60px rgba(255, 107, 53, 0.4))
     drop-shadow(0 0 120px rgba(255, 140, 80, 0.2));
-  mask-image: linear-gradient(to top, black 0%, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to top, black 0%, black 85%, transparent 100%);
   animation: treeReveal 1.2s ease-out 0.5s both;
+}
+
+/* Tech image specific - mix blend for dark theme */
+.revela-tech-image {
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
 
 @keyframes treeReveal {

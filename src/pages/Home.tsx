@@ -55,29 +55,29 @@ function Home() {
                     </div>
 
                     <div className="grid grid-3">
-                        <div className="card">
-                            <div className="icon">📊</div>
-                            <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)' }}>Diagnóstico</h3>
+                        <div className="card revela-card-dark">
+                            <div className="revela-icon-minimal">01</div>
+                            <h3 className="revela-keyword">Diagnóstico</h3>
                             <p style={{ marginBottom: '0' }}>
-                                Analisamos profundamente seu negócio, identificando oportunidades e gargalos
+                                Analisamos profundamente seu negócio, identificando <span className="revela-highlight">oportunidades</span> e gargalos
                                 que impedem o crescimento acelerado.
                             </p>
                         </div>
 
-                        <div className="card">
-                            <div className="icon">⚡</div>
-                            <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)' }}>Execução</h3>
+                        <div className="card revela-card-dark">
+                            <div className="revela-icon-minimal">02</div>
+                            <h3 className="revela-keyword">Execução</h3>
                             <p style={{ marginBottom: '0' }}>
-                                Implementamos as estratégias de forma hands-on, trabalhando lado a lado
+                                Implementamos as estratégias de forma <span className="revela-highlight">hands-on</span>, trabalhando lado a lado
                                 com seu time para garantir resultados.
                             </p>
                         </div>
 
-                        <div className="card">
-                            <div className="icon">📈</div>
-                            <h3 style={{ fontSize: '1.5rem', color: 'var(--color-primary)' }}>Crescimento</h3>
+                        <div className="card revela-card-dark">
+                            <div className="revela-icon-minimal">03</div>
+                            <h3 className="revela-keyword">Crescimento</h3>
                             <p style={{ marginBottom: '0' }}>
-                                Acompanhamos métricas em tempo real e ajustamos a rota para maximizar
+                                Acompanhamos métricas em <span className="revela-highlight">tempo real</span> e ajustamos a rota para maximizar
                                 o retorno sobre investimento.
                             </p>
                         </div>
@@ -133,46 +133,40 @@ function Home() {
                             </p>
 
                             <div style={{ display: 'grid', gap: 'var(--space-lg)' }}>
-                                <div>
-                                    <h4 style={{
-                                        fontSize: '1.125rem',
-                                        marginBottom: 'var(--space-xs)',
-                                        color: 'var(--color-text)',
-                                        fontWeight: '600'
-                                    }}>
-                                        🎯 Priorizar o que importa
-                                    </h4>
-                                    <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                        Escolher e testar iniciativas que geram impacto direto no negócio
-                                    </p>
+                                <div className="revela-feature-item">
+                                    <span className="revela-feature-marker">→</span>
+                                    <div>
+                                        <h4 className="revela-feature-title">
+                                            Priorizar o que <span className="revela-highlight">importa</span>
+                                        </h4>
+                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
+                                            Escolher e testar iniciativas que geram impacto direto no negócio
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <h4 style={{
-                                        fontSize: '1.125rem',
-                                        marginBottom: 'var(--space-xs)',
-                                        color: 'var(--color-text)',
-                                        fontWeight: '600'
-                                    }}>
-                                        🔄 Criar rituais de crescimento
-                                    </h4>
-                                    <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                        Práticas consistentes que mantêm a empresa evoluindo semana após semana
-                                    </p>
+                                <div className="revela-feature-item">
+                                    <span className="revela-feature-marker">→</span>
+                                    <div>
+                                        <h4 className="revela-feature-title">
+                                            Criar rituais de <span className="revela-highlight">crescimento</span>
+                                        </h4>
+                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
+                                            Práticas consistentes que mantêm a empresa evoluindo semana após semana
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <h4 style={{
-                                        fontSize: '1.125rem',
-                                        marginBottom: 'var(--space-xs)',
-                                        color: 'var(--color-text)',
-                                        fontWeight: '600'
-                                    }}>
-                                        💡 Capacitar o time
-                                    </h4>
-                                    <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                        Treinar sua equipe com mindset de crescimento na prática
-                                    </p>
+                                <div className="revela-feature-item">
+                                    <span className="revela-feature-marker">→</span>
+                                    <div>
+                                        <h4 className="revela-feature-title">
+                                            Capacitar o <span className="revela-highlight">time</span>
+                                        </h4>
+                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
+                                            Treinar sua equipe com mindset de crescimento na prática
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

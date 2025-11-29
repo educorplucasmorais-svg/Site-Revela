@@ -720,3 +720,85 @@ section {
     radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
 }
+
+/* =====================================================
+   REVELA DARK THEME - Preto com Laranja
+   ===================================================== */
+
+/* Cards escuros */
+.revela-card-dark {
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(255, 107, 53, 0.15) !important;
+  transition: all 0.3s ease;
+}
+
+.revela-card-dark:hover {
+  border-color: rgba(255, 107, 53, 0.4) !important;
+  box-shadow: 0 0 40px rgba(255, 107, 53, 0.1);
+}
+
+/* Ícones minimalistas numerados */
+.revela-icon-minimal {
+  font-size: 3rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-primary);
+  margin-bottom: var(--space-lg);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.revela-card-dark:hover .revela-icon-minimal {
+  opacity: 1;
+  -webkit-text-stroke: 2px var(--color-primary-light);
+  text-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+}
+
+/* Palavras-chave com sombra laranja */
+.revela-keyword {
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-shadow: 
+    0 0 10px rgba(255, 107, 53, 0.5),
+    0 0 20px rgba(255, 107, 53, 0.3),
+    0 0 40px rgba(255, 107, 53, 0.2);
+  margin-bottom: var(--space-md);
+}
+
+/* Highlight inline - sombra laranja nas palavras */
+.revela-highlight {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-shadow: 
+    0 0 8px rgba(255, 107, 53, 0.6),
+    0 0 16px rgba(255, 107, 53, 0.4);
+}
+
+/* Feature items - C-level section */
+.revela-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.revela-feature-marker {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.revela-feature-title {
+  font-size: 1.125rem;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Tech image specific styles */
+.revela-tech-image {
+  border-radius: 16px;
+  mix-blend-mode: screen;
+}

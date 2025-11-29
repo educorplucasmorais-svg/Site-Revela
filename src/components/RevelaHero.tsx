@@ -4,8 +4,10 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
-// Árvore laranja/outono alta qualidade (Unsplash CDN)
-const TREE_IMAGE = 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=800&q=90&auto=format&fit=crop';
+// Imagem tech: Rede neural / conexões abstratas (Unsplash CDN)
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=800&q=90&auto=format&fit=crop';
+// Alt: Abstract tech network
+const HERO_IMAGE_ALT = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=90&auto=format&fit=crop';
 
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
   return (
@@ -56,31 +58,25 @@ export function RevelaHero({ onContactClick }: RevelaHeroProps) {
           </div>
         </div>
 
-        {/* Right Visual - Tree Image with Effects */}
+        {/* Right Visual - Tech Image with Effects */}
         <div className="revela-hero-visual">
           <div className="revela-tree-container">
-            {/* Falling Leaves */}
-            <div className="revela-leaves-container">
-              {[...Array(15)].map((_, i) => (
-                <div key={i} className="revela-leaf" />
-              ))}
-            </div>
-
-            {/* Floating Particles */}
+            {/* Floating Particles - Tech Style */}
             <div className="revela-particles">
-              {[...Array(8)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <div key={i} className="revela-particle" />
               ))}
             </div>
 
-            {/* Tree Image with Glow Effect */}
+            {/* Tech Image with Glow Effect */}
             <div className="revela-tree-image-wrapper">
               <div className="revela-tree-glow" />
               <img 
-                src={TREE_IMAGE}
-                alt="Árvore de crescimento - Revela"
-                className="revela-tree-image"
+                src={HERO_IMAGE}
+                alt="Tecnologia e Inovação - Revela"
+                className="revela-tree-image revela-tech-image"
                 loading="eager"
+                onError={(e) => { e.currentTarget.src = HERO_IMAGE_ALT; }}
               />
               <div className="revela-tree-reflection" />
             </div>
