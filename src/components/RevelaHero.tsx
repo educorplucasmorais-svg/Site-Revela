@@ -4,17 +4,27 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
+// Imagem da árvore com folhas caindo (usar imagem local ou Unsplash)
+const TREE_IMAGE = '/hero-tree.jpg';
+
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
   return (
     <section className="revela-hero">
-      {/* Background Image */}
+      {/* Background Image - Árvore à direita */}
       <div className="revela-hero-bg">
         <img 
-          src="/hero-tree.jpg" 
+          src={TREE_IMAGE}
           alt="" 
           className="revela-hero-bg-image"
         />
         <div className="revela-hero-bg-overlay" />
+      </div>
+
+      {/* Falling Leaves Animation */}
+      <div className="revela-leaves-container">
+        {[...Array(20)].map((_, i) => (
+          <div key={i} className="revela-leaf" />
+        ))}
       </div>
 
       {/* Background Glows */}
@@ -61,13 +71,6 @@ export function RevelaHero({ onContactClick }: RevelaHeroProps) {
               <div className="revela-hero-stat-label">Satisfação</div>
             </div>
           </div>
-        </div>
-
-        {/* Floating Particles over background */}
-        <div className="revela-particles-overlay">
-          {[...Array(15)].map((_, i) => (
-            <div key={i} className="revela-particle" />
-          ))}
         </div>
       </div>
 
