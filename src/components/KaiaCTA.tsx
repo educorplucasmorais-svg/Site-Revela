@@ -1,19 +1,34 @@
-
-
 export function KaiaCTA() {
   return (
-    <section id="cta" style={{padding: '56px 0', textAlign: 'center'}}>
-      <h2 style={{marginBottom: 12}}>Pronto para testar a Kaia?</h2>
-      <p style={{maxWidth: 680, margin: '0 auto 20px', opacity: 0.85}}>
-        Abra a demo ou fale com nosso time para uma implantação guiada.
-      </p>
-      <div style={{display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap'}}>
-        <a href="/kaia-site/index.html" target="_blank" rel="noreferrer" style={{
-          display: 'inline-block', padding: '12px 18px', borderRadius: 8, background: '#111', color: '#fff', textDecoration: 'none', border: '1px solid #333'
-        }}>Abrir demo</a>
-        <a href="/contato" style={{
-          display: 'inline-block', padding: '12px 18px', borderRadius: 8, background: '#ff6200', color: '#fff', textDecoration: 'none'
-        }}>Falar com vendas</a>
+    <section id="cta" className="kaia-cta">
+      <div className="kaia-cta-content">
+        <span className="kaia-section-label">Comece Agora</span>
+        <h2>Pronto para revolucionar seu atendimento?</h2>
+        <p>
+          Junte-se a centenas de empresas que já usam a Kaia para 
+          automatizar conversas e multiplicar resultados.
+        </p>
+        
+        <div className="kaia-cta-group">
+          <a 
+            href="https://wa.me/5531998079088?text=Olá! Gostaria de saber mais sobre a Kaia" 
+            target="_blank" 
+            rel="noreferrer"
+            className="kaia-btn kaia-btn-primary"
+          >
+            💬 Falar no WhatsApp
+          </a>
+          <a 
+            href="mailto:contato@revela.com.br?subject=Interesse na Kaia" 
+            className="kaia-btn kaia-btn-secondary"
+          >
+            ✉️ Enviar Email
+          </a>
+        </div>
+
+        <p style={{ marginTop: '40px', fontSize: '0.9rem', opacity: 0.5 }}>
+          Teste grátis por 7 dias • Sem cartão de crédito • Cancele quando quiser
+        </p>
       </div>
     </section>
   );

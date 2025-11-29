@@ -1,29 +1,57 @@
-
-
 const features = [
-  { title: 'Atendimento 24/7', desc: 'Bots inteligentes que respondem rápido e com contexto.' },
-  { title: 'Geração de Leads', desc: 'Qualifique e capture contatos automaticamente.' },
-  { title: 'Personalização', desc: 'Ofertas e recomendações sob medida para cada cliente.' },
-  { title: 'Integração Simples', desc: 'Conecte com seu site, CRM e WhatsApp.' }
+  { 
+    icon: '🤖',
+    title: 'Atendimento 24/7', 
+    desc: 'Bots inteligentes que respondem instantaneamente com contexto e personalidade da sua marca.' 
+  },
+  { 
+    icon: '🎯',
+    title: 'Geração de Leads', 
+    desc: 'Qualifique e capture contatos automaticamente com perguntas estratégicas e scoring inteligente.' 
+  },
+  { 
+    icon: '✨',
+    title: 'Personalização IA', 
+    desc: 'Ofertas e recomendações sob medida baseadas no comportamento e preferências de cada cliente.' 
+  },
+  { 
+    icon: '🔗',
+    title: 'Integração Simples', 
+    desc: 'Conecte em minutos com WhatsApp, Instagram, site, CRM e mais de 50 ferramentas.' 
+  },
+  { 
+    icon: '📊',
+    title: 'Analytics Avançado', 
+    desc: 'Dashboards em tempo real com métricas de conversão, satisfação e performance.' 
+  },
+  { 
+    icon: '🛡️',
+    title: 'Segurança Total', 
+    desc: 'Dados criptografados, LGPD compliant e infraestrutura enterprise-grade.' 
+  }
 ];
 
 export function KaiaFeatures() {
   return (
-    <section style={{padding: '40px 0'}}>
-      <h2 style={{textAlign: 'center', marginBottom: 24}}>Recursos da Kaia</h2>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-        gap: 16
-      }}>
-        {features.map((f) => (
-          <div key={f.title} style={{
-            border: '1px solid #333',
-            borderRadius: 10,
-            padding: 16
-          }}>
-            <h3 style={{marginBottom: 8}}>{f.title}</h3>
-            <p style={{opacity: 0.85}}>{f.desc}</p>
+    <section id="features" className="kaia-features">
+      <div className="kaia-section-header">
+        <span className="kaia-section-label">Recursos</span>
+        <h2 className="kaia-section-title">Tudo que você precisa para escalar</h2>
+        <p className="kaia-section-desc">
+          A Kaia combina inteligência artificial avançada com facilidade de uso 
+          para transformar a experiência do seu cliente.
+        </p>
+      </div>
+
+      <div className="kaia-features-grid">
+        {features.map((f, index) => (
+          <div 
+            key={f.title} 
+            className={`kaia-feature-card kaia-animate kaia-animate-delay-${index + 1}`}
+          >
+            <div className="kaia-feature-icon">{f.icon}</div>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
           </div>
         ))}
       </div>

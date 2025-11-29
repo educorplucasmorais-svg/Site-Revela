@@ -1,63 +1,128 @@
 import { useState } from 'react';
-import PaymentModal from './PaymentModal';
+
+interface Plan {
+  id: string;
+  name: string;
+  desc: string;
+  price: number;
+  period: string;
+  features: string[];
+  featured?: boolean;
+  cta: string;
+}
+
+const plans: Plan[] = [
+  {
+    id: 'kaia-starter',
+    name: 'Starter',
+    desc: 'Perfeito para testar e validar',
+    price: 49,
+    period: '/mês',
+    features: [
+      '500 mensagens/mês',
+      '1 canal (WhatsApp ou Web)',
+      'Respostas automáticas básicas',
+      'Dashboard de métricas',
+      'Suporte por email'
+    ],
+    cta: 'Começar Grátis'
+  },
+  {
+    id: 'kaia-pro',
+    name: 'Pro',
+    desc: 'Para negócios em crescimento',
+    price: 149,
+    period: '/mês',
+    featured: true,
+    features: [
+      '5.000 mensagens/mês',
+      '3 canais simultâneos',
+      'IA personalizada para sua marca',
+      'Integrações com CRM',
+      'Analytics avançado',
+      'Suporte prioritário'
+    ],
+    cta: 'Escolher Pro'
+  },
+  {
+    id: 'kaia-enterprise',
+    name: 'Enterprise',
+    desc: 'Soluções sob medida',
+    price: 0,
+    period: 'Personalizado',
+    features: [
+      'Mensagens ilimitadas',
+      'Canais ilimitados',
+      'IA treinada exclusivamente',
+      'API dedicada',
+      'SLA garantido',
+      'Gerente de conta dedicado'
+    ],
+    cta: 'Falar com Vendas'
+  }
+];
 
 export function KaiaPricing() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [plan, setPlan] = useState<{
-    id: string;
-    name: string;
-    price: number;
-    currency: string;
-    interval: string;
-  } | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-  const openStarter = (): void => {
-    setPlan({
-      id: 'kaia-starter',
-      name: 'Starter',
-      price: 49,
-      currency: 'BRL',
-      interval: 'month',
-    });
-    setIsOpen(true);
+  const handleSelectPlan = (planId: string) => {
+    setSelectedPlan(planId);
+    // Scroll to CTA section for now (payment disabled)
+    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section id="pricing" style={{ padding: '48px 0' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: 24 }}>Planos e Preços</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
-        <div style={{ border: '1px solid #333', borderRadius: 10, padding: 16 }}>
-          <h3>Starter</h3>
-          <p style={{ opacity: 0.85 }}>Ideal para validar a Kaia no seu negócio.</p>
-          <p><strong>R$ 49/mês</strong></p>
-          <button
-            className="btn btn-primary"
-            onClick={openStarter}
-            style={{ padding: '10px 16px', borderRadius: 8 }}
-          >
-            Experimentar
-          </button>
-        </div>
-        <div style={{ border: '1px solid #333', borderRadius: 10, padding: 16 }}>
-          <h3>Pro</h3>
-          <p style={{ opacity: 0.85 }}>Mais automação e integrações avançadas.</p>
-          <p><strong>R$ 149/mês</strong></p>
-          <a href="#cta" style={{ display: 'inline-block', padding: '10px 16px', borderRadius: 8, background: '#ff6200', color: '#fff', textDecoration: 'none' }}>Assinar</a>
-        </div>
-        <div style={{ border: '1px solid #333', borderRadius: 10, padding: 16 }}>
-          <h3>Enterprise</h3>
-          <p style={{ opacity: 0.85 }}>Projetos sob medida e SLA dedicado.</p>
-          <p><strong>Fale com vendas</strong></p>
-          <a href="#cta" style={{ display: 'inline-block', padding: '10px 16px', borderRadius: 8, background: '#ff6200', color: '#fff', textDecoration: 'none' }}>Contato</a>
-        </div>
+    <section id="pricing" className="kaia-pricing">
+      <div className="kaia-section-header">
+        <span className="kaia-section-label">Planos</span>
+        <h2 className="kaia-section-title">Escolha o plano ideal</h2>
+        <p className="kaia-section-desc">
+          Comece gratuitamente e escale conforme sua necessidade. 
+          Sem fidelidade, cancele quando quiser.
+        </p>
       </div>
 
-      {isOpen && plan && (
-        <PaymentModal
-          plan={plan}
-          onClose={() => setIsOpen(false)}
-        />
-      )}
+      <div className="kaia-pricing-grid">
+        {plans.map((plan) => (
+          <div 
+            key={plan.id} 
+            className={`kaia-price-card ${plan.featured ? 'featured' : ''}`}
+          >
+            {plan.featured && <span className="kaia-price-popular">Mais Popular</span>}
+            
+            <h3 className="kaia-price-name">{plan.name}</h3>
+            <p className="kaia-price-desc">{plan.desc}</p>
+            
+            <div className="kaia-price-amount">
+              {plan.price > 0 ? (
+                <>
+                  <span className="kaia-price-currency">R$</span>
+                  <span className="kaia-price-value">{plan.price}</span>
+                  <span className="kaia-price-period">{plan.period}</span>
+                </>
+              ) : (
+                <span className="kaia-price-value" style={{ fontSize: '2rem' }}>
+                  {plan.period}
+                </span>
+              )}
+            </div>
+
+            <ul className="kaia-price-features">
+              {plan.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+
+            <button
+              className={`kaia-btn ${plan.featured ? 'kaia-btn-primary' : 'kaia-btn-secondary'}`}
+              style={{ width: '100%', justifyContent: 'center' }}
+              onClick={() => handleSelectPlan(plan.id)}
+            >
+              {plan.cta}
+            </button>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

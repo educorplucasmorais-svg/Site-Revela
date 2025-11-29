@@ -1,0 +1,518 @@
+/* ============================================
+   KAIA LANDING PAGE - Premium Design System
+   ============================================ */
+
+/* Kaia Brand Colors */
+:root {
+  --kaia-primary: #6366F1;
+  --kaia-primary-light: #818CF8;
+  --kaia-primary-dark: #4F46E5;
+  --kaia-accent: #22D3EE;
+  --kaia-accent-glow: rgba(34, 211, 238, 0.3);
+  --kaia-gradient: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%);
+  --kaia-gradient-dark: linear-gradient(135deg, #4F46E5 0%, #0891B2 100%);
+  --kaia-bg: #0F0F1A;
+  --kaia-bg-card: rgba(15, 15, 26, 0.8);
+  --kaia-border: rgba(99, 102, 241, 0.2);
+}
+
+/* Hero Section - Kaia */
+.kaia-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  overflow: hidden;
+  background: var(--kaia-bg);
+}
+
+.kaia-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(34, 211, 238, 0.1) 0%, transparent 40%);
+  animation: kaia-bg-float 20s ease-in-out infinite;
+}
+
+@keyframes kaia-bg-float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-2%, 2%) rotate(5deg); }
+}
+
+.kaia-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  text-align: center;
+}
+
+.kaia-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid var(--kaia-border);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--kaia-accent);
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.kaia-badge::before {
+  content: '✨';
+}
+
+.kaia-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: var(--kaia-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.kaia-hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 680px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.kaia-cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.kaia-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.kaia-btn-primary {
+  background: var(--kaia-gradient);
+  color: white;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.35);
+}
+
+.kaia-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.5);
+}
+
+.kaia-btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.kaia-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--kaia-accent);
+}
+
+/* Floating Elements */
+.kaia-float-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.kaia-float-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: kaia-orb-float 8s ease-in-out infinite;
+}
+
+.kaia-float-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: rgba(99, 102, 241, 0.3);
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.kaia-float-orb-2 {
+  width: 200px;
+  height: 200px;
+  background: rgba(34, 211, 238, 0.25);
+  bottom: 20%;
+  left: 5%;
+  animation-delay: -3s;
+}
+
+@keyframes kaia-orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(20px, -30px) scale(1.1); opacity: 0.8; }
+}
+
+/* Features Section */
+.kaia-features {
+  padding: 100px 20px;
+  background: var(--kaia-bg);
+  position: relative;
+}
+
+.kaia-section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.kaia-section-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--kaia-accent);
+  margin-bottom: 16px;
+}
+
+.kaia-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.kaia-section-desc {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.kaia-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.kaia-feature-card {
+  background: var(--kaia-bg-card);
+  border: 1px solid var(--kaia-border);
+  border-radius: 20px;
+  padding: 32px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.kaia-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--kaia-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.kaia-feature-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--kaia-primary);
+  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+}
+
+.kaia-feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.kaia-feature-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 14px;
+  font-size: 1.75rem;
+  margin-bottom: 20px;
+}
+
+.kaia-feature-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.kaia-feature-card p {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Pricing Section */
+.kaia-pricing {
+  padding: 100px 20px;
+  background: linear-gradient(180deg, var(--kaia-bg) 0%, #0A0A14 100%);
+}
+
+.kaia-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.kaia-price-card {
+  background: var(--kaia-bg-card);
+  border: 1px solid var(--kaia-border);
+  border-radius: 24px;
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+}
+
+.kaia-price-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.kaia-price-card.featured {
+  border-color: var(--kaia-primary);
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.1) 0%, var(--kaia-bg-card) 100%);
+}
+
+.kaia-price-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--kaia-gradient);
+}
+
+.kaia-price-popular {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 14px;
+  background: var(--kaia-gradient);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kaia-price-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.kaia-price-desc {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 24px;
+}
+
+.kaia-price-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.kaia-price-currency {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.kaia-price-value {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.kaia-price-period {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.kaia-price-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kaia-price-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.kaia-price-features li::before {
+  content: '✓';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--kaia-accent);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* CTA Section */
+.kaia-cta {
+  padding: 120px 20px;
+  text-align: center;
+  position: relative;
+  background: var(--kaia-bg);
+  overflow: hidden;
+}
+
+.kaia-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.kaia-cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.kaia-cta h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.kaia-cta p {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 40px;
+}
+
+/* Stats */
+.kaia-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 32px;
+  max-width: 800px;
+  margin: 80px auto 0;
+}
+
+.kaia-stat {
+  text-align: center;
+}
+
+.kaia-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--kaia-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.kaia-stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kaia-hero {
+    padding-top: 100px;
+  }
+  
+  .kaia-cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .kaia-btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
+  .kaia-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Animations */
+@keyframes kaia-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.kaia-animate {
+  animation: kaia-fade-up 0.8s ease-out forwards;
+}
+
+.kaia-animate-delay-1 { animation-delay: 0.1s; }
+.kaia-animate-delay-2 { animation-delay: 0.2s; }
+.kaia-animate-delay-3 { animation-delay: 0.3s; }
+.kaia-animate-delay-4 { animation-delay: 0.4s; }
