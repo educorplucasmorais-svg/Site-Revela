@@ -1,5 +1,5 @@
 /* ============================================
-   REVELA HERO - Tech Style with Tree Animation
+   REVELA HERO - Tech Style with Background Image
    ============================================ */
 
 /* Hero Section */
@@ -9,8 +9,40 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #000000 0%, #0a0a0f 50%, #0f0f18 100%);
+  background: #000000;
   padding-top: 100px;
+}
+
+/* Background Image Layer */
+.revela-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.revela-hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.revela-hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.7) 40%,
+    rgba(0, 0, 0, 0.3) 70%,
+    transparent 100%
+  );
 }
 
 /* Animated Background Grid */
@@ -66,15 +98,24 @@
 
 /* Hero Container */
 .revela-hero-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  display: flex;
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 40px;
   position: relative;
   z-index: 1;
+}
+
+/* Floating Particles Overlay */
+.revela-particles-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Left Content */
@@ -420,9 +461,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .revela-hero-container {
-    grid-template-columns: 1fr;
     text-align: center;
-    gap: 40px;
   }
   
   .revela-hero-content {
@@ -443,13 +482,17 @@
     justify-content: center;
   }
   
-  .revela-hero-visual {
-    height: 400px;
+  .revela-hero-bg-image {
+    object-position: center center;
   }
   
-  .revela-tree {
-    width: 300px;
-    height: 360px;
+  .revela-hero-bg-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
   }
 }
 
@@ -476,10 +519,6 @@
   .revela-hero-stats {
     flex-wrap: wrap;
     gap: 24px;
-  }
-  
-  .revela-hero-visual {
-    height: 300px;
   }
 }
 

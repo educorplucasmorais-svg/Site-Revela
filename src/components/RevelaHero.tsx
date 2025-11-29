@@ -4,14 +4,19 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
-// Imagem tech: Rede neural / conexões abstratas (Unsplash CDN)
-const HERO_IMAGE = 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=800&q=90&auto=format&fit=crop';
-// Alt: Abstract tech network
-const HERO_IMAGE_ALT = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=90&auto=format&fit=crop';
-
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
   return (
     <section className="revela-hero">
+      {/* Background Image */}
+      <div className="revela-hero-bg">
+        <img 
+          src="/hero-tree.jpg" 
+          alt="" 
+          className="revela-hero-bg-image"
+        />
+        <div className="revela-hero-bg-overlay" />
+      </div>
+
       {/* Background Glows */}
       <div className="revela-hero-glow revela-hero-glow-1" />
       <div className="revela-hero-glow revela-hero-glow-2" />
@@ -58,29 +63,11 @@ export function RevelaHero({ onContactClick }: RevelaHeroProps) {
           </div>
         </div>
 
-        {/* Right Visual - Tech Image with Effects */}
-        <div className="revela-hero-visual">
-          <div className="revela-tree-container">
-            {/* Floating Particles - Tech Style */}
-            <div className="revela-particles">
-              {[...Array(12)].map((_, i) => (
-                <div key={i} className="revela-particle" />
-              ))}
-            </div>
-
-            {/* Tech Image with Glow Effect */}
-            <div className="revela-tree-image-wrapper">
-              <div className="revela-tree-glow" />
-              <img 
-                src={HERO_IMAGE}
-                alt="Tecnologia e Inovação - Revela"
-                className="revela-tree-image revela-tech-image"
-                loading="eager"
-                onError={(e) => { e.currentTarget.src = HERO_IMAGE_ALT; }}
-              />
-              <div className="revela-tree-reflection" />
-            </div>
-          </div>
+        {/* Floating Particles over background */}
+        <div className="revela-particles-overlay">
+          {[...Array(15)].map((_, i) => (
+            <div key={i} className="revela-particle" />
+          ))}
         </div>
       </div>
 
