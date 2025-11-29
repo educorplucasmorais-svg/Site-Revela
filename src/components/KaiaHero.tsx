@@ -1,4 +1,8 @@
-export function KaiaHero() {
+interface KaiaHeroProps {
+  onDemoClick?: () => void;
+}
+
+export function KaiaHero({ onDemoClick }: KaiaHeroProps) {
   return (
     <section className="kaia-hero">
       {/* Floating background elements */}
@@ -24,9 +28,11 @@ export function KaiaHero() {
             Começar Grátis
             <span>→</span>
           </a>
-          <a href="#features" className="kaia-btn kaia-btn-secondary">
-            Ver Recursos
-          </a>
+          {onDemoClick && (
+            <button onClick={onDemoClick} className="kaia-btn kaia-btn-secondary">
+              🖥️ Ver Demo do App
+            </button>
+          )}
         </div>
 
         {/* Stats */}
