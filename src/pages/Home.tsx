@@ -3,6 +3,7 @@ import ContactForm from '../components/ContactForm';
 import ServicesGrid from '../components/ServicesGrid';
 import PricingSection from '../components/PricingSection';
 import ProductsArea from '../components/ProductsArea';
+import { Testimonials } from '../components/Testimonials';
 
 function Home() {
     const [isVisible, setIsVisible] = useState(false);
@@ -244,6 +245,9 @@ function Home() {
                     </div>
                 </div>
             </section>
+
+            {/* Testimonials Section - Depoimentos */}
+            <Testimonials />
 
             {/* Pricing Section */}
             <section id="precos" className="section-dark">
