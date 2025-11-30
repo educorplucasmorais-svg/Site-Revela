@@ -1,6 +1,8 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
 import Stripe from 'stripe';
+import crypto from 'crypto';
+import bcrypt from 'bcryptjs';
 import type { Context } from './context';
 import { query as dbQuery } from './lib/db';
 
@@ -16,6 +18,55 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
 
 // Define your routes here
 export const appRouter = router({
+    auth: router({
+        // Login with username/email + password
+        login: publicProcedure
+            .input(z.object({ username: z.string(), password: z.string() }))
+            .mutation(async ({ input }) => {
+                const rows: any = await dbQuery(
+                    `SELECT id, password_hash, email, name FROM users WHERE (email = ? OR name = ?) LIMIT 1`,
+                    [input.username, input.username]
+                );
+
+                if (!rows || rows.length === 0) {
+                    throw new Error('Credenciais inválidas');
+                }
+
+                const user = rows[0];
+                const ok = await bcrypt.compare(input.password, user.password_hash || '');
+                if (!ok) throw new Error('Credenciais inválidas');
+
+                // create session token
+                const token = crypto.randomBytes(48).toString('hex');
+                const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+
+                await dbQuery(`INSERT INTO sessions (user_id, token, expires_at, created_at) VALUES (?, ?, ?, NOW())`, [user.id, token, expiresAt]);
+
+                return {
+                    success: true,
+                    token,
+                    user: { id: user.id, email: user.email, name: user.name },
+                };
+            }),
+
+        // Return current authenticated user (if any)
+        whoami: publicProcedure.query(async ({ ctx }) => {
+            return ctx.user || null;
+        }),
+
+        // Logout: remove session by token
+        logout: publicProcedure.mutation(async ({ ctx }) => {
+            const auth = (ctx.req.headers.authorization as string) || '';
+            if (!auth || !auth.startsWith('Bearer ')) return { success: true };
+            const token = auth.slice(7);
+            try {
+                await dbQuery(`DELETE FROM sessions WHERE token = ?`, [token]);
+            } catch (e) {
+                console.warn('Failed to delete session', e);
+            }
+            return { success: true };
+        }),
+    }),
     // Contact form submission
     submitContact: publicProcedure
         .input(

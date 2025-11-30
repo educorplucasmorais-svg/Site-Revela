@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Kaia from "./pages/Kaia";
+import AdminLogin from './pages/AdminLogin';
+import AdminApp from './pages/AdminApp';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
@@ -59,6 +61,7 @@ function App() {
                             <li><Link href="#servicos" className="nav-link">Serviços</Link></li>
                             <li><Link href="#sobre" className="nav-link">Sobre</Link></li>
                             <li><Link href="#contato" className="nav-link">Contato</Link></li>
+                            <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
                         </ul>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
                             <span style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
@@ -72,9 +75,15 @@ function App() {
             <main>
                 <Switch>
                     <Route path="/" component={Home} />
-                        <Route path="/kaia">
-                            <Kaia />
-                        </Route>
+                    <Route path="/kaia">
+                        <Kaia />
+                    </Route>
+                    <Route path="/admin/login">
+                        <AdminLogin />
+                    </Route>
+                    <Route path="/admin/app">
+                        <AdminApp />
+                    </Route>
                     <Route>
                         <div className="container" style={{ paddingTop: '150px', textAlign: 'center', minHeight: '100vh' }}>
                             <h1>404</h1>
