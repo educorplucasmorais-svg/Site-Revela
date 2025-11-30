@@ -1,13 +1,44 @@
+import { useState, useEffect } from 'react';
 import Kaia from "./pages/Kaia";
-import { Route, Switch, Link } from 'wouter';
+import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
+import { PageTransition } from './components/PageTransition';
 import './style.css';
 
 function App() {
+    const [location] = useLocation();
+    const [showTransition, setShowTransition] = useState(false);
+    const [pendingRoute, setPendingRoute] = useState<string | null>(null);
+    const [, setLocation] = useLocation();
+
+    // Handle navigation to Kaia with transition
+    const handleKaiaClick = (e: React.MouseEvent) => {
+        if (location !== '/kaia') {
+            e.preventDefault();
+            setShowTransition(true);
+            setPendingRoute('/kaia');
+        }
+    };
+
+    // Complete navigation after transition
+    const handleTransitionComplete = () => {
+        if (pendingRoute) {
+            setLocation(pendingRoute);
+            setPendingRoute(null);
+        }
+        setShowTransition(false);
+    };
+
     return (
         <>
             <Toaster position="top-right" richColors />
+
+            {/* VFX Page Transition */}
+            <PageTransition 
+                isActive={showTransition} 
+                onComplete={handleTransitionComplete}
+            />
 
             <header className="header" id="header">
                 <div className="container">
@@ -20,7 +51,11 @@ function App() {
                         </Link>
                         <ul className="nav-links">
                             <li><Link href="/" className="nav-link">Início</Link></li>
-                            <li><Link href="/kaia" className="nav-link">Kaia</Link></li>
+                            <li>
+                                <Link href="/kaia" className="nav-link" onClick={handleKaiaClick}>
+                                    Kaia
+                                </Link>
+                            </li>
                             <li><Link href="#servicos" className="nav-link">Serviços</Link></li>
                             <li><Link href="#sobre" className="nav-link">Sobre</Link></li>
                             <li><Link href="#contato" className="nav-link">Contato</Link></li>

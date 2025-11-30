@@ -1,0 +1,314 @@
+/* ============================================
+   PAGE TRANSITION - Liquid VFX Animation
+   Orange to Blue Ocean/Neon Tech
+   ============================================ */
+
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+/* Wave SVG Container */
+.transition-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Wave Paths Animation */
+.wave-path {
+  transform-origin: bottom;
+}
+
+.wave.wave-1 {
+  animation: waveRise 0.8s ease-out forwards;
+}
+
+.wave.wave-2 {
+  animation: waveRise 0.8s ease-out 0.1s forwards;
+}
+
+.wave.wave-3 {
+  animation: waveRise 0.8s ease-out 0.2s forwards;
+}
+
+/* Phase: Wave */
+.page-transition.wave .wave-path {
+  animation: waveRise 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page-transition.wave .wave-1 {
+  animation-delay: 0s;
+}
+
+.page-transition.wave .wave-2 {
+  animation-delay: 0.1s;
+}
+
+.page-transition.wave .wave-3 {
+  animation-delay: 0.15s;
+}
+
+@keyframes waveRise {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+/* Phase: Fill */
+.page-transition.fill .transition-wave {
+  animation: fillScreen 0.5s ease-out forwards;
+}
+
+@keyframes fillScreen {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.page-transition.fill {
+  background: linear-gradient(135deg, #6366F1 0%, #22D3EE 50%, #0891B2 100%);
+  animation: bgFill 0.3s ease-out forwards;
+}
+
+@keyframes bgFill {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Phase: Fade */
+.page-transition.fade {
+  background: linear-gradient(135deg, #6366F1 0%, #22D3EE 50%, #0891B2 100%);
+  animation: fadeOut 0.6s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+/* Liquid Droplets */
+.transition-droplets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.droplet {
+  position: absolute;
+  top: -20px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: linear-gradient(135deg, #FF6B35, #6366F1, #22D3EE);
+  background-size: 200% 200%;
+  animation: dropletFall 1s ease-in forwards, dropletColor 1.2s ease forwards;
+  opacity: 0;
+}
+
+.page-transition.wave .droplet,
+.page-transition.fill .droplet {
+  opacity: 1;
+}
+
+@keyframes dropletFall {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) scale(0.5) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes dropletColor {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Bubbles */
+.transition-bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(34, 211, 238, 0.6);
+  box-shadow: 
+    0 0 10px rgba(34, 211, 238, 0.8),
+    0 0 20px rgba(99, 102, 241, 0.5),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: bubbleRise 1.5s ease-out forwards;
+  opacity: 0;
+}
+
+.page-transition.fill .bubble,
+.page-transition.fade .bubble {
+  opacity: 1;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(-10vh) scale(1);
+  }
+  100% {
+    transform: translateY(-80vh) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Center Logo */
+.transition-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  z-index: 10;
+}
+
+.page-transition.fill .transition-logo,
+.page-transition.fade .transition-logo {
+  animation: logoReveal 0.8s ease-out 0.2s forwards;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.transition-logo-icon {
+  font-size: 4rem;
+  animation: iconPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.8));
+  }
+  50% {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 40px rgba(34, 211, 238, 1));
+  }
+}
+
+.transition-logo-text {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
+  letter-spacing: -0.02em;
+}
+
+/* Neon Glow Effect */
+.page-transition.fill::after,
+.page-transition.fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(34, 211, 238, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 40%);
+  animation: neonPulse 1s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .transition-logo-icon {
+    font-size: 3rem;
+  }
+  
+  .transition-logo-text {
+    font-size: 2.5rem;
+  }
+  
+  .droplet {
+    display: none;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .page-transition * {
+    animation-duration: 0.01ms !important;
+  }
+}
