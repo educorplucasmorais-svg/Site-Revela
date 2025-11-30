@@ -31,20 +31,20 @@ export default function AdminLogin() {
     return (
         <div className="kaia-theme light kaia-login-container">
             <div className="kaia-card">
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-                    <KaiaLogo className="w-32 h-32" />
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
+                    <KaiaLogo style={{ width: '80px', height: '80px' }} />
                 </div>
                 
-                <h2 style={{ textAlign: 'center', marginBottom: '0.5rem', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                <h2 style={{ textAlign: 'center', marginBottom: '0.375rem', fontSize: '1.25rem', fontWeight: 'bold' }}>
                     Área Interna - Kaia
                 </h2>
-                <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'hsl(var(--muted-foreground))' }}>
+                <p style={{ textAlign: 'center', marginBottom: '1.25rem', color: 'hsl(var(--muted-foreground))', fontSize: '0.875rem' }}>
                     Acesse o painel administrativo
                 </p>
 
-                <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1rem' }}>
+                <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '0.875rem' }}>
                     <div>
-                        <label style={{ fontSize: '0.875rem', fontWeight: 500 }}>Usuário</label>
+                        <label style={{ fontSize: '0.8125rem', fontWeight: 500 }}>Usuário</label>
                         <input 
                             className="kaia-input"
                             value={username} 
@@ -54,7 +54,7 @@ export default function AdminLogin() {
                     </div>
 
                     <div>
-                        <label style={{ fontSize: '0.875rem', fontWeight: 500 }}>Senha</label>
+                        <label style={{ fontSize: '0.8125rem', fontWeight: 500 }}>Senha</label>
                         <input 
                             className="kaia-input"
                             type="password" 
