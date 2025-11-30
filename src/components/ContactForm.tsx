@@ -2,7 +2,7 @@ import { useState, FormEvent } from 'react';
 import { toast } from 'sonner';
 
 // Número do WhatsApp para fallback (edite aqui)
-const WHATSAPP_NUMBER = '5531998079088';
+const WHATSAPP_NUMBER = '5531993044867';
 
 function ContactForm() {
     const [formData, setFormData] = useState({
