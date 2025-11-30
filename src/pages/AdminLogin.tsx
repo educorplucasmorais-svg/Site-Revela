@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { trpc } from '../lib/trpc';
 import { API_BASE_URL } from '../lib/api';
+import { useEffect } from 'react';
 import { KaiaLogo } from '../components/KaiaLogo';
 import '../styles/kaia-theme.css';
 
@@ -11,6 +12,32 @@ export default function AdminLogin() {
     const [password, setPassword] = useState('admin123');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [envStatus, setEnvStatus] = useState<{ url: string; ok: boolean | null; message?: string }>({ url: API_BASE_URL || '(vazio)', ok: null });
+
+    // Environment diagnostics: test /api/health
+    useEffect(() => {
+        const url = API_BASE_URL ? `${API_BASE_URL}/api/health` : '/api/health';
+        let cancelled = false;
+        fetch(url, { method: 'GET' })
+            .then(async r => {
+                if (cancelled) return;
+                if (!r.ok) {
+                    setEnvStatus({ url, ok: false, message: `HTTP ${r.status}` });
+                    return;
+                }
+                try {
+                    const data = await r.json();
+                    setEnvStatus({ url, ok: true, message: data.status || 'ok' });
+                } catch (e: any) {
+                    setEnvStatus({ url, ok: false, message: 'Resposta não-JSON' });
+                }
+            })
+            .catch(e => {
+                if (cancelled) return;
+                setEnvStatus({ url, ok: false, message: (e?.message || 'falha de rede').slice(0, 80) });
+            });
+        return () => { cancelled = true; };
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -26,7 +53,7 @@ export default function AdminLogin() {
                     setLocation('/admin/app');
                     return;
                 } else {
-                    throw new Error('API indisponível. Use credenciais padrão admin/admin123 para acesso temporário.');
+                    throw new Error('API indisponível. Em produção: defina VITE_API_URL no Vercel para seu backend e reinicie. Temporário: use admin/admin123.');
                 }
             }
 
@@ -39,7 +66,7 @@ export default function AdminLogin() {
             // Show clearer message when backend returns non-JSON or is unreachable
             const msg = (err?.message || '').toString();
             if (msg.includes('Unexpected end of JSON input')) {
-                setError('Falha ao conectar à API. Verifique VITE_API_URL e backend em produção.');
+                setError('Falha ao conectar à API. Verifique backend (deploy), VITE_API_URL no Vercel e CORS.');
             } else {
                 setError(err?.message || 'Falha ao autenticar');
             }
@@ -86,6 +113,23 @@ export default function AdminLogin() {
 
                     {error && (
                         <div style={{ 
+                        {/* Environment status panel */}
+                        <div style={{
+                            fontSize: '0.7rem',
+                            lineHeight: 1.4,
+                            color: envStatus.ok ? 'hsl(var(--muted-foreground))' : 'hsl(var(--destructive))',
+                            background: 'hsl(var(--muted) / 0.3)',
+                            padding: '0.5rem 0.75rem',
+                            borderRadius: 'var(--radius)'
+                        }}>
+                            <strong>API:</strong> {envStatus.url}<br />
+                            Status: {envStatus.ok === null ? 'testando...' : envStatus.ok ? 'OK' : 'Indisponível'} {envStatus.message ? `(${envStatus.message})` : ''}
+                            {envStatus.ok === false && (
+                                <>
+                                    <br />Configure backend deploy e defina <code style={{ fontSize: '0.65rem' }}>VITE_API_URL</code> no Vercel.
+                                </>
+                            )}
+                        </div>
                             color: 'hsl(var(--destructive))', 
                             fontSize: '0.875rem', 
                             padding: '0.5rem', 
