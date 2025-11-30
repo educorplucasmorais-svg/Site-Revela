@@ -134,7 +134,7 @@ function App() {
                             </h4>
                             <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
                                 <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📧 contato@revela.com.br</li>
-                                <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📱 (31) 99807-9088</li>
+                                <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📱 +55 31 99304-4867</li>
                                 <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📍 Atuação em todo o Brasil</li>
                             </ul>
                         </div>
