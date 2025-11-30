@@ -33,7 +33,7 @@ const bcrypt = require('bcryptjs');
     console.log('Connecting to MySQL %s@%s:%s/%s', config.user, config.host, config.port, config.database);
     const conn = await mysql.createConnection({ ...config, multipleStatements: true });
 
-    const adminEmail = process.env.SEED_ADMIN_EMAIL || 'admin@revela.local';
+    const adminEmail = process.env.SEED_ADMIN_EMAIL || 'admin@local';
     const adminName = process.env.SEED_ADMIN_NAME || 'admin';
     const adminPassword = process.env.SEED_ADMIN_PASSWORD || 'admin123';
 
@@ -46,7 +46,8 @@ const bcrypt = require('bcryptjs');
 
     const hash = await bcrypt.hash(adminPassword, 10);
     await conn.query('INSERT INTO users (email, name, password_hash, created_at) VALUES (?, ?, ?, NOW())', [adminEmail, adminName, hash]);
-    console.log('Admin user created:', adminEmail);
+    console.log('✅ Admin user created:', adminEmail);
+    console.log('Login: ' + adminName + ' / ' + adminPassword + ' (change password after first login)');
     await conn.end();
   } catch (e) {
     console.error('Error seeding admin:', e.message || e);

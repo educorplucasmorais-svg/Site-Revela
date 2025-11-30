@@ -10,7 +10,8 @@
     "start": "tsx server/index.ts",
     "apply-schema-mysql": "node scripts/apply_schema_mysql.cjs",
     "test-send-whatsapp": "node scripts/test_send_whatsapp.cjs",
-    "test-stripe": "node scripts/test_stripe.js"
+    "test-stripe": "node scripts/test_stripe.js",
+    "seed-admin": "node scripts/seed_admin.cjs"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^5.4.1",

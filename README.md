@@ -410,6 +410,17 @@ Use bcryptjs para gerar hash:
 node -e "const b=require('bcryptjs');b.hash('admin123',10).then(h=>console.log(h))"
 ```
 
+Ou simplesmente use o seed automático:
+```bash
+npm run seed-admin
+```
+Variáveis opcionais para customizar:
+```
+SEED_ADMIN_EMAIL=admin@local
+SEED_ADMIN_NAME=admin
+SEED_ADMIN_PASSWORD=admin123
+```
+
 ### 5. Teste
 1. Acesse `/admin/login` em produção.
 2. Verifique painel de diagnóstico (mostra URL e status).
