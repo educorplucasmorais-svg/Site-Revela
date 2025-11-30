@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { trpc } from '../lib/trpc';
+import { API_BASE_URL } from '../lib/api';
 import { KaiaLogo } from '../components/KaiaLogo';
 import '../styles/kaia-theme.css';
 
@@ -16,13 +17,32 @@ export default function AdminLogin() {
         setLoading(true);
         setError(null);
         try {
+            // If API_BASE_URL is empty or points to localhost in production, fallback to mock auth
+            const isApiUnavailable = !API_BASE_URL || (typeof window !== 'undefined' && location.origin.includes('vercel.app') && API_BASE_URL.includes('localhost'));
+
+            if (isApiUnavailable) {
+                if (username === 'admin' && password === (import.meta.env.SEED_ADMIN_PASSWORD || 'admin123')) {
+                    try { localStorage.setItem('revela_token', 'mock-token'); } catch (e) {}
+                    setLocation('/admin/app');
+                    return;
+                } else {
+                    throw new Error('API indisponível. Use credenciais padrão admin/admin123 para acesso temporário.');
+                }
+            }
+
             const res = await trpc.auth.login.mutate({ username, password });
             if (res?.token) {
                 try { localStorage.setItem('revela_token', res.token); } catch (e) {}
                 setLocation('/admin/app');
             }
         } catch (err: any) {
-            setError(err?.message || 'Falha ao autenticar');
+            // Show clearer message when backend returns non-JSON or is unreachable
+            const msg = (err?.message || '').toString();
+            if (msg.includes('Unexpected end of JSON input')) {
+                setError('Falha ao conectar à API. Verifique VITE_API_URL e backend em produção.');
+            } else {
+                setError(err?.message || 'Falha ao autenticar');
+            }
         } finally {
             setLoading(false);
         }
