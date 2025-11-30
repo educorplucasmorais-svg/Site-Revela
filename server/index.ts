@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
-  process.env.FRONTEND_URL, // e.g., https://site-revela5-0.vercel.app
+  process.env.FRONTEND_URL, // e.g., https://revela-alpha.vercel.app
 ].filter(Boolean) as string[];
 
 app.use(cors({

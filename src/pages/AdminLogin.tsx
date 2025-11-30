@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { trpc } from '../lib/trpc';
+import { KaiaLogo } from '../components/KaiaLogo';
+import '../styles/kaia-theme.css';
 
 export default function AdminLogin() {
     const [, setLocation] = useLocation();
@@ -27,27 +29,65 @@ export default function AdminLogin() {
     };
 
     return (
-        <div className="container" style={{ paddingTop: '120px', minHeight: '70vh' }}>
-            <div style={{ maxWidth: 480, margin: '0 auto' }}>
-                <h2>Área Interna - Revela</h2>
-                <p>Use as credenciais de administrador para acessar o App interno.</p>
+        <div className="kaia-theme light kaia-login-container">
+            <div className="kaia-card">
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+                    <KaiaLogo className="w-32 h-32" />
+                </div>
+                
+                <h2 style={{ textAlign: 'center', marginBottom: '0.5rem', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                    Área Interna - Kaia
+                </h2>
+                <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'hsl(var(--muted-foreground))' }}>
+                    Acesse o painel administrativo
+                </p>
 
-                <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 'var(--space-md)' }}>
-                    <label>
-                        Usuário
-                        <input value={username} onChange={(e)=>setUsername(e.target.value)} />
-                    </label>
+                <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1rem' }}>
+                    <div>
+                        <label style={{ fontSize: '0.875rem', fontWeight: 500 }}>Usuário</label>
+                        <input 
+                            className="kaia-input"
+                            value={username} 
+                            onChange={(e)=>setUsername(e.target.value)} 
+                            placeholder="Digite seu usuário"
+                        />
+                    </div>
 
-                    <label>
-                        Senha
-                        <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
-                    </label>
+                    <div>
+                        <label style={{ fontSize: '0.875rem', fontWeight: 500 }}>Senha</label>
+                        <input 
+                            className="kaia-input"
+                            type="password" 
+                            value={password} 
+                            onChange={(e)=>setPassword(e.target.value)} 
+                            placeholder="Digite sua senha"
+                        />
+                    </div>
 
-                    {error && <div style={{ color: 'var(--color-danger)' }}>{error}</div>}
+                    {error && (
+                        <div style={{ 
+                            color: 'hsl(var(--destructive))', 
+                            fontSize: '0.875rem', 
+                            padding: '0.5rem', 
+                            backgroundColor: 'hsl(var(--destructive) / 0.1)',
+                            borderRadius: 'var(--radius)'
+                        }}>
+                            {error}
+                        </div>
+                    )}
 
-                    <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
-                        <button className="btn btn-primary" disabled={loading}>{loading ? 'Entrando...' : 'Entrar'}</button>
-                        <Link href="/" className="btn">Voltar</Link>
+                    <div style={{ display: 'grid', gap: '1rem', marginTop: '1rem' }}>
+                        <button className="kaia-btn" disabled={loading}>
+                            {loading ? 'Entrando...' : 'Entrar'}
+                        </button>
+                        <Link href="/" style={{ 
+                            textAlign: 'center', 
+                            color: 'hsl(var(--muted-foreground))',
+                            textDecoration: 'none',
+                            fontSize: '0.875rem'
+                        }}>
+                            Voltar para o site
+                        </Link>
                     </div>
                 </form>
             </div>

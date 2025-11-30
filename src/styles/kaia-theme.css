@@ -1,0 +1,102 @@
+.kaia-theme {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 231 92% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 231 92% 60%;
+}
+
+.kaia-theme.light {
+  --background: 200 50% 96%; /* Azul claro dessaturado */
+  --foreground: 220 44% 21%; /* Azul marinho (texto principal) */
+  --card: 0 0% 100%;       /* Branco (fundo dos cards) */
+  --card-foreground: 220 44% 21%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 44% 21%;
+  --primary: 221 89% 60%;   /* Azul vibrante (cor primária para botões, links) */
+  --primary-foreground: 0 0% 100%; /* Branco (texto sobre a cor primária) */
+  --secondary: 220 50% 98%;
+  --secondary-foreground: 220 44% 21%;
+  --muted: 220 50% 98%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 224 83% 53%;   /* Azul de destaque */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%; /* Vermelho para ações destrutivas */
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 221 89% 60%;      /* Cor do anel de foco */
+  --radius: 0.5rem;
+}
+
+.kaia-login-container {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.kaia-card {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.kaia-input {
+    background-color: hsl(var(--input));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.kaia-input:focus {
+    outline: none;
+    ring: 2px solid hsl(var(--ring));
+    border-color: hsl(var(--ring));
+}
+
+.kaia-btn {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+.kaia-btn:hover {
+    opacity: 0.9;
+}
+
+.kaia-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

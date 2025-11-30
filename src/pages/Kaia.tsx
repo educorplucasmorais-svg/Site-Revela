@@ -4,6 +4,7 @@ import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
 import { KaiaPricing } from '../components/KaiaPricing';
 import { KaiaCTA } from '../components/KaiaCTA';
+import { KaiaLogo } from '../components/KaiaLogo';
 import '../styles/kaia.css';
 
 export default function KaiaPage() {
@@ -51,9 +52,7 @@ export default function KaiaPage() {
       {/* Kaia Logo Header */}
       <header className="kaia-header">
         <div className="kaia-logo">
-          <span className="kaia-logo-icon">🤖</span>
-          <span className="kaia-logo-text">Kaia</span>
-          <span className="kaia-logo-badge">IA</span>
+          <KaiaLogo style={{ height: '40px', width: 'auto' }} />
         </div>
         <nav className="kaia-nav">
           <a href="#features">Recursos</a>

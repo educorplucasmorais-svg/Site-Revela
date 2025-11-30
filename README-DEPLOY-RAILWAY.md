@@ -13,7 +13,7 @@ No painel do Railway, adicione:
 ```
 PORT=3000
 NODE_ENV=production
-FRONTEND_URL=https://site-revela5-0.vercel.app
+FRONTEND_URL=https://revela-alpha.vercel.app
 STRIPE_SECRET_KEY=sk_test_...
 DATABASE_URL=mysql://user:pass@host:3306/database
 ```
