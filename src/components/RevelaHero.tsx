@@ -4,8 +4,8 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
-// Imagem da árvore com folhas caindo (usar imagem local ou Unsplash)
-const TREE_IMAGE = '/hero-tree.jpg';
+// Árvore laranja realista com folhas caindo (Unsplash)
+const TREE_IMAGE = 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1200&q=90&auto=format&fit=crop';
 
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
   return (
