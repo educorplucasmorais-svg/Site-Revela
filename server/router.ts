@@ -3,6 +3,7 @@ import { z } from 'zod';
 import Stripe from 'stripe';
 import crypto from 'crypto';
 import bcrypt from 'bcryptjs';
+import axios from 'axios';
 import type { Context } from './context';
 import { query as dbQuery } from './lib/db';
 
@@ -282,6 +283,55 @@ export const appRouter = router({
                 success: true,
                 message: 'Inscrição realizada com sucesso!',
             };
+        }),
+
+    // Send WhatsApp message via Meta Graph API (server-side)
+    sendWhatsapp: publicProcedure
+        .input(
+            z.object({
+                to: z.string().optional(),
+                text: z.string().min(1, 'Texto obrigatório'),
+            })
+        )
+        .mutation(async ({ input }) => {
+            const phoneId = process.env.WHATSAPP_PHONE_ID;
+            const token = process.env.WHATSAPP_TOKEN;
+            const defaultTo = process.env.WHATSAPP_PHONE;
+
+            if (!phoneId || !token) {
+                throw new Error('WhatsApp API não configurada (WHATSAPP_PHONE_ID ou WHATSAPP_TOKEN ausente)');
+            }
+
+            const to = input.to || defaultTo;
+            if (!to) throw new Error('Número destino não informado');
+
+            try {
+                const body = {
+                    messaging_product: 'whatsapp',
+                    recipient_type: 'individual',
+                    to,
+                    type: 'text',
+                    text: {
+                        preview_url: true,
+                        body: input.text,
+                    },
+                };
+
+                const url = `https://graph.facebook.com/v17.0/${phoneId}/messages`;
+
+                const res = await axios.post(url, body, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    timeout: 8000,
+                });
+
+                return { success: true, data: res.data };
+            } catch (e: any) {
+                console.error('WhatsApp send error:', e?.response?.data || e?.message || e);
+                throw new Error(e?.response?.data?.error?.message || e?.message || 'Falha ao enviar WhatsApp');
+            }
         }),
 });
 
