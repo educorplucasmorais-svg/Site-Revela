@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const KaiaSecurity = () => {
   return (
     <section className="kaia-security" style={{ padding: '80px 20px', background: 'var(--kaia-bg)', position: 'relative', borderTop: '1px solid var(--kaia-border)' }}>

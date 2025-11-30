@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trpc } from '../lib/trpc';
 import { Link, useLocation } from 'wouter';
 import { KaiaLogo } from '../components/KaiaLogo';
