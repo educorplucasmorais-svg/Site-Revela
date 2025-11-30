@@ -341,3 +341,75 @@ Veja [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes sobre como contribuir.
 
 **Desenvolvido com ❤️ usando React, TypeScript, tRPC e Supabase**
 **Integrações ativas:** MySQL Hostinger, Stripe (test), Vite dev/preview
+
+## 🌐 Produção (Backend + Frontend)
+
+Para que o login admin e o Hub Kaia funcionem em produção você precisa de um backend acessível via HTTPS.
+
+### 1. Backend
+Hospede o diretório `server/` (Express + tRPC) em um provedor como Railway, Render, Fly.io ou Hostinger (Node).
+
+Variáveis mínimas no backend:
+```
+PORT=3060
+FRONTEND_URL=https://SEU_DOMINIO_VERCELOU_APP
+DATABASE_URL=mysql://user:pass@host:3306/dbname   # ou DB_HOST / DB_USER ...
+WHATSAPP_TOKEN=... (opcional)
+WHATSAPP_PHONE_ID=... (opcional)
+WHATSAPP_PHONE=+5531993044867
+STRIPE_SECRET_KEY=sk_test_...
+```
+
+Certifique-se de que o servidor responde em:
+```
+GET https://SEU_BACKEND_DOMINIO/api/health -> { status: "ok" }
+```
+
+### 2. Frontend (Vercel)
+No dashboard do projeto em Vercel adicione Environment Variables (Production):
+```
+VITE_API_URL=https://SEU_BACKEND_DOMINIO
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_ANON_KEY=...
+```
+
+Re-deploy após salvar.
+
+### 3. CORS
+Confirme em `server/index.ts` que `FRONTEND_URL` está definido e que o domínio do Vercel está na lista `allowedOrigins`.
+
+### 4. Banco de Dados
+Execute `npm run apply-schema-mysql` no ambiente do backend ou aplique manualmente o `schema.sql`.
+Tabela `users` precisa conter um usuário admin:
+```
+INSERT INTO users (email, name, password_hash, created_at)
+VALUES ('admin@local', 'admin', '<hash-bcrypt>', NOW());
+```
+Use bcryptjs para gerar hash:
+```js
+node -e "const b=require('bcryptjs');b.hash('admin123',10).then(h=>console.log(h))"
+```
+
+### 5. Teste
+1. Acesse `/admin/login` em produção.
+2. Verifique painel de diagnóstico (mostra URL e status).
+3. Faça login com credenciais do usuário real. Se a API estiver fora, o fallback aceita admin/admin123 (mock temporário).
+
+### 6. Remova o Fallback
+Quando o backend estiver estável, opcionalmente remova o bloco de mock em `AdminLogin.tsx` (condição `isApiUnavailable`).
+
+### 7. Erros comuns
+| Sintoma | Causa | Ação |
+|--------|-------|------|
+| Unexpected end of JSON input | Backend não respondeu JSON / offline | Verificar VITE_API_URL e `/api/health` |
+| CORS Not allowed | Domínio não listado | Ajustar `allowedOrigins` em `server/index.ts` |
+| Login inválido apesar de hash correto | Fuso horário/expiração sessão | Checar tabela `sessions` e campo `expires_at` |
+
+### 8. Segurança rápida
+- Use HTTPS sempre.
+- Não exponha `STRIPE_SECRET_KEY` no frontend.
+- Rotacione tokens do WhatsApp/Stripe periodicamente.
+- Limite tentativas de login (implementar rate limit futuro).
+
+---
