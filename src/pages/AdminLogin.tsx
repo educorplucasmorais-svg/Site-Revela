@@ -45,7 +45,8 @@ export default function AdminLogin() {
         setError(null);
         try {
             // If API_BASE_URL is empty or points to localhost in production, fallback to mock auth
-            const isApiUnavailable = !API_BASE_URL || (typeof window !== 'undefined' && location.origin.includes('vercel.app') && API_BASE_URL.includes('localhost'));
+                    const isHttps = API_BASE_URL.startsWith('https://');
+                    const isApiUnavailable = !API_BASE_URL || (!isHttps && typeof window !== 'undefined' && location.origin.includes('vercel.app') && API_BASE_URL.includes('localhost'));
 
             if (isApiUnavailable) {
                 if (username === 'admin' && password === (import.meta.env.SEED_ADMIN_PASSWORD || 'admin123')) {
@@ -127,6 +128,7 @@ export default function AdminLogin() {
                             {envStatus.ok === false && (
                                 <>
                                     <br />Configure backend deploy e defina <code style={{ fontSize: '0.65rem' }}>VITE_API_URL</code> no Vercel.
+                                    <br /><a href="https://github.com/educorplucasmorais-svg/Site-Revela#-produ%C3%A7%C3%A3o-backend--frontend" target="_blank" rel="noopener noreferrer" style={{ color: 'hsl(var(--primary))', textDecoration: 'none' }}>Ver guia de produção</a>
                                 </>
                             )}
                         </div>

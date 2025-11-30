@@ -172,11 +172,30 @@ npm i -g vercel
 # 2. Faça login
 vercel login
 
-# 3. Deploy
+# 3. Deploy (interativo)
 vercel
 
 # 4. Configure as variáveis de ambiente no dashboard
 ```
+
+#### Variáveis rápidas (exemplo)
+No painel do Vercel (Production):
+```
+VITE_API_URL=https://api.seu-dominio.com
+VITE_STRIPE_PUBLISHABLE_KEY=pk_live_xxx
+VITE_SUPABASE_URL=https://xxx.supabase.co
+VITE_SUPABASE_ANON_KEY=xxx
+```
+
+PowerShell helper local (não persiste no Vercel, apenas teste):
+```powershell
+$env:VITE_API_URL="https://api.seu-dominio.com";
+$env:VITE_STRIPE_PUBLISHABLE_KEY="pk_live_xxx";
+$env:VITE_SUPABASE_URL="https://xxx.supabase.co";
+$env:VITE_SUPABASE_ANON_KEY="xxx";
+```
+
+Veja também `.env.production.example` para modelo completo.
 
 ### Deploy Automático com GitHub Actions
 
