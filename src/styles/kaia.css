@@ -165,7 +165,8 @@
   gap: 32px;
 }
 
-.kaia-nav a {
+.kaia-nav a,
+.kaia-nav-link {
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-weight: 500;
@@ -173,8 +174,15 @@
   transition: color 0.2s;
 }
 
-.kaia-nav a:hover {
+.kaia-nav a:hover,
+.kaia-nav-link:hover {
   color: var(--kaia-accent);
+}
+
+.kaia-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .kaia-nav-demo {

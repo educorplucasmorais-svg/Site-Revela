@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'wouter';
 import { KaiaAppDemo } from '../components/KaiaAppDemo';
 import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
@@ -58,6 +59,9 @@ export default function KaiaPage() {
           <KaiaLogo style={{ height: '40px', width: 'auto' }} />
         </div>
         <nav className="kaia-nav">
+          <Link href="/revela" className="kaia-nav-link">
+            ← Hub Revela
+          </Link>
           <a href="#features">Recursos</a>
           <a href="#pricing">Planos</a>
           <button onClick={() => setShowDemo(true)} className="kaia-nav-demo">
