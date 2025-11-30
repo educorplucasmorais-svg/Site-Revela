@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { KaiaAppDemo } from '../components/KaiaAppDemo';
 import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
+import { KaiaSecurity } from '../components/KaiaSecurity';
 import { KaiaPricing } from '../components/KaiaPricing';
 import { KaiaCTA } from '../components/KaiaCTA';
 import { KaiaLogo } from '../components/KaiaLogo';
@@ -65,6 +66,7 @@ export default function KaiaPage() {
 
       <KaiaHero onDemoClick={() => setShowDemo(true)} />
       <KaiaFeatures />
+      <KaiaSecurity />
       <KaiaPricing />
       <KaiaCTA />
     </div>

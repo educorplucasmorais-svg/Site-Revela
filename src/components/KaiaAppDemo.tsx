@@ -131,8 +131,16 @@ export function KaiaAppDemo() {
             <p>Aqui está o resumo de hoje da sua IA</p>
           </div>
           <div className="kaia-topbar-actions">
-            <button className="kaia-topbar-btn kaia-topbar-btn-secondary">
-              📥 Exportar
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginRight: '16px', padding: '4px 12px', background: 'rgba(34, 211, 238, 0.1)', borderRadius: '20px', border: '1px solid rgba(34, 211, 238, 0.2)' }}>
+              <span style={{ fontSize: '12px' }}>🔒</span>
+              <span style={{ fontSize: '12px', color: 'var(--kaia-accent)', fontWeight: '600' }}>Ambiente Seguro</span>
+            </div>
+            <button 
+              className="kaia-topbar-btn kaia-topbar-btn-secondary"
+              title="Documentos gerados são protegidos contra cópia"
+              onClick={() => alert('Os documentos gerados pela Kaia são protegidos com criptografia e bloqueio de cópia para garantir a segurança dos seus dados.')}
+            >
+              📥 Exportar (Protegido)
             </button>
             <button className="kaia-topbar-btn kaia-topbar-btn-primary">
               + Nova Automação

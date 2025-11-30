@@ -6,9 +6,11 @@ import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
 import { PageTransition } from './components/PageTransition';
+import { useContentProtection } from './hooks/useContentProtection';
 import './style.css';
 
 function App() {
+    useContentProtection();
     const [location] = useLocation();
     const [showTransition, setShowTransition] = useState(false);
     const [pendingRoute, setPendingRoute] = useState<string | null>(null);
@@ -47,20 +49,15 @@ function App() {
                     <nav className="nav">
                         <Link href="/" style={{ textDecoration: 'none' }}>
                             <div className="nav-logo">
-                                Bem-vindo à Revela
-                                <span className="nav-tagline">Potencializando negócios através de pessoas</span>
+                                Kaia
+                                <span className="nav-tagline">Inteligência Artificial para Negócios</span>
                             </div>
                         </Link>
                         <ul className="nav-links">
                             <li><Link href="/" className="nav-link">Início</Link></li>
-                            <li>
-                                <Link href="/kaia" className="nav-link" onClick={handleKaiaClick}>
-                                    Kaia
-                                </Link>
-                            </li>
-                            <li><Link href="#servicos" className="nav-link">Serviços</Link></li>
-                            <li><Link href="#sobre" className="nav-link">Sobre</Link></li>
-                            <li><Link href="#contato" className="nav-link">Contato</Link></li>
+                            <li><Link href="/revela" className="nav-link">Revela (Antigo)</Link></li>
+                            <li><Link href="#features" className="nav-link">Recursos</Link></li>
+                            <li><Link href="#pricing" className="nav-link">Planos</Link></li>
                             <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
                         </ul>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
@@ -74,7 +71,8 @@ function App() {
 
             <main>
                 <Switch>
-                    <Route path="/" component={Home} />
+                    <Route path="/" component={Kaia} />
+                    <Route path="/revela" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
                     </Route>
