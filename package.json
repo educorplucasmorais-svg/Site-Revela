@@ -9,6 +9,7 @@
     "server": "tsx server/index.ts",
     "start": "tsx server/index.ts",
     "apply-schema-mysql": "node scripts/apply_schema_mysql.cjs",
+    "test-send-whatsapp": "node scripts/test_send_whatsapp.cjs",
     "test-stripe": "node scripts/test_stripe.js"
   },
   "dependencies": {

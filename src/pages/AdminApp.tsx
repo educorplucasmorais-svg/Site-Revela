@@ -5,6 +5,8 @@ import { Link, useLocation } from 'wouter';
 export default function AdminApp() {
     const [, setLocation] = useLocation();
     const [user, setUser] = useState<any>(null);
+    const [sending, setSending] = useState(false);
+    const [sendResult, setSendResult] = useState<string | null>(null);
 
     useEffect(() => {
         let mounted = true;
@@ -22,6 +24,19 @@ export default function AdminApp() {
         }
         try { localStorage.removeItem('revela_token'); } catch (e) {}
         setLocation('/admin/login');
+    };
+
+    const handleSendTest = async () => {
+        setSendResult(null);
+        setSending(true);
+        try {
+            const res = await trpc.sendWhatsapp.mutate({ text: 'Teste de mensagem: Olá da equipe Revela.' });
+            setSendResult(JSON.stringify(res?.data || res));
+        } catch (e: any) {
+            setSendResult(e?.message || 'Erro ao enviar');
+        } finally {
+            setSending(false);
+        }
     };
 
     return (
@@ -50,11 +65,27 @@ export default function AdminApp() {
 
                 <div className="card">
                     <h3>Próximos passos</h3>
-                    <ul>
-                        <li>Integrar CRUD de usuários</li>
-                        <li>Gerenciar contatos</li>
-                        <li>Dashboard de métricas</li>
-                    </ul>
+                        <ul>
+                            <li>Integrar CRUD de usuários</li>
+                            <li>Gerenciar contatos</li>
+                            <li>Dashboard de métricas</li>
+                        </ul>
+
+                        <div style={{ marginTop: 'var(--space-md)' }}>
+                            <h4>Teste WhatsApp</h4>
+                            <p>Envie uma mensagem de teste para o número configurado em `WHATSAPP_PHONE`.</p>
+                            <div style={{ display: 'flex', gap: 'var(--space-sm)', alignItems: 'center' }}>
+                                <button className="btn btn-primary" onClick={handleSendTest} disabled={sending}>
+                                    {sending ? 'Enviando...' : 'Enviar teste WhatsApp'}
+                                </button>
+                                <button className="btn" onClick={()=>{ setSendResult(null); }}>
+                                    Limpar
+                                </button>
+                            </div>
+                            {sendResult && (
+                                <pre style={{ marginTop: 'var(--space-md)', maxHeight: 200, overflow: 'auto' }}>{sendResult}</pre>
+                            )}
+                        </div>
                 </div>
             </div>
         </div>
