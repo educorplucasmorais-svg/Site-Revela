@@ -35,7 +35,7 @@ echo Proximos passos:
 echo 1. Configure o arquivo .env com suas credenciais do Supabase
 echo 2. Execute: npm run server (em um terminal)
 echo 3. Execute: npm run dev (em outro terminal)
-echo 4. Acesse: http://localhost:5173
+echo 4. Acesse: http://localhost:3050
 echo.
 echo Consulte QUICKSTART.md para mais detalhes.
 echo.

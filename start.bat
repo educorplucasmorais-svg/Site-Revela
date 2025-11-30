@@ -7,15 +7,15 @@ echo - Terminal 2: Frontend (porta 3050)
 echo.
 
 start "Backend - Site Revela" cmd /k "npm run server"
-timeout /t 2 /nobreak >nul
-start "Frontend - Site Revela" cmd /k "npm run dev -- --port 3000"
-timeout /t 2 /nobreak >nul
-start "Abrir Frontend" "http://localhost:3000/"
+timeout /t 5 /nobreak >nul
+start "Frontend - Site Revela" cmd /k "npm run dev"
+timeout /t 5 /nobreak >nul
+start "" "http://localhost:3050/"
 
 echo.
 echo Servidores iniciados!
 echo Frontend: http://localhost:3050
-echo Backend: http://localhost:3000
+echo Backend: http://localhost:3060
 echo.
 echo Pressione qualquer tecla para fechar este terminal...
 pause >nul
