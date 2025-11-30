@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { KaiaAppDemo } from '../components/KaiaAppDemo';
 import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
@@ -14,6 +14,7 @@ import '../styles/kaia.css';
 export default function KaiaPage() {
   const [showDemo, setShowDemo] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -64,13 +65,13 @@ export default function KaiaPage() {
           </Link>
           <a href="#features">Recursos</a>
           <a href="#pricing">Planos</a>
-          <button onClick={() => setShowDemo(true)} className="kaia-nav-demo">
-            Ver Demo
+          <button onClick={() => setLocation('/kaia/hub')} className="kaia-nav-demo">
+            Acessar Hub
           </button>
         </nav>
       </header>
 
-      <KaiaHero onDemoClick={() => setShowDemo(true)} />
+      <KaiaHero onDemoClick={() => setLocation('/kaia/hub')} />
       <KaiaFeatures />
       <KaiaTestimonials />
       <KaiaSecurity />

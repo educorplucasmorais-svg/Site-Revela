@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Kaia from "./pages/Kaia";
 import AdminLogin from './pages/AdminLogin';
 import AdminApp from './pages/AdminApp';
+import KaiaHub from './pages/KaiaHub';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
@@ -80,6 +81,9 @@ function App() {
                     <Route path="/revela" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
+                    </Route>
+                    <Route path="/kaia/hub">
+                        <KaiaHub />
                     </Route>
                     <Route path="/admin/login">
                         <AdminLogin />
