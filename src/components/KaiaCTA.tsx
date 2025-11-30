@@ -11,7 +11,7 @@ export function KaiaCTA() {
         
         <div className="kaia-cta-group">
           <a 
-            href="https://wa.me/5531998079088?text=Olá! Gostaria de saber mais sobre a Kaia" 
+            href="https://wa.me/5531993044867?text=Olá! Gostaria de saber mais sobre a Kaia" 
             target="_blank" 
             rel="noreferrer"
             className="kaia-btn kaia-btn-primary"

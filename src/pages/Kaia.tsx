@@ -4,6 +4,8 @@ import { KaiaHero } from '../components/KaiaHero';
 import { KaiaFeatures } from '../components/KaiaFeatures';
 import { KaiaSecurity } from '../components/KaiaSecurity';
 import { KaiaPricing } from '../components/KaiaPricing';
+import { KaiaTestimonials } from '../components/KaiaTestimonials';
+import { KaiaFAQ } from '../components/KaiaFAQ';
 import { KaiaCTA } from '../components/KaiaCTA';
 import { KaiaLogo } from '../components/KaiaLogo';
 import '../styles/kaia.css';
@@ -66,8 +68,10 @@ export default function KaiaPage() {
 
       <KaiaHero onDemoClick={() => setShowDemo(true)} />
       <KaiaFeatures />
+      <KaiaTestimonials />
       <KaiaSecurity />
       <KaiaPricing />
+      <KaiaFAQ />
       <KaiaCTA />
     </div>
   );
