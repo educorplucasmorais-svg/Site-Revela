@@ -51,17 +51,17 @@ function App() {
                 <header className="header" id="header">
                     <div className="container">
                         <nav className="nav">
-                            <Link href="/" style={{ textDecoration: 'none' }}>
+                            <Link href="/revela" style={{ textDecoration: 'none' }}>
                                 <div className="nav-logo">
-                                    Kaia
-                                    <span className="nav-tagline">Inteligência Artificial para Negócios</span>
+                                    Revela
+                                    <span className="nav-tagline">Consultoria e Crescimento</span>
                                 </div>
                             </Link>
                             <ul className="nav-links">
-                                <li><Link href="/" className="nav-link">Início</Link></li>
-                                <li><Link href="/revela" className="nav-link">Revela (Antigo)</Link></li>
-                                <li><Link href="#features" className="nav-link">Recursos</Link></li>
-                                <li><Link href="#pricing" className="nav-link">Planos</Link></li>
+                                <li><Link href="/revela" className="nav-link">Início</Link></li>
+                                <li><a href="#servicos" className="nav-link">Serviços</a></li>
+                                <li><a href="#contato" className="nav-link">Contato</a></li>
+                                <li><a href="/kaia" className="nav-link" onClick={handleKaiaClick}>Kaia</a></li>
                                 <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
                             </ul>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>

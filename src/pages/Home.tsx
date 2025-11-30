@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
-import ServicesGrid from '../components/ServicesGrid';
-import PricingSection from '../components/PricingSection';
-import ProductsArea from '../components/ProductsArea';
-import { Testimonials } from '../components/Testimonials';
 import { RevelaHero } from '../components/RevelaHero';
 
 function Home() {
@@ -29,222 +25,48 @@ function Home() {
 
     return (
         <>
-            {/* Hero Section - Novo Design Tech com Árvore */}
+            {/* Hero minimal */}
             <RevelaHero onContactClick={scrollToContact} />
 
-            {/* Services Section */}
-            <section id="servicos" className="section-dark">
-                <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                        <span className="hero-label">— NOSSOS SERVIÇOS</span>
-                        <h2>Como transformamos seu negócio</h2>
-                        <p style={{ fontSize: '1.125rem', maxWidth: '700px', margin: '0 auto', marginTop: 'var(--space-md)' }}>
-                            Metodologias comprovadas que já ajudaram dezenas de empresas a crescerem de forma sustentável
-                        </p>
-                    </div>
-                    <ServicesGrid />
+            {/* Value proposition concise */}
+            <section id="sobre" className="section-dark">
+                <div className="container text-center" style={{ maxWidth: '760px' }}>
+                    <span className="hero-label">— SOBRE A REVELA</span>
+                    <h2 style={{ marginTop: 'var(--space-sm)' }}>Crescimento claro, sem ruído</h2>
+                    <p style={{ fontSize: '1.1rem', marginTop: 'var(--space-md)' }}>
+                        Foco no essencial: estratégia prática, execução direta e rituais simples que geram resultado.
+                    </p>
                 </div>
             </section>
 
-            {/* Methodology Section */}
-            <section className="section-pattern">
+            {/* Three key services only */}
+            <section id="servicos" className="section-pattern">
                 <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                        <span className="hero-label">— NOSSA METODOLOGIA</span>
-                        <h2>Transformando estratégia em resultados</h2>
-                    </div>
-
                     <div className="grid grid-3">
                         <div className="card revela-card-dark">
-                            <div className="revela-icon-minimal">01</div>
                             <h3 className="revela-keyword">Diagnóstico</h3>
-                            <p style={{ marginBottom: '0' }}>
-                                Analisamos profundamente seu negócio, identificando <span className="revela-highlight">oportunidades</span> e gargalos
-                                que impedem o crescimento acelerado.
-                            </p>
+                            <p style={{ marginBottom: 0 }}>Mapa das prioridades e oportunidades reais.</p>
                         </div>
-
                         <div className="card revela-card-dark">
-                            <div className="revela-icon-minimal">02</div>
                             <h3 className="revela-keyword">Execução</h3>
-                            <p style={{ marginBottom: '0' }}>
-                                Implementamos as estratégias de forma <span className="revela-highlight">hands-on</span>, trabalhando lado a lado
-                                com seu time para garantir resultados.
-                            </p>
+                            <p style={{ marginBottom: 0 }}>Implementação hands-on junto ao seu time.</p>
                         </div>
-
                         <div className="card revela-card-dark">
-                            <div className="revela-icon-minimal">03</div>
-                            <h3 className="revela-keyword">Crescimento</h3>
-                            <p style={{ marginBottom: '0' }}>
-                                Acompanhamos métricas em <span className="revela-highlight">tempo real</span> e ajustamos a rota para maximizar
-                                o retorno sobre investimento.
-                            </p>
+                            <h3 className="revela-keyword">Rotina</h3>
+                            <p style={{ marginBottom: 0 }}>Rituais simples para evoluir toda semana.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Results Section */}
-            <section className="section-dark">
-                <div className="container">
-                    <div className="grid grid-2" style={{ alignItems: 'center', gap: 'var(--space-3xl)' }}>
-                        <div>
-                            <span className="hero-label">— RESULTADOS COMPROVADOS</span>
-                            <h2>Já ajudamos empresas a duplicarem e até triplicarem suas vendas</h2>
-                            <p>
-                                A Revela nasceu da experiência de profissionais que integraram o time pioneiro
-                                de grandes startups e depois lideraram operações em diferentes setores.
-                            </p>
-                            <p>
-                                Trazemos esse know-how para apoiar pequenas e médias empresas que enfrentam os
-                                mesmos desafios de escala, mas sem acesso às ferramentas certas.
-                            </p>
-
-                            <div style={{ marginTop: 'var(--space-xl)' }}>
-                                <h3 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-primary)' }}>
-                                    Nossos valores:
-                                </h3>
-                                <div style={{ display: 'grid', gap: 'var(--space-sm)' }}>
-                                    {[
-                                        'Ética e transparência',
-                                        'Execução prática',
-                                        'Inovação constante',
-                                        'Foco em resultados',
-                                        'Mentalidade de dono',
-                                        'Desenvolvimento de pessoas'
-                                    ].map((value) => (
-                                        <div key={value} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
-                                            <span style={{ color: 'var(--color-primary)', fontSize: '1.25rem' }}>✓</span>
-                                            <span style={{ fontSize: '1.05rem' }}>{value}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="card" style={{ padding: 'var(--space-2xl)', background: 'rgba(255, 107, 53, 0.05)' }}>
-                            <h3 style={{ fontSize: '1.75rem', color: 'var(--color-primary)', marginBottom: 'var(--space-lg)' }}>
-                                C-level as a service
-                            </h3>
-                            <p style={{ fontSize: '1.05rem', marginBottom: 'var(--space-xl)' }}>
-                                Atuamos como seu time executivo, juntando estratégia e execução para
-                                transformar o crescimento em realidade.
-                            </p>
-
-                            <div style={{ display: 'grid', gap: 'var(--space-lg)' }}>
-                                <div className="revela-feature-item">
-                                    <span className="revela-feature-marker">→</span>
-                                    <div>
-                                        <h4 className="revela-feature-title">
-                                            Priorizar o que <span className="revela-highlight">importa</span>
-                                        </h4>
-                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                            Escolher e testar iniciativas que geram impacto direto no negócio
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="revela-feature-item">
-                                    <span className="revela-feature-marker">→</span>
-                                    <div>
-                                        <h4 className="revela-feature-title">
-                                            Criar rituais de <span className="revela-highlight">crescimento</span>
-                                        </h4>
-                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                            Práticas consistentes que mantêm a empresa evoluindo semana após semana
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="revela-feature-item">
-                                    <span className="revela-feature-marker">→</span>
-                                    <div>
-                                        <h4 className="revela-feature-title">
-                                            Capacitar o <span className="revela-highlight">time</span>
-                                        </h4>
-                                        <p style={{ fontSize: '0.95rem', marginBottom: '0', color: 'var(--color-text-muted)' }}>
-                                            Treinar sua equipe com mindset de crescimento na prática
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Social Proof Section */}
-            <section className="section-pattern">
-                <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                        <span className="hero-label">— CASES DE SUCESSO</span>
-                        <h2>Empresas que transformamos</h2>
-                    </div>
-
-                    <div className="grid grid-3">
-                        <div className="card text-center">
-                            <div style={{ fontSize: '3rem', fontWeight: '700', color: 'var(--color-primary)', marginBottom: 'var(--space-sm)' }}>
-                                3x
-                            </div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-xs)' }}>Crescimento médio</h4>
-                            <p style={{ marginBottom: '0', fontSize: '0.95rem' }}>
-                                Aumento de faturamento em 12 meses
-                            </p>
-                        </div>
-
-                        <div className="card text-center">
-                            <div style={{ fontSize: '3rem', fontWeight: '700', color: 'var(--color-primary)', marginBottom: 'var(--space-sm)' }}>
-                                50+
-                            </div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-xs)' }}>Empresas atendidas</h4>
-                            <p style={{ marginBottom: '0', fontSize: '0.95rem' }}>
-                                De diversos setores e portes
-                            </p>
-                        </div>
-
-                        <div className="card text-center">
-                            <div style={{ fontSize: '3rem', fontWeight: '700', color: 'var(--color-primary)', marginBottom: 'var(--space-sm)' }}>
-                                95%
-                            </div>
-                            <h4 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-xs)' }}>Satisfação</h4>
-                            <p style={{ marginBottom: '0', fontSize: '0.95rem' }}>
-                                Clientes recomendam nossos serviços
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials Section - Depoimentos */}
-            <Testimonials />
-
-            {/* Pricing Section */}
-            <section id="precos" className="section-dark">
-                <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                        <span className="hero-label">— NOSSOS PLANOS</span>
-                        <h2>Escolha o plano ideal para seu negócio</h2>
-                        <p style={{ fontSize: '1.125rem', maxWidth: '700px', margin: '0 auto', marginTop: 'var(--space-md)' }}>
-                            Investimento que se paga com resultados reais. Pagamento seguro via cartão, PIX ou boleto.
-                        </p>
-                    </div>
-                    <PricingSection />
-                </div>
-            </section>
-
-            {/* Products / Apps (iPhone mockup) */}
-            <ProductsArea />
-
-            {/* Contact Section */}
+            {/* Single CTA with contact form */}
             <section id="contato" className="section-dark">
                 <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-2xl)' }}>
-                        <span className="hero-label">— FALE CONOSCO</span>
-                        <h2>Quer acelerar o crescimento da sua empresa?</h2>
-                        <p style={{ fontSize: '1.125rem', maxWidth: '700px', margin: '0 auto', marginTop: 'var(--space-md)' }}>
-                            Deixe seus dados e receba um diagnóstico inicial gratuito para identificar
-                            oportunidades de escalar com consistência
+                    <div className="text-center" style={{ marginBottom: 'var(--space-xl)' }}>
+                        <span className="hero-label">— VAMOS CONVERSAR</span>
+                        <h2>Diagnóstico inicial gratuito</h2>
+                        <p style={{ fontSize: '1.05rem', maxWidth: '700px', margin: '0 auto', marginTop: 'var(--space-sm)' }}>
+                            Envie seus dados e receba uma análise direta do que pode gerar impacto imediato.
                         </p>
                     </div>
                     <ContactForm />
