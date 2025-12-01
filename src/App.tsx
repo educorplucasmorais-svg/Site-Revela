@@ -8,6 +8,8 @@ import { Toaster } from 'sonner';
 import Home from './pages/Home';
 import { PageTransition } from './components/PageTransition';
 import { useContentProtection } from './hooks/useContentProtection';
+import { WhatsAppButton } from './components/WhatsAppButton';
+import Diagnostics from './pages/Diagnostics';
 import './style.css';
 
 function App() {
@@ -23,7 +25,6 @@ function App() {
             e.preventDefault();
             setShowTransition(true);
             setPendingRoute('/kaia');
-    import { WhatsAppButton } from './components/WhatsAppButton';
         }
     };
 
@@ -82,6 +83,9 @@ function App() {
                     <Route path="/revela" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
+                    </Route>
+                    <Route path="/diagnostics">
+                        <Diagnostics />
                     </Route>
                     <Route path="/kaia/hub">
                         <KaiaHub />

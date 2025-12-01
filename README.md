@@ -187,6 +187,9 @@ VITE_SUPABASE_URL=https://xxx.supabase.co
 VITE_SUPABASE_ANON_KEY=xxx
 ```
 
+Nota: use `VITE_API_URL` sem barra ao final ("https://api.seu-dominio.com"),
+pois o cliente concatena caminhos iniciando com `/`.
+
 PowerShell helper local (não persiste no Vercel, apenas teste):
 ```powershell
 $env:VITE_API_URL="https://api.seu-dominio.com";
