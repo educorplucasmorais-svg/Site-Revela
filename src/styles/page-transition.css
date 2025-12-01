@@ -1,6 +1,6 @@
 /* ============================================
-   PAGE TRANSITION - Liquid VFX Animation
-   Orange to Blue Ocean/Neon Tech
+   PAGE TRANSITION - Professional Curtain Wipe
+   Clean corporate animation with Kaia branding
    ============================================ */
 
 .page-transition {
@@ -12,295 +12,204 @@
   z-index: 9999;
   pointer-events: all;
   overflow: hidden;
+  background: #0a0f1a;
 }
 
-/* Wave SVG Container */
-.transition-wave {
+/* Animated Panels (Curtain Wipe) */
+.transition-panel {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  top: 0;
+  width: 50%;
   height: 100%;
+  background: linear-gradient(135deg, #0c4a6e 0%, #0e7490 50%, #06b6d4 100%);
+  transform: scaleX(0);
 }
 
-/* Wave Paths Animation */
-.wave-path {
-  transform-origin: bottom;
+.transition-panel-1 {
+  left: 0;
+  transform-origin: left;
 }
 
-.wave.wave-1 {
-  animation: waveRise 0.8s ease-out forwards;
+.transition-panel-2 {
+  right: 0;
+  transform-origin: right;
 }
 
-.wave.wave-2 {
-  animation: waveRise 0.8s ease-out 0.1s forwards;
+/* Phase: Enter */
+.page-transition.enter .transition-panel {
+  animation: panelWipe 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
-.wave.wave-3 {
-  animation: waveRise 0.8s ease-out 0.2s forwards;
+.page-transition.enter .transition-panel-2 {
+  animation-delay: 0.05s;
 }
 
-/* Phase: Wave */
-.page-transition.wave .wave-path {
-  animation: waveRise 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.page-transition.wave .wave-1 {
-  animation-delay: 0s;
-}
-
-.page-transition.wave .wave-2 {
-  animation-delay: 0.1s;
-}
-
-.page-transition.wave .wave-3 {
-  animation-delay: 0.15s;
-}
-
-@keyframes waveRise {
+@keyframes panelWipe {
   0% {
-    transform: translateY(100%);
+    transform: scaleX(0);
   }
   100% {
-    transform: translateY(-50%);
+    transform: scaleX(1);
   }
 }
 
-/* Phase: Fill */
-.page-transition.fill .transition-wave {
-  animation: fillScreen 0.5s ease-out forwards;
+/* Phase: Show (logo reveal) */
+.page-transition.show .transition-panel {
+  transform: scaleX(1);
 }
 
-@keyframes fillScreen {
+/* Phase: Exit */
+.page-transition.exit .transition-panel {
+  animation: panelExit 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.page-transition.exit .transition-panel-2 {
+  animation-delay: 0.05s;
+}
+
+@keyframes panelExit {
   0% {
-    transform: translateY(0);
+    transform: scaleX(1);
   }
   100% {
-    transform: translateY(-100%);
+    transform: scaleX(0);
   }
 }
 
-.page-transition.fill {
-  background: linear-gradient(135deg, #6366F1 0%, #22D3EE 50%, #0891B2 100%);
-  animation: bgFill 0.3s ease-out forwards;
-}
-
-@keyframes bgFill {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Phase: Fade */
-.page-transition.fade {
-  background: linear-gradient(135deg, #6366F1 0%, #22D3EE 50%, #0891B2 100%);
-  animation: fadeOut 0.6s ease-out forwards;
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-}
-
-/* Liquid Droplets */
-.transition-droplets {
+/* Content Container */
+.transition-content {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-}
-
-.droplet {
-  position: absolute;
-  top: -20px;
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  background: linear-gradient(135deg, #FF6B35, #6366F1, #22D3EE);
-  background-size: 200% 200%;
-  animation: dropletFall 1s ease-in forwards, dropletColor 1.2s ease forwards;
-  opacity: 0;
-}
-
-.page-transition.wave .droplet,
-.page-transition.fill .droplet {
-  opacity: 1;
-}
-
-@keyframes dropletFall {
-  0% {
-    transform: translateY(0) scale(1) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) scale(0.5) rotate(180deg);
-    opacity: 0;
-  }
-}
-
-@keyframes dropletColor {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Bubbles */
-.transition-bubbles {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.bubble {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(34, 211, 238, 0.6);
-  box-shadow: 
-    0 0 10px rgba(34, 211, 238, 0.8),
-    0 0 20px rgba(99, 102, 241, 0.5),
-    inset 0 0 10px rgba(255, 255, 255, 0.3);
-  animation: bubbleRise 1.5s ease-out forwards;
-  opacity: 0;
-}
-
-.page-transition.fill .bubble,
-.page-transition.fade .bubble {
-  opacity: 1;
-}
-
-@keyframes bubbleRise {
-  0% {
-    transform: translateY(0) scale(0);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.8;
-    transform: translateY(-10vh) scale(1);
-  }
-  100% {
-    transform: translateY(-80vh) scale(0.3);
-    opacity: 0;
-  }
-}
-
-/* Center Logo */
-.transition-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
-  gap: 16px;
-  opacity: 0;
+  justify-content: center;
   z-index: 10;
 }
 
-.page-transition.fill .transition-logo,
-.page-transition.fade .transition-logo {
-  animation: logoReveal 0.8s ease-out 0.2s forwards;
+/* Logo Container */
+.transition-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  opacity: 0;
+  transform: scale(0.8);
 }
 
-@keyframes logoReveal {
+.page-transition.show .transition-logo {
+  animation: logoFadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+}
+
+.page-transition.exit .transition-logo {
+  animation: logoFadeOut 0.4s ease-out forwards;
+}
+
+@keyframes logoFadeIn {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: scale(0.8) translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
-.transition-logo-icon {
-  font-size: 4rem;
-  animation: iconPulse 0.8s ease-in-out infinite;
-}
-
-@keyframes iconPulse {
-  0%, 100% {
+@keyframes logoFadeOut {
+  0% {
+    opacity: 1;
     transform: scale(1);
-    filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.8));
   }
-  50% {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 40px rgba(34, 211, 238, 1));
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
   }
 }
 
-.transition-logo-text {
-  font-size: 4rem;
+/* SVG Logo */
+.logo-svg {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 8px 24px rgba(34, 211, 238, 0.4));
+}
+
+/* Logo Text */
+.logo-text {
+  font-size: 3.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(34, 211, 238, 0.5);
+  margin: 0;
   letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
 }
 
-/* Neon Glow Effect */
-.page-transition.fill::after,
-.page-transition.fade::after {
-  content: '';
+.logo-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Subtle Particles */
+.transition-particles {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(34, 211, 238, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 40%);
-  animation: neonPulse 1s ease-in-out infinite;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
 }
 
-@keyframes neonPulse {
+.page-transition.show .transition-particles {
+  opacity: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(34, 211, 238, 0.6);
+  border-radius: 50%;
+  top: 50%;
+  animation: particleFloat 2s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
   0%, 100% {
-    opacity: 0.5;
+    transform: translateY(0) scale(1);
+    opacity: 0;
   }
   50% {
+    transform: translateY(-60px) scale(1.5);
     opacity: 1;
   }
 }
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
-  .transition-logo-icon {
-    font-size: 3rem;
+  .logo-svg {
+    width: 80px;
+    height: 80px;
   }
   
-  .transition-logo-text {
+  .logo-text {
     font-size: 2.5rem;
   }
   
-  .droplet {
+  .logo-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .particle {
     display: none;
   }
 }

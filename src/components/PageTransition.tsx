@@ -7,23 +7,23 @@ interface PageTransitionProps {
 }
 
 export function PageTransition({ isActive, onComplete }: PageTransitionProps) {
-  const [phase, setPhase] = useState<'idle' | 'wave' | 'fill' | 'fade'>('idle');
+  const [phase, setPhase] = useState<'idle' | 'enter' | 'show' | 'exit'>('idle');
 
   useEffect(() => {
     if (isActive) {
-      setPhase('wave');
+      setPhase('enter');
       
-      // Wave animation
-      setTimeout(() => setPhase('fill'), 600);
+      // Show logo
+      setTimeout(() => setPhase('show'), 400);
       
-      // Fill complete
-      setTimeout(() => setPhase('fade'), 1200);
+      // Exit animation
+      setTimeout(() => setPhase('exit'), 1200);
       
-      // Animation complete
+      // Complete
       setTimeout(() => {
         setPhase('idle');
         onComplete?.();
-      }, 1800);
+      }, 1600);
     }
   }, [isActive, onComplete]);
 
@@ -31,113 +31,60 @@ export function PageTransition({ isActive, onComplete }: PageTransitionProps) {
 
   return (
     <div className={`page-transition ${phase}`}>
-      {/* Liquid Wave SVG */}
-      <svg 
-        className="transition-wave"
-        viewBox="0 0 1440 800" 
-        preserveAspectRatio="none"
-      >
-        <defs>
-          {/* Gradient from Orange to Blue */}
-          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FF6B35">
-              <animate 
-                attributeName="stop-color" 
-                values="#FF6B35;#6366F1;#22D3EE" 
-                dur="1.2s" 
-                fill="freeze"
-              />
-            </stop>
-            <stop offset="50%" stopColor="#FF8C50">
-              <animate 
-                attributeName="stop-color" 
-                values="#FF8C50;#818CF8;#06B6D4" 
-                dur="1.2s" 
-                fill="freeze"
-              />
-            </stop>
-            <stop offset="100%" stopColor="#FFB088">
-              <animate 
-                attributeName="stop-color" 
-                values="#FFB088;#22D3EE;#0891B2" 
-                dur="1.2s" 
-                fill="freeze"
-              />
-            </stop>
-          </linearGradient>
+      {/* Gradient Background with Animated Panels */}
+      <div className="transition-panel transition-panel-1" />
+      <div className="transition-panel transition-panel-2" />
+      
+      {/* Center Logo */}
+      <div className="transition-content">
+        <div className="transition-logo">
+          <svg viewBox="0 0 200 200" className="logo-svg">
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#22D3EE" />
+                <stop offset="100%" stopColor="#06B6D4" />
+              </linearGradient>
+            </defs>
+            {/* Kaia Logo - Ocean wave with AI spark */}
+            <circle cx="100" cy="100" r="80" fill="url(#logoGradient)" opacity="0.1" />
+            <path 
+              d="M 40 100 Q 70 80, 100 100 T 160 100" 
+              stroke="url(#logoGradient)" 
+              strokeWidth="6" 
+              fill="none" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M 40 110 Q 70 90, 100 110 T 160 110" 
+              stroke="url(#logoGradient)" 
+              strokeWidth="4" 
+              fill="none" 
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+            <circle cx="100" cy="70" r="8" fill="#22D3EE">
+              <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="90" cy="75" r="4" fill="#06B6D4" opacity="0.7" />
+            <circle cx="110" cy="75" r="4" fill="#06B6D4" opacity="0.7" />
+          </svg>
+          <h1 className="logo-text">Kaia</h1>
+          <p className="logo-subtitle">Inteligência em Pessoas</p>
+        </div>
+      </div>
 
-          {/* Glow Filter */}
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-
-        {/* Main Wave */}
-        <path 
-          className="wave-path wave-1"
-          fill="url(#waveGradient)" 
-          filter="url(#glow)"
-          d="M0,800 L0,400 Q180,350 360,400 T720,400 T1080,400 T1440,400 L1440,800 Z"
-        />
-        
-        {/* Secondary Wave */}
-        <path 
-          className="wave-path wave-2"
-          fill="url(#waveGradient)" 
-          opacity="0.7"
-          d="M0,800 L0,450 Q180,400 360,450 T720,450 T1080,450 T1440,450 L1440,800 Z"
-        />
-
-        {/* Third Wave */}
-        <path 
-          className="wave-path wave-3"
-          fill="url(#waveGradient)" 
-          opacity="0.5"
-          d="M0,800 L0,500 Q180,450 360,500 T720,500 T1080,500 T1440,500 L1440,800 Z"
-        />
-      </svg>
-
-      {/* Liquid Droplets */}
-      <div className="transition-droplets">
-        {[...Array(20)].map((_, i) => (
+      {/* Subtle Particle Effect */}
+      <div className="transition-particles">
+        {[...Array(12)].map((_, i) => (
           <div 
             key={i} 
-            className="droplet"
+            className="particle"
             style={{
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 0.5}s`,
-              width: `${8 + Math.random() * 12}px`,
-              height: `${8 + Math.random() * 12}px`,
+              left: `${10 + i * 7}%`,
+              animationDelay: `${i * 0.1}s`,
             }}
           />
         ))}
-      </div>
-
-      {/* Particles/Bubbles */}
-      <div className="transition-bubbles">
-        {[...Array(15)].map((_, i) => (
-          <div 
-            key={i} 
-            className="bubble"
-            style={{
-              left: `${Math.random() * 100}%`,
-              bottom: `${Math.random() * 50}%`,
-              animationDelay: `${Math.random() * 0.8}s`,
-              width: `${4 + Math.random() * 8}px`,
-              height: `${4 + Math.random() * 8}px`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Center Logo/Text */}
-      <div className="transition-logo">
-        <span className="transition-logo-icon">🤖</span>
-        <span className="transition-logo-text">Kaia</span>
       </div>
     </div>
   );
