@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Redeploy note: ensuring latest fixed AdminLogin syntax is picked by Vercel build.
 import { Link, useLocation } from 'wouter';
 import { trpc } from '../lib/trpc';
 import { API_BASE_URL } from '../lib/api';
