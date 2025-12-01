@@ -1,44 +1,7 @@
 import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 import { RevelaHero } from '../components/RevelaHero';
-import { ServiceCard } from '../components/ServiceCard';
-import { PainPoints } from '../components/PainPoints';
-import { ToolsGrid } from '../components/ToolsGrid';
-import { Methodology } from '../components/Methodology';
 import '../styles/landing-page.css';
-
-const services = [
-    {
-        icon: '🎓',
-        title: 'Capacitação em IA Aplicada',
-        description: 'Seu time dominando IA em 30 dias. Workshops práticos que transformam colaboradores em operadores de automação.',
-        benefits: ['Resultados em 4 semanas', 'Certificação inclusa', 'Suporte pós-treinamento']
-    },
-    {
-        icon: '🚀',
-        title: 'Aceleração de Crescimento',
-        description: 'De gargalo operacional a escala previsível. Identificamos os 3 processos que mais drenam seu tempo e automatizamos em até 60 dias.',
-        benefits: ['Diagnóstico gratuito', 'ROI projetado antes de começar', 'Garantia de resultado']
-    },
-    {
-        icon: '💎',
-        title: 'Produtos Digitais Sob Medida',
-        description: 'Pare de pagar mensalidade. Seja dono da sua tecnologia. Apps, dashboards e ferramentas que você controla.',
-        benefits: ['MVP em 8 semanas', 'Código seu, para sempre', 'Escalável sem custos extras']
-    },
-    {
-        icon: '⚡',
-        title: 'Automação que Liberta',
-        description: '8 horas de trabalho manual em 8 minutos. Conectamos seus sistemas e fazemos sua operação rodar no piloto automático.',
-        benefits: ['+200 integrações prontas', 'Implementação em 2 semanas', 'Suporte 24/7 com IA']
-    },
-    {
-        icon: '📱',
-        title: 'Do Zero ao App em 60 Dias',
-        description: 'Ideia hoje. App funcionando amanhã. MVPs, ferramentas internas e apps completos com velocidade de startup.',
-        benefits: ['Prototipação em 7 dias', 'Testes com usuários reais', 'Deploy incluso']
-    }
-];
 
 function Home() {
     useEffect(() => {
@@ -64,151 +27,163 @@ function Home() {
             {/* SEÇÃO 1: HERO */}
             <RevelaHero onContactClick={scrollToContact} />
 
-            {/* SEÇÃO 2: PROBLEMA/DOR */}
-            <section id="dores" className="section-dark landing-section">
+            {/* SEÇÃO 2: FLUXO DE SERVIÇOS (Mind Map Style) */}
+            <section id="servicos" className="section-lighter landing-section">
                 <div className="container">
                     <div className="section-header">
-                        <span className="section-label">— O PROBLEMA</span>
-                        <h2 className="section-title">Você reconhece esses sintomas?</h2>
-                        <p className="section-subtitle">
-                            Se sua empresa sofre com algum desses gargalos, você está perdendo tempo e dinheiro todos os dias.
-                        </p>
-                    </div>
-                    <PainPoints />
-                </div>
-            </section>
-
-            {/* SEÇÃO 3: SOLUÇÃO - HUB REVELA */}
-            <section id="solucao" className="section-pattern landing-section">
-                <div className="container">
-                    <div className="section-header">
-                        <span className="section-label">— A SOLUÇÃO</span>
+                        <span className="section-label">— O que fazemos</span>
                         <h2 className="section-title">
-                            A Revela transforma operações travadas
-                            <span className="text-gradient"> em máquinas de crescimento</span>
+                            Do problema à solução
+                            <span className="text-gradient"> em 4 passos</span>
                         </h2>
-                        <p className="section-subtitle">
-                            Hub de Inovação com IA que entrega em semanas, não meses.
-                            Somos sua "Nave Mãe" estratégica para escalar com tecnologia de ponta.
-                        </p>
                     </div>
-                    <div className="solution-pillars">
-                        <div className="pillar">
-                            <span className="pillar-icon">🎓</span>
-                            <h4>Educação Tech</h4>
-                            <p>Capacitação em IA para times</p>
+                    
+                    {/* Flow Chart Style */}
+                    <div className="flow-chart">
+                        <div className="flow-node flow-node-problem">
+                            <div className="flow-node-icon">😰</div>
+                            <h3>Processos Manuais</h3>
+                            <p>Tarefas repetitivas, planilhas, retrabalho</p>
                         </div>
-                        <div className="pillar">
-                            <span className="pillar-icon">🔍</span>
-                            <h4>Soluções Empresariais</h4>
-                            <p>Consultoria 360º e diagnóstico</p>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-step">
+                            <div className="flow-node-icon">🔍</div>
+                            <h3>Diagnóstico</h3>
+                            <p>Mapeamos gargalos em 30min</p>
+                            <span className="flow-badge">Gratuito</span>
                         </div>
-                        <div className="pillar">
-                            <span className="pillar-icon">💎</span>
-                            <h4>Produtos Digitais</h4>
-                            <p>Apps, SaaS e ativos proprietários</p>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-step">
+                            <div className="flow-node-icon">⚡</div>
+                            <h3>Automação</h3>
+                            <p>IA + Apps em semanas</p>
+                            <span className="flow-badge">2-8 sem</span>
                         </div>
-                        <div className="pillar">
-                            <span className="pillar-icon">⚡</span>
-                            <h4>Automatizações</h4>
-                            <p>Fluxos inteligentes e integrações</p>
-                        </div>
-                        <div className="pillar">
-                            <span className="pillar-icon">🛠️</span>
-                            <h4>Desenvolvimento</h4>
-                            <p>MVPs e ferramentas sob medida</p>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-result">
+                            <div className="flow-node-icon">🚀</div>
+                            <h3>Escala</h3>
+                            <p>8h → 8min de trabalho</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* SEÇÃO 4: PILARES/SERVIÇOS */}
-            <section id="servicos" className="section-dark landing-section">
+            {/* SEÇÃO 3: SOLUÇÕES (Visual Cards - 3 principais) */}
+            <section id="solucoes" className="section-dark landing-section">
                 <div className="container">
                     <div className="section-header">
-                        <span className="section-label">— NOSSOS SERVIÇOS</span>
-                        <h2 className="section-title">Soluções para escalar seu negócio</h2>
-                        <p className="section-subtitle">
-                            Escolha o serviço que faz mais sentido para o momento da sua empresa.
-                        </p>
+                        <span className="section-label">— Soluções</span>
+                        <h2 className="section-title">Como podemos ajudar</h2>
                     </div>
-                    <div className="services-grid">
-                        {services.map((service, index) => (
-                            <ServiceCard
-                                key={index}
-                                icon={service.icon}
-                                title={service.title}
-                                description={service.description}
-                                benefits={service.benefits}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* SEÇÃO 5: METODOLOGIA/ESTEIRA */}
-            <section id="metodologia" className="section-pattern landing-section">
-                <div className="container">
-                    <div className="section-header">
-                        <span className="section-label">— METODOLOGIA</span>
-                        <h2 className="section-title">Metodologia Ágil com IA de Ponta</h2>
-                        <p className="section-subtitle">
-                            Do briefing ao deploy em sprints de alta velocidade
-                        </p>
-                    </div>
-                    <Methodology />
-                </div>
-            </section>
-
-            {/* SEÇÃO 6: FERRAMENTAS/STACK */}
-            <section id="ferramentas" className="section-dark landing-section">
-                <div className="container">
-                    <div className="section-header">
-                        <span className="section-label">— TECNOLOGIA</span>
-                        <h2 className="section-title">Tecnologia de Ponta ao Seu Alcance</h2>
-                        <p className="section-subtitle">
-                            Usamos as mesmas ferramentas das big techs para acelerar seus resultados
-                        </p>
-                    </div>
-                    <ToolsGrid />
-                </div>
-            </section>
-
-            {/* SEÇÃO 7: PROVA SOCIAL */}
-            <section id="resultados" className="section-pattern landing-section">
-                <div className="container">
-                    <div className="section-header">
-                        <span className="section-label">— RESULTADOS</span>
-                        <h2 className="section-title">Empresas que já transformaram suas operações</h2>
-                    </div>
-                    <div className="social-proof-metrics">
-                        <div className="metric-card">
-                            <span className="metric-value">+50</span>
-                            <span className="metric-label">empresas atendidas</span>
+                    
+                    <div className="solution-cards">
+                        <div className="solution-card solution-card-featured">
+                            <div className="solution-icon">🤖</div>
+                            <h3>Automação com IA</h3>
+                            <p>Conectamos seus sistemas e eliminamos tarefas repetitivas. +200 integrações prontas.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ Implementação em 2 semanas</li>
+                                <li>✓ Suporte 24/7 com IA</li>
+                            </ul>
                         </div>
-                        <div className="metric-card">
-                            <span className="metric-value">+200</span>
-                            <span className="metric-label">automações implementadas</span>
+                        
+                        <div className="solution-card">
+                            <div className="solution-icon">📱</div>
+                            <h3>Apps Sob Medida</h3>
+                            <p>Do zero ao app em 60 dias. Você é dono do código.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ MVP em 8 semanas</li>
+                                <li>✓ Deploy incluso</li>
+                            </ul>
                         </div>
-                        <div className="metric-card">
-                            <span className="metric-value">8h → 8min</span>
-                            <span className="metric-label">de trabalho</span>
+                        
+                        <div className="solution-card">
+                            <div className="solution-icon">🎓</div>
+                            <h3>Capacitação IA</h3>
+                            <p>Seu time dominando IA em 30 dias com workshops práticos.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ Certificação inclusa</li>
+                                <li>✓ Suporte pós-treinamento</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* SEÇÃO 8: CTA FINAL */}
+            {/* SEÇÃO 4: METODOLOGIA (Timeline Visual) */}
+            <section id="metodologia" className="section-lighter landing-section">
+                <div className="container">
+                    <div className="section-header">
+                        <span className="section-label">— Metodologia</span>
+                        <h2 className="section-title">Como entregamos</h2>
+                    </div>
+                    
+                    <div className="timeline-flow">
+                        <div className="timeline-step">
+                            <div className="timeline-number">01</div>
+                            <div className="timeline-content">
+                                <h4>Descoberta</h4>
+                                <span className="timeline-duration">1-2 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">02</div>
+                            <div className="timeline-content">
+                                <h4>MVP</h4>
+                                <span className="timeline-duration">2-4 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">03</div>
+                            <div className="timeline-content">
+                                <h4>IA</h4>
+                                <span className="timeline-duration">2-3 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">04</div>
+                            <div className="timeline-content">
+                                <h4>Go-live</h4>
+                                <span className="timeline-duration">1-2 sem</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Tech Stack as icons */}
+                    <div className="tech-stack-bar">
+                        <span className="tech-label">Stack:</span>
+                        <div className="tech-icons">
+                            <span title="Google AI Studio">🤖</span>
+                            <span title="GPT-4 / Claude">🧠</span>
+                            <span title="GitHub">💻</span>
+                            <span title="Vercel">▲</span>
+                            <span title="Railway">🚂</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SEÇÃO 5: CTA FINAL */}
             <section id="contato" className="section-dark landing-section cta-section">
                 <div className="container">
                     <div className="cta-content">
                         <div className="section-header">
-                            <span className="section-label">— VAMOS CONVERSAR</span>
-                            <h2 className="section-title">Diagnóstico Gratuito de Automação</h2>
+                            <span className="section-label">— Vamos conversar</span>
+                            <h2 className="section-title">Diagnóstico Gratuito</h2>
                             <p className="section-subtitle">
-                                Descubra em 30 minutos os 3 processos que mais drenam tempo na sua empresa.
+                                Descubra os 3 processos que mais drenam tempo na sua empresa.
                                 <br />
-                                <strong>Sem compromisso. 100% gratuito.</strong>
+                                <strong>30 minutos. 100% gratuito.</strong>
                             </p>
                         </div>
                         <ContactForm />
