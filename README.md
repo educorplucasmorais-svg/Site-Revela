@@ -85,7 +85,7 @@ npm run dev
 
 # 5. Acessar
 # Frontend (Vite dev): http://localhost:3050
-# Backend: http://localhost:3000
+# Backend: http://localhost:3060
 ```
 
 ## 🗄️ Configuração do Supabase (opcional)
@@ -108,7 +108,7 @@ Edite o arquivo `.env`:
 ```env
 VITE_SUPABASE_URL=https://seu-projeto.supabase.co
 VITE_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
-PORT=3000
+PORT=3060
 NODE_ENV=development
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
 STRIPE_SECRET_KEY=sk_test_...
@@ -144,7 +144,7 @@ npm run test-stripe    # cria PaymentIntent e imprime client_secret
 ```
 
 ## 🧪 Testes rápidos
-- Backend health: `Invoke-WebRequest http://localhost:3000/api/health -UseBasicParsing`
+- Backend health: `Invoke-WebRequest http://localhost:3060/api/health -UseBasicParsing`
 - Formulário: enviar no site e verificar `contacts` no phpMyAdmin.
 - Stripe: preencher `.env` e `node scripts/test_stripe.js`.
 
@@ -443,3 +443,24 @@ Quando o backend estiver estável, opcionalmente remova o bloco de mock em `Admi
 - Limite tentativas de login (implementar rate limit futuro).
 
 ---
+
+## 🤖 WhatsApp Bot (Assistente)
+
+Para habilitar o bot simples de atendimento:
+- Backend (env):
+  - `WHATSAPP_PHONE_ID`: ID do número empresarial no Meta Graph
+  - `WHATSAPP_TOKEN`: token de acesso do WhatsApp Business
+  - `WHATSAPP_PHONE` ou `WHATSAPP_DEFAULT_NUMBER`/`WHATSAPP_TO`: número do consultor (E.164, ex: `5531993044867`)
+- Frontend (env): `VITE_API_URL` apontando para o backend público (HTTPS)
+
+Fluxo:
+- O botão flutuante (canto inferior direito) abre o chat no WhatsApp e aciona o endpoint `sendWhatsapp` do servidor em paralelo.
+- O formulário de contato possui o botão “Falar no WhatsApp” que inclui nome/email/telefone na mensagem e aciona o bot com `topic=consultoria`.
+- O servidor monta uma mensagem de abertura com saudação personalizada, menu com 5 opções e o contexto da mensagem inicial.
+
+Teste rápido local:
+```powershell
+.\start.bat
+Invoke-WebRequest http://localhost:3060/api/health -UseBasicParsing
+```
+Se o health falhar, suba o backend na porta `3060` e confirme as variáveis.

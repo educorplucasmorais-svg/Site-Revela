@@ -23,6 +23,7 @@ function App() {
             e.preventDefault();
             setShowTransition(true);
             setPendingRoute('/kaia');
+    import { WhatsAppButton } from './components/WhatsAppButton';
         }
     };
 
@@ -147,6 +148,8 @@ function App() {
                                 </ul>
                             </div>
                         </div>
+                {/* Floating WhatsApp button visible on all routes */}
+                <WhatsAppButton />
 
                         <div style={{
                             borderTop: '1px solid var(--color-border)',

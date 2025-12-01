@@ -815,3 +815,25 @@ section {
   border-radius: 16px;
   mix-blend-mode: screen;
 }
+
+/* WhatsApp floating button focus state for accessibility */
+button[aria-label="Falar no WhatsApp"]:focus {
+  outline: 2px solid #128C7E;
+  outline-offset: 2px;
+}
+
+/* Static PNG background for Revela sections */
+.section-dark {
+  background-image: url('/revela-bg.png'), radial-gradient(1200px 600px at 50% 0%, rgba(30,20,12,0.6), rgba(12,10,8,1));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat;
+}
+
+/* Ensure hero area uses the same background for consistency */
+#hero, .section-pattern {
+  background-image: url('/revela-bg.png'), linear-gradient(180deg, rgba(18,16,14,0.7), rgba(10,9,8,1));
+  background-size: cover, auto;
+  background-position: center, center;
+  background-repeat: no-repeat;
+}

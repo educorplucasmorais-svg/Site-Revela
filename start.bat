@@ -2,7 +2,7 @@
 echo Iniciando Site Revela...
 echo.
 echo Abrindo 2 terminais:
-echo - Terminal 1: Backend (porta 3000)
+echo - Terminal 1: Backend (porta 3060)
 echo - Terminal 2: Frontend (porta 3050)
 echo.
 

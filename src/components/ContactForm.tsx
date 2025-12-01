@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { toast } from 'sonner';
+import { trpc } from '../lib/trpc';
 
 // Número do WhatsApp para fallback (edite aqui)
 const WHATSAPP_NUMBER = '5531993044867';
@@ -88,6 +89,18 @@ function ContactForm() {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleWhatsappDirect = async () => {
+        const text = formData.message || `Olá! Sou ${formData.name || 'um contato'}. Preciso de ajuda com consultoria.`;
+        const waText = `${text}\n\nEmail: ${formData.email || '-'}\nTelefone: ${formData.phone || '-'}`;
+        try {
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`, '_blank');
+        } catch {}
+        try {
+            await trpc.sendWhatsapp.mutate({ text, name: formData.name, topic: 'consultoria' });
+        } catch {}
+        toast.info('Abrindo WhatsApp e notificando consultor...');
     };
 
     const resetForm = () => {
@@ -200,6 +213,12 @@ function ContactForm() {
                         </>
                     )}
                 </button>
+
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--space-md)' }}>
+                    <button type="button" className="btn btn-secondary" onClick={handleWhatsappDirect}>
+                        Falar no WhatsApp
+                    </button>
+                </div>
 
                 <p style={{
                     textAlign: 'center',

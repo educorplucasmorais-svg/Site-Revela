@@ -291,12 +291,14 @@ export const appRouter = router({
             z.object({
                 to: z.string().optional(),
                 text: z.string().min(1, 'Texto obrigatório'),
+                name: z.string().optional(),
+                topic: z.enum(['consultoria','kaia','servicos','precos','suporte']).optional(),
             })
         )
         .mutation(async ({ input }) => {
             const phoneId = process.env.WHATSAPP_PHONE_ID;
             const token = process.env.WHATSAPP_TOKEN;
-            const defaultTo = process.env.WHATSAPP_PHONE;
+            const defaultTo = process.env.WHATSAPP_PHONE || process.env.WHATSAPP_DEFAULT_NUMBER || process.env.WHATSAPP_TO;
 
             if (!phoneId || !token) {
                 throw new Error('WhatsApp API não configurada (WHATSAPP_PHONE_ID ou WHATSAPP_TOKEN ausente)');
@@ -304,6 +306,13 @@ export const appRouter = router({
 
             const to = input.to || defaultTo;
             if (!to) throw new Error('Número destino não informado');
+
+            // Compose a simple assistant opening reply to assist triage
+            const greeting = `Olá${input.name ? `, ${input.name}` : ''}! 👋 Sou o assistente da Revela.`;
+            const menu = `Posso ajudar com:\n1) Consultoria e diagnóstico\n2) Kaia (app e hub)\n3) Serviços e soluções\n4) Preços e planos\n5) Suporte`;
+            const tip = `Responda com o número da opção ou descreva sua necessidade.`;
+            const topicHint = input.topic ? `\nPercebi interesse em: ${input.topic}. Vou direcionar melhor.` : '';
+            const assembled = `${greeting}\n\n${menu}\n\n${tip}${topicHint}\n\nMensagem inicial: "${input.text}"`;
 
             try {
                 const body = {
@@ -313,7 +322,7 @@ export const appRouter = router({
                     type: 'text',
                     text: {
                         preview_url: true,
-                        body: input.text,
+                        body: assembled,
                     },
                 };
 

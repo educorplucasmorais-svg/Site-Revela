@@ -38,12 +38,13 @@ export default function KaiaPage() {
 
   return (
     <div className="kaia-page" style={{ marginTop: '-96px' }}>
+      {/* Static PNG background prioritized; canvas VFX disabled for clarity */}
       {/* Background Tree Image - Parallax */}
       <div 
         className="kaia-bg-tree"
         style={{ transform: `translateY(${scrollY * 0.3}px)` }}
       >
-        <img src="/hero-tree.jpg" alt="" className="kaia-bg-tree-img" />
+        <img src="/kaia-bg.png" alt="" className="kaia-bg-tree-img" />
         <div className="kaia-bg-tree-overlay" />
       </div>
 
@@ -72,6 +73,11 @@ export default function KaiaPage() {
       </header>
 
       <KaiaHero onDemoClick={() => setLocation('/kaia/hub')} />
+      <div className="container" style={{ textAlign: 'center', marginTop: 'var(--space-xl)' }}>
+        <button className="btn btn-primary" onClick={() => setLocation('/kaia/hub')}>
+          Acessar Hub da Kaia →
+        </button>
+      </div>
       <KaiaFeatures />
       <KaiaTestimonials />
       <KaiaSecurity />
