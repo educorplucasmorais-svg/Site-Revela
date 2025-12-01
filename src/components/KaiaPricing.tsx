@@ -14,49 +14,43 @@ interface Plan {
 const plans: Plan[] = [
   {
     id: 'kaia-starter',
-    name: 'Starter',
-    desc: 'Perfeito para testar e validar',
-    price: 49,
+    name: 'Me conhecer',
+    desc: 'Teste comportamental',
+    price: 25,
     period: '/mês',
     features: [
-      '500 mensagens/mês',
-      '1 canal (WhatsApp ou Web)',
-      'Respostas automáticas básicas',
-      'Dashboard de métricas',
-      'Suporte por email'
+      'DISC',
+      'QP',
+      'Sabotadores'
     ],
     cta: 'Começar Grátis'
   },
   {
     id: 'kaia-pro',
-    name: 'Pro',
+    name: 'Crescimento saudável',
     desc: 'Para negócios em crescimento',
-    price: 149,
+    price: 69.99,
     period: '/mês',
     featured: true,
     features: [
-      '5.000 mensagens/mês',
-      '3 canais simultâneos',
-      'IA personalizada para sua marca',
-      'Integrações com CRM',
-      'Analytics avançado',
-      'Suporte prioritário'
+      '+opções anteriores',
+      'Softskills',
+      'Liderança',
+      'PDI'
     ],
     cta: 'Escolher Pro'
   },
   {
     id: 'kaia-enterprise',
-    name: 'Enterprise',
+    name: 'Conselho bom a gente vende',
     desc: 'Soluções sob medida',
-    price: 0,
-    period: 'Personalizado',
+    price: 120,
+    period: '/mês',
     features: [
-      'Mensagens ilimitadas',
-      'Canais ilimitados',
-      'IA treinada exclusivamente',
-      'API dedicada',
-      'SLA garantido',
-      'Gerente de conta dedicado'
+      '+opções anteriores',
+      '2 consultorias (2 horas)',
+      'Criação e automatização de soluções',
+      '(Até 3 unidades)'
     ],
     cta: 'Falar com Vendas'
   }
@@ -94,17 +88,9 @@ export function KaiaPricing() {
             <p className="kaia-price-desc">{plan.desc}</p>
             
             <div className="kaia-price-amount">
-              {plan.price > 0 ? (
-                <>
-                  <span className="kaia-price-currency">R$</span>
-                  <span className="kaia-price-value">{plan.price}</span>
-                  <span className="kaia-price-period">{plan.period}</span>
-                </>
-              ) : (
-                <span className="kaia-price-value" style={{ fontSize: '2rem' }}>
-                  {plan.period}
-                </span>
-              )}
+              <span className="kaia-price-currency">R$</span>
+              <span className="kaia-price-value">{plan.price}</span>
+              <span className="kaia-price-period">{plan.period}</span>
             </div>
 
             <ul className="kaia-price-features">
