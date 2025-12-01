@@ -71,22 +71,8 @@ function PricingSection() {
     const [showPaymentModal, setShowPaymentModal] = useState(false);
 
     useEffect(() => {
-        loadPlans();
+        setLoading(false); // Sempre usa planos locais, ignora API
     }, []);
-
-    const loadPlans = async () => {
-        try {
-            const data = await trpc.getPricingPlans.query();
-            if (data && data.length > 0) {
-                setPlans(data);
-            }
-        } catch (error) {
-            console.error('Using local plans:', error);
-            // Silently use local plans
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleSelectPlan = (plan: PricingPlan) => {
         if (plan.price === 0) {

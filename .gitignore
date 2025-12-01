@@ -40,3 +40,4 @@ lerna-debug.log*
 
 # Supabase
 .supabase/
+.env*.local

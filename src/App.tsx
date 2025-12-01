@@ -6,9 +6,11 @@ import KaiaHub from './pages/KaiaHub';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
+import Pitch from './pages/Pitch';
 import { PageTransition } from './components/PageTransition';
 import { useContentProtection } from './hooks/useContentProtection';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { ConsultantCTA } from './components/ConsultantCTA';
 import Diagnostics from './pages/Diagnostics';
 import './style.css';
 
@@ -37,8 +39,8 @@ function App() {
         setShowTransition(false);
     };
 
-    // Check if current route is Kaia (root or /kaia)
-    const isKaiaRoute = location === '/' || location === '/kaia';
+    // Check if current route is Kaia only
+    const isKaiaRoute = location === '/kaia';
 
     return (
         <>
@@ -54,24 +56,22 @@ function App() {
                 <header className="header" id="header">
                     <div className="container">
                         <nav className="nav">
-                            <Link href="/revela" style={{ textDecoration: 'none' }}>
+                            <Link href="/" style={{ textDecoration: 'none' }}>
                                 <div className="nav-logo">
                                     Revela
                                     <span className="nav-tagline">Consultoria e Crescimento</span>
                                 </div>
                             </Link>
                             <ul className="nav-links">
-                                <li><Link href="/revela" className="nav-link">Início</Link></li>
-                                <li><a href="#servicos" className="nav-link">Serviços</a></li>
+                                <li><Link href="/" className="nav-link">Home</Link></li>
+                                <li><Link href="/blog" className="nav-link">Blog</Link></li>
                                 <li><a href="#contato" className="nav-link">Contato</a></li>
-                                <li><a href="/kaia" className="nav-link" onClick={handleKaiaClick}>Kaia</a></li>
+                                <li><Link href="/incubadora" className="nav-link">Incubadora</Link></li>
+                                <li><a href="/#esteira" className="nav-link">Esteira</a></li>
+                                <li><Link href="/pitch" className="nav-link">Pitch</Link></li>
+                                <li><a href="#produtos" className="nav-link">Produtos</a></li>
                                 <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
                             </ul>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-                                <span style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
-                                    📅 {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'short' })}
-                                </span>
-                            </div>
                         </nav>
                     </div>
                 </header>
@@ -79,7 +79,7 @@ function App() {
 
             <main>
                 <Switch>
-                    <Route path="/" component={Kaia} />
+                    <Route path="/" component={Home} />
                     <Route path="/revela" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
@@ -95,6 +95,9 @@ function App() {
                     </Route>
                     <Route path="/admin/app">
                         <AdminApp />
+                    </Route>
+                    <Route path="/pitch">
+                        <Pitch />
                     </Route>
                     <Route>
                         <div className="container" style={{ paddingTop: '150px', textAlign: 'center', minHeight: '100vh' }}>
@@ -152,8 +155,9 @@ function App() {
                                 </ul>
                             </div>
                         </div>
-                {/* Floating WhatsApp button visible on all routes */}
+                {/* Floating buttons */}
                 <WhatsAppButton />
+                <ConsultantCTA />
 
                         <div style={{
                             borderTop: '1px solid var(--color-border)',

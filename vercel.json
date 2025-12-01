@@ -3,6 +3,9 @@
     "outputDirectory": "dist/client",
     "installCommand": "npm install",
     "framework": "vite",
+    "redirects": [
+        { "source": "/revela", "destination": "/", "permanent": true }
+    ],
     "rewrites": [
         { "source": "/api/(.*)", "destination": "/api/backend" },
         { "source": "/(.*)", "destination": "/index.html" }

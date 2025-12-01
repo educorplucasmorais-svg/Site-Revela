@@ -293,6 +293,7 @@ export const appRouter = router({
                 text: z.string().min(1, 'Texto obrigatório'),
                 name: z.string().optional(),
                 topic: z.enum(['consultoria','kaia','servicos','precos','suporte']).optional(),
+                dryRun: z.boolean().optional(),
             })
         )
         .mutation(async ({ input }) => {
@@ -300,12 +301,7 @@ export const appRouter = router({
             const token = process.env.WHATSAPP_TOKEN;
             const defaultTo = process.env.WHATSAPP_PHONE || process.env.WHATSAPP_DEFAULT_NUMBER || process.env.WHATSAPP_TO;
 
-            if (!phoneId || !token) {
-                throw new Error('WhatsApp API não configurada (WHATSAPP_PHONE_ID ou WHATSAPP_TOKEN ausente)');
-            }
-
-            const to = input.to || defaultTo;
-            if (!to) throw new Error('Número destino não informado');
+            const to = input.to || defaultTo || '5531993044867';
 
             // Compose a simple assistant opening reply to assist triage
             const greeting = `Olá${input.name ? `, ${input.name}` : ''}! 👋 Sou o assistente da Revela.`;
@@ -313,6 +309,13 @@ export const appRouter = router({
             const tip = `Responda com o número da opção ou descreva sua necessidade.`;
             const topicHint = input.topic ? `\nPercebi interesse em: ${input.topic}. Vou direcionar melhor.` : '';
             const assembled = `${greeting}\n\n${menu}\n\n${tip}${topicHint}\n\nMensagem inicial: "${input.text}"`;
+
+            // Dry-run mode (for tests/local without WhatsApp credentials)
+            if (input.dryRun || !phoneId || !token) {
+                return { success: true, mode: 'mock', to, preview: assembled };
+            }
+
+            if (!to) throw new Error('Número destino não informado');
 
             try {
                 const body = {
