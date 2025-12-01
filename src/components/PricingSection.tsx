@@ -21,52 +21,45 @@ interface PricingPlan {
 const LOCAL_PLANS: PricingPlan[] = [
     {
         id: 'starter',
-        name: 'Starter',
-        price: 997,
+        name: 'Me conhecer',
+        price: 25,
         currency: 'BRL',
         interval: 'mês',
-        description: 'Perfeito para começar',
+        description: 'Teste comportamental e autoconhecimento',
         popular: false,
         features: [
-            'Diagnóstico inicial',
-            '2 reuniões/mês',
-            'Plano de ação básico',
-            'Suporte por email',
-            'Relatório mensal'
+            'DISC',
+            'QP (Questionário de Perfil)',
+            'Sabotadores',
         ]
     },
     {
         id: 'pro',
-        name: 'Pro',
-        price: 2497,
+        name: 'Crescimento saudável',
+        price: 69.99,
         currency: 'BRL',
         interval: 'mês',
-        description: 'Para negócios em crescimento',
+        description: 'Desenvolvimento contínuo e liderança',
         popular: true,
         features: [
-            'Tudo do Starter',
-            '4 reuniões/mês',
-            'Gestão de marketing',
-            'Dashboards personalizados',
-            'Suporte prioritário',
-            'Treinamento da equipe'
+            'Tudo do Me conhecer',
+            'Softskills',
+            'Liderança',
+            'PDI (Plano de Desenvolvimento Individual)'
         ]
     },
     {
         id: 'enterprise',
-        name: 'Enterprise',
-        price: 0,
+        name: 'Conselho bom a gente vende',
+        price: 120,
         currency: 'BRL',
         interval: 'mês',
-        description: 'Soluções sob medida',
+        description: 'Consultoria prática e automações',
         popular: false,
         features: [
-            'Tudo do Pro',
-            'Reuniões ilimitadas',
-            'Equipe dedicada',
-            'Consultoria estratégica',
-            'SLA garantido',
-            'Gerente de conta'
+            'Tudo do Crescimento saudável',
+            '2 consultorias (2 horas)',
+            'Criação e automatização de soluções (até 3 unidades)'
         ]
     }
 ];
