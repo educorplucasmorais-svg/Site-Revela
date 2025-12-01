@@ -56,6 +56,7 @@ const plans: Plan[] = [
   }
 ];
 
+
 export function KaiaPricing() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
