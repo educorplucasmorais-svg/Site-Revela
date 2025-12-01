@@ -11,14 +11,20 @@ config();
 const app = express();
 const PORT = process.env.PORT || 3060;
 
-// CORS: allow Vercel frontend and localhost for dev
+// CORS: allow Vercel frontend(s) and localhost for dev
+const frontendOriginsEnv = process.env.FRONTEND_ORIGINS || process.env.FRONTEND_URL || '';
+const configuredOrigins = frontendOriginsEnv
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3050',
   'http://localhost:3051',
   'http://localhost:5173',
-  process.env.FRONTEND_URL, // e.g., https://revela-alpha.vercel.app
-].filter(Boolean) as string[];
+  ...configuredOrigins, // e.g., https://revela-alpha.vercel.app, https://preview-xyz.vercel.app
+];
 
 app.use(cors({
   origin: (origin, callback) => {

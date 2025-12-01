@@ -399,7 +399,17 @@ VITE_SUPABASE_ANON_KEY=...
 Re-deploy após salvar.
 
 ### 3. CORS
-Confirme em `server/index.ts` que `FRONTEND_URL` está definido e que o domínio do Vercel está na lista `allowedOrigins`.
+Confirme em `server/index.ts` que os domínios do frontend estão permitidos:
+
+- Use `FRONTEND_ORIGINS` (recomendado) com uma lista separada por vírgulas:
+```
+FRONTEND_ORIGINS=https://revela-alpha.vercel.app,https://seu-preview.vercel.app
+```
+- Ou `FRONTEND_URL` único (legado):
+```
+FRONTEND_URL=https://revela-alpha.vercel.app
+```
+Pré-configurados para dev: `http://localhost:3050`, `http://localhost:5173`.
 
 ### 4. Banco de Dados
 Execute `npm run apply-schema-mysql` no ambiente do backend ou aplique manualmente o `schema.sql`.
