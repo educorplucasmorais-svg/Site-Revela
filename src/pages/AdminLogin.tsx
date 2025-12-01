@@ -112,26 +112,27 @@ export default function AdminLogin() {
                         />
                     </div>
 
+                    {/* Environment status panel */}
+                    <div style={{
+                        fontSize: '0.7rem',
+                        lineHeight: 1.4,
+                        color: envStatus.ok ? 'hsl(var(--muted-foreground))' : 'hsl(var(--destructive))',
+                        background: 'hsl(var(--muted) / 0.3)',
+                        padding: '0.5rem 0.75rem',
+                        borderRadius: 'var(--radius)'
+                    }}>
+                        <strong>API:</strong> {envStatus.url}<br />
+                        Status: {envStatus.ok === null ? 'testando...' : envStatus.ok ? 'OK' : 'Indisponível'} {envStatus.message ? `(${envStatus.message})` : ''}
+                        {envStatus.ok === false && (
+                            <>
+                                <br />Configure backend deploy e defina <code style={{ fontSize: '0.65rem' }}>VITE_API_URL</code> no Vercel.
+                                <br /><a href="https://github.com/educorplucasmorais-svg/Site-Revela#-produ%C3%A7%C3%A3o-backend--frontend" target="_blank" rel="noopener noreferrer" style={{ color: 'hsl(var(--primary))', textDecoration: 'none' }}>Ver guia de produção</a>
+                            </>
+                        )}
+                    </div>
+
                     {error && (
                         <div style={{ 
-                        {/* Environment status panel */}
-                        <div style={{
-                            fontSize: '0.7rem',
-                            lineHeight: 1.4,
-                            color: envStatus.ok ? 'hsl(var(--muted-foreground))' : 'hsl(var(--destructive))',
-                            background: 'hsl(var(--muted) / 0.3)',
-                            padding: '0.5rem 0.75rem',
-                            borderRadius: 'var(--radius)'
-                        }}>
-                            <strong>API:</strong> {envStatus.url}<br />
-                            Status: {envStatus.ok === null ? 'testando...' : envStatus.ok ? 'OK' : 'Indisponível'} {envStatus.message ? `(${envStatus.message})` : ''}
-                            {envStatus.ok === false && (
-                                <>
-                                    <br />Configure backend deploy e defina <code style={{ fontSize: '0.65rem' }}>VITE_API_URL</code> no Vercel.
-                                    <br /><a href="https://github.com/educorplucasmorais-svg/Site-Revela#-produ%C3%A7%C3%A3o-backend--frontend" target="_blank" rel="noopener noreferrer" style={{ color: 'hsl(var(--primary))', textDecoration: 'none' }}>Ver guia de produção</a>
-                                </>
-                            )}
-                        </div>
                             color: 'hsl(var(--destructive))', 
                             fontSize: '0.875rem', 
                             padding: '0.5rem', 
