@@ -4,27 +4,21 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
-// Árvore laranja realista com folhas caindo (Unsplash)
-const TREE_IMAGE = 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=1200&q=90&auto=format&fit=crop';
-
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
+  const scrollToHow = () => {
+    document.getElementById('metodologia')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="revela-hero">
-      {/* Background Image - Árvore à direita */}
-      <div className="revela-hero-bg">
-        <img 
-          src={TREE_IMAGE}
-          alt="" 
-          className="revela-hero-bg-image"
-        />
-        <div className="revela-hero-bg-overlay" />
-      </div>
-
-      {/* Falling Leaves Animation */}
-      <div className="revela-leaves-container">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="revela-leaf" />
-        ))}
+      {/* Animated Tech Background */}
+      <div className="revela-hero-tech-bg">
+        <div className="revela-hero-grid-lines" />
+        <div className="revela-hero-floating-elements">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="revela-floating-shape" />
+          ))}
+        </div>
       </div>
 
       {/* Background Glows */}
@@ -34,41 +28,41 @@ export function RevelaHero({ onContactClick }: RevelaHeroProps) {
       <div className="revela-hero-container">
         {/* Left Content */}
         <div className="revela-hero-content">
-          <span className="revela-hero-badge">Inteligência Estratégica</span>
+          <span className="revela-hero-badge">Hub de Inovação e Tecnologia com IA</span>
           
           <h1 className="revela-hero-title">
-            Revele o potencial
-            <span className="revela-hero-title-highlight">oculto do seu negócio.</span>
+            Sua empresa ainda opera
+            <span className="revela-hero-title-highlight">no modo manual?</span>
           </h1>
           
           <p className="revela-hero-subtitle">
-            Sua equipe completa de marketing e estratégia, agora potencializada pela IA. 
-            Estruturamos processos, desenvolvemos pessoas e comunicamos sua essência.
+            Enquanto você lê isso, seus concorrentes estão automatizando com IA.
+            <strong> Transformamos operações travadas em máquinas de crescimento — em semanas, não meses.</strong>
           </p>
 
           <div className="revela-hero-cta">
             <button onClick={onContactClick} className="revela-hero-btn revela-hero-btn-primary">
-              Iniciar Diagnóstico
+              Agendar Diagnóstico Gratuito
               <span>→</span>
             </button>
-            <a href="#servicos" className="revela-hero-btn revela-hero-btn-secondary">
-              Saiba Mais
-            </a>
+            <button onClick={scrollToHow} className="revela-hero-btn revela-hero-btn-secondary">
+              Ver como funciona
+            </button>
           </div>
 
           {/* Stats */}
           <div className="revela-hero-stats">
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">3x</div>
-              <div className="revela-hero-stat-label">Crescimento Médio</div>
+              <div className="revela-hero-stat-value">8h → 8min</div>
+              <div className="revela-hero-stat-label">Redução de Trabalho</div>
             </div>
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">50+</div>
-              <div className="revela-hero-stat-label">Empresas</div>
+              <div className="revela-hero-stat-value">+200</div>
+              <div className="revela-hero-stat-label">Automações</div>
             </div>
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">95%</div>
-              <div className="revela-hero-stat-label">Satisfação</div>
+              <div className="revela-hero-stat-value">60 dias</div>
+              <div className="revela-hero-stat-label">Do Zero ao App</div>
             </div>
           </div>
         </div>
