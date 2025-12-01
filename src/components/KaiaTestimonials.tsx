@@ -120,6 +120,40 @@ export function KaiaTestimonials() {
            <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'white' }}>WIRED</span>
            <span style={{ fontSize: '1.5rem', fontWeight: '800', color: 'white' }}>BLOOMBERG</span>
         </div>
+
+        {/* CTA após Testimonials */}
+        <div style={{ textAlign: 'center', marginTop: '60px' }}>
+          <h3 style={{ 
+            fontSize: '2rem', 
+            fontWeight: '700', 
+            marginBottom: '20px',
+            background: 'linear-gradient(135deg, #fff 0%, var(--kaia-primary) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent'
+          }}>
+            Venha se conhecer de verdade
+          </h3>
+          <a 
+            href="https://wa.me/5531993044867?text=Quero%20fazer%20meu%20teste%20comportamental%20com%20a%20Kaia!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="kaia-btn kaia-btn-secondary"
+            style={{ 
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '16px 32px',
+              fontSize: '1.1rem',
+              textDecoration: 'none',
+              background: 'transparent',
+              border: '2px solid var(--kaia-primary)',
+              color: 'white'
+            }}
+          >
+            <span>🧠</span>
+            Iniciar minha jornada de autoconhecimento
+          </a>
+        </div>
       </div>
     </section>
   );

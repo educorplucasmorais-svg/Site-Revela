@@ -60,10 +60,11 @@ const plans: Plan[] = [
 export function KaiaPricing() {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
-  const handleSelectPlan = (planId: string) => {
+  const handleSelectPlan = (planId: string, planName: string) => {
     setSelectedPlan(planId);
-    // Scroll to CTA section for now (payment disabled)
-    document.getElementById('cta')?.scrollIntoView({ behavior: 'smooth' });
+    // Open WhatsApp with plan context
+    const message = encodeURIComponent(`Olá! Tenho interesse no plano "${planName}". Gostaria de saber mais!`);
+    window.open(`https://wa.me/5531993044867?text=${message}`, '_blank');
   };
 
   return (
@@ -103,7 +104,7 @@ export function KaiaPricing() {
             <button
               className={`kaia-btn ${plan.featured ? 'kaia-btn-primary' : 'kaia-btn-secondary'}`}
               style={{ width: '100%', justifyContent: 'center' }}
-              onClick={() => handleSelectPlan(plan.id)}
+              onClick={() => handleSelectPlan(plan.id, plan.name)}
             >
               {plan.cta}
             </button>

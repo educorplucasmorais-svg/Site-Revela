@@ -55,6 +55,34 @@ export function KaiaFeatures() {
           </div>
         ))}
       </div>
+
+      {/* CTA após Features */}
+      <div style={{ textAlign: 'center', marginTop: '60px' }}>
+        <a 
+          href="https://wa.me/5531993044867?text=Olá!%20Quero%20conhecer%20a%20Kaia%20e%20transformar%20meu%20atendimento"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="kaia-btn kaia-btn-primary"
+          style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '16px 32px',
+            fontSize: '1.1rem',
+            textDecoration: 'none'
+          }}
+        >
+          <span>💬</span>
+          Fale com um consultor agora
+        </a>
+        <p style={{ 
+          marginTop: '16px', 
+          fontSize: '0.9rem', 
+          color: 'rgba(255,255,255,0.6)' 
+        }}>
+          Resposta em menos de 2 minutos
+        </p>
+      </div>
     </section>
   );
 }
