@@ -4,27 +4,24 @@ interface RevelaHeroProps {
   onContactClick: () => void;
 }
 
-// Imagem lateral ilustrativa (substituir por ativo proprietário se desejado)
-const SIDE_IMAGE = 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&q=80&auto=format&fit=crop';
+// Hero image - futuristic AI/tech visual
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop';
 
 export function RevelaHero({ onContactClick }: RevelaHeroProps) {
+  const scrollToHow = () => {
+    document.getElementById('metodologia')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <section className="revela-hero">
-      {/* Side Image */}
+    <section className="revela-hero revela-hero-light">
+      {/* Background Image */}
       <div className="revela-hero-bg">
-        <img
-          src={SIDE_IMAGE}
-          alt="Equipe estratégica trabalhando em soluções digitais"
+        <img 
+          src={HERO_IMAGE}
+          alt="Inteligência Artificial e Automação" 
           className="revela-hero-bg-image"
         />
         <div className="revela-hero-bg-overlay" />
-      </div>
-
-      {/* Falling Leaves Animation */}
-      <div className="revela-leaves-container">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className="revela-leaf" />
-        ))}
       </div>
 
       {/* Background Glows */}
@@ -34,39 +31,41 @@ export function RevelaHero({ onContactClick }: RevelaHeroProps) {
       <div className="revela-hero-container">
         {/* Left Content */}
         <div className="revela-hero-content">
-          <span className="revela-hero-badge">Hub de Inovação + IA</span>
+          <span className="revela-hero-badge">Hub de IA para Empresas</span>
           
           <h1 className="revela-hero-title">
-            Revela 2.0:
-            <span className="revela-hero-title-highlight"> Hub de Inovação e Aceleração de Potencial Humano com IA</span>
+            Automatize sua empresa
+            <span className="revela-hero-title-highlight">com Inteligência Artificial</span>
           </h1>
           
           <p className="revela-hero-subtitle">
-            Uma "Nave Mãe" estratégica que produz soluções empresariais, automações e produtos com Inteligência Artificial. Democratizamos a tecnologia de ponta e a estratégia de high-level, desenvolvendo soluções que unem automação inteligente e a essência humana.
+            De <strong>8 horas</strong> de trabalho manual para <strong>8 minutos</strong>. 
+            Entregamos apps e automações em semanas, não meses.
           </p>
 
           <div className="revela-hero-cta">
             <button onClick={onContactClick} className="revela-hero-btn revela-hero-btn-primary">
-              Falar com um consultor <span>→</span>
+              Diagnóstico Gratuito
+              <span>→</span>
             </button>
-            <a href="#conhecer" className="revela-hero-btn revela-hero-btn-secondary">
-              Conhecer a Revela
-            </a>
+            <button onClick={scrollToHow} className="revela-hero-btn revela-hero-btn-secondary">
+              Como funciona
+            </button>
           </div>
 
           {/* Stats */}
           <div className="revela-hero-stats">
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">B2B+B2C</div>
-              <div className="revela-hero-stat-label">Empresas & Pessoas</div>
+              <div className="revela-hero-stat-value">+200</div>
+              <div className="revela-hero-stat-label">Automações</div>
             </div>
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">3 Pilares</div>
-              <div className="revela-hero-stat-label">Consultoria + Tech + Produtos</div>
+              <div className="revela-hero-stat-value">60 dias</div>
+              <div className="revela-hero-stat-label">Do Zero ao App</div>
             </div>
             <div className="revela-hero-stat">
-              <div className="revela-hero-stat-value">MVP 14d</div>
-              <div className="revela-hero-stat-label">Até MVP Navegável</div>
+              <div className="revela-hero-stat-value">+50</div>
+              <div className="revela-hero-stat-label">Empresas</div>
             </div>
           </div>
         </div>

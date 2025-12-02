@@ -6,11 +6,10 @@ import KaiaHub from './pages/KaiaHub';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
-import Pitch from './pages/Pitch';
 import { PageTransition } from './components/PageTransition';
 import { useContentProtection } from './hooks/useContentProtection';
 import { WhatsAppButton } from './components/WhatsAppButton';
-import { ConsultantCTA } from './components/ConsultantCTA';
+import { Navigation } from './components/Navigation';
 import Diagnostics from './pages/Diagnostics';
 import './style.css';
 
@@ -39,8 +38,8 @@ function App() {
         setShowTransition(false);
     };
 
-    // Check if current route is Kaia only
-    const isKaiaRoute = location === '/kaia';
+    // Check if current route is Kaia (root or /kaia)
+    const isKaiaRoute = location === '/' || location === '/kaia';
 
     return (
         <>
@@ -53,33 +52,12 @@ function App() {
             />
 
             {!isKaiaRoute && (
-                <header className="header" id="header">
-                    <div className="container">
-                        <nav className="nav">
-                            <Link href="/" style={{ textDecoration: 'none' }}>
-                                <div className="nav-logo">
-                                    Revela
-                                    <span className="nav-tagline">Consultoria e Crescimento</span>
-                                </div>
-                            </Link>
-                            <ul className="nav-links">
-                                <li><Link href="/" className="nav-link">Home</Link></li>
-                                <li><Link href="/blog" className="nav-link">Blog</Link></li>
-                                <li><a href="#contato" className="nav-link">Contato</a></li>
-                                <li><Link href="/incubadora" className="nav-link">Incubadora</Link></li>
-                                <li><a href="/#esteira" className="nav-link">Esteira</a></li>
-                                <li><Link href="/pitch" className="nav-link">Pitch</Link></li>
-                                <li><a href="#produtos" className="nav-link">Produtos</a></li>
-                                <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </header>
+                <Navigation onKaiaClick={handleKaiaClick} />
             )}
 
             <main>
                 <Switch>
-                    <Route path="/" component={Home} />
+                    <Route path="/" component={Kaia} />
                     <Route path="/revela" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
@@ -95,9 +73,6 @@ function App() {
                     </Route>
                     <Route path="/admin/app">
                         <AdminApp />
-                    </Route>
-                    <Route path="/pitch">
-                        <Pitch />
                     </Route>
                     <Route>
                         <div className="container" style={{ paddingTop: '150px', textAlign: 'center', minHeight: '100vh' }}>
@@ -125,22 +100,34 @@ function App() {
                         }}>
                             <div>
                                 <h3 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-primary)' }}>
-                                    Revela
+                                    RevelaIA
                                 </h3>
                                 <p style={{ fontSize: '0.95rem', marginBottom: '0' }}>
-                                    Potencializando negócios através de pessoas. Inteligência estratégica para
-                                    empresas que querem crescer de forma sustentável.
+                                    Hub de Inovação e Tecnologia. Automação inteligente e soluções 
+                                    com IA para empresas que querem escalar.
                                 </p>
                             </div>
 
                             <div>
                                 <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', fontWeight: '600' }}>
-                                    Links Rápidos
+                                    Educação Tech
                                 </h4>
                                 <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
-                                    <li><a href="#servicos" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Serviços</a></li>
-                                    <li><a href="#sobre" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Sobre</a></li>
-                                    <li><a href="#contato" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Contato</a></li>
+                                    <li><a href="/incubadora" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Incubadora</a></li>
+                                    <li><a href="/mentorias" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Mentorias</a></li>
+                                    <li><a href="/palestras" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Palestras</a></li>
+                                    <li><a href="/hackathon" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Hackathon</a></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', fontWeight: '600' }}>
+                                    Soluções TEC
+                                </h4>
+                                <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
+                                    <li><a href="/produtos" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Produtos</a></li>
+                                    <li><a href="/esteira" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Esteira de Processos</a></li>
+                                    <li><a href="/pitch" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Pitch de Negócio</a></li>
                                 </ul>
                             </div>
 
@@ -149,15 +136,83 @@ function App() {
                                     Contato
                                 </h4>
                                 <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
-                                    <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📧 contato@revela.com.br</li>
+                                    <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📧 contato@revelaia.tech</li>
                                     <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📱 +55 31 99304-4867</li>
                                     <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📍 Atuação em todo o Brasil</li>
                                 </ul>
                             </div>
                         </div>
-                {/* Floating buttons */}
+                {/* Floating WhatsApp button visible on all routes */}
                 <WhatsAppButton />
-                <ConsultantCTA />
+
+                        {/* LGPD Certification Seal */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: 'var(--space-lg)',
+                            flexWrap: 'wrap',
+                            padding: 'var(--space-lg) 0',
+                            borderTop: '1px solid var(--color-border)',
+                            marginTop: 'var(--space-lg)'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>🔒</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        CRIPTOGRAFIA SSL
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Dados Protegidos
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>🛡️</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        LGPD COMPLIANT
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Lei nº 13.709/2018
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        SITE SEGURO
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Navegação Protegida
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div style={{
                             borderTop: '1px solid var(--color-border)',
@@ -165,8 +220,8 @@ function App() {
                             textAlign: 'center'
                         }}>
                             <p style={{ color: 'var(--color-text-muted)', marginBottom: '0', fontSize: '0.9rem' }}>
-                                © {new Date().getFullYear()} Revela. Todos os direitos reservados.
-                                Consultoria para pequenas e médias empresas.
+                                © {new Date().getFullYear()} RevelaIA. Todos os direitos reservados.
+                                Hub de Inovação e Tecnologia com IA.
                             </p>
                         </div>
                     </div>

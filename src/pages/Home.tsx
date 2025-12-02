@@ -1,19 +1,10 @@
 import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 import { RevelaHero } from '../components/RevelaHero';
-import { BenefitsStack } from '../components/BenefitsStack';
-import { TestimonialsBF } from '../components/TestimonialsBF';
-import { PillarsSection } from '../components/PillarsSection';
-import { MethodologySection } from '../components/MethodologySection';
-import { ProductPipelineSection } from '../components/ProductPipelineSection';
-import { ProductsIncubatorSection } from '../components/ProductsIncubatorSection';
-import { FAQ } from '../components/FAQ';
-import { trpc } from '../lib/trpc';
+import '../styles/landing-page.css';
 
 function Home() {
-
     useEffect(() => {
-        // Header scroll effect
         const header = document.getElementById('header');
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -33,93 +24,172 @@ function Home() {
 
     return (
         <>
-            {/* 1. Header / Hero topo de funil */}
+            {/* SEÇÃO 1: HERO */}
             <RevelaHero onContactClick={scrollToContact} />
 
-            {/* 2. Conhecer a empresa (Pilares) */}
-            <PillarsSection />
-
-            {/* 3. Metodologia */}
-            <MethodologySection />
-
-            {/* 3.1 Esteira de Criação de Produtos (sales pitch) */}
-            <ProductPipelineSection />
-
-            {/* 4. Benefícios / Como entregamos valor */}
-            <BenefitsStack />
-
-            {/* 5. Metodologia de produtos já destacada acima (mantida) */}
-
-            {/* 6. Prova social */}
-            <TestimonialsBF />
-
-            {/* 7. Produtos e Incubadora */}
-            <ProductsIncubatorSection />
-
-            {/* 8. Serviços (cards resumidos) */}
-            <section id="servicos" className="section-pattern">
+            {/* SEÇÃO 2: FLUXO DE SERVIÇOS (Mind Map Style) */}
+            <section id="servicos" className="section-lighter landing-section">
                 <div className="container">
-                    <div className="grid grid-3">
-                        <div className="card revela-card-dark">
-                            <h3 className="revela-keyword">Diagnóstico Estratégico</h3>
-                            <p style={{ marginBottom: 0 }}>Identifique oportunidades e elimine barreiras ao crescimento.</p>
-                        </div>
-                        <div className="card revela-card-dark">
-                            <h3 className="revela-keyword">Execução Eficiente</h3>
-                            <p style={{ marginBottom: 0 }}>Transforme planos em ações concretas com impacto imediato.</p>
-                        </div>
-                        <div className="card revela-card-dark">
-                            <h3 className="revela-keyword">Rotina de Sucesso</h3>
-                            <p style={{ marginBottom: 0 }}>Estabeleça processos contínuos para resultados consistentes.</p>
-                        </div>
+                    <div className="section-header">
+                        <span className="section-label">— O que fazemos</span>
+                        <h2 className="section-title">
+                            Do problema à solução
+                            <span className="text-gradient"> em 4 passos</span>
+                        </h2>
                     </div>
-                    <div style={{ marginTop: 'var(--space-lg)', textAlign: 'center' }}>
-                        <a
-                          href={`https://wa.me/5531993044867?text=${encodeURIComponent('Preciso de ajuda com serviços da Revela.')}`}
-                          className="btn btn-secondary"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const href = `https://wa.me/5531993044867?text=${encodeURIComponent('Preciso de ajuda com serviços da Revela.')}`;
-                            try { const opened = window.open(href, '_blank', 'noopener'); if (!opened) window.location.href = href; } catch { window.location.href = href; }
-                            try { trpc.sendWhatsapp.mutate({ text: 'Dúvida sobre serviços', topic: 'servicos' }); } catch {}
-                          }}
-                        >
-                          Falar com consultor sobre serviços
-                        </a>
+                    
+                    {/* Flow Chart Style */}
+                    <div className="flow-chart">
+                        <div className="flow-node flow-node-problem">
+                            <div className="flow-node-icon">😰</div>
+                            <h3>Processos Manuais</h3>
+                            <p>Tarefas repetitivas, planilhas, retrabalho</p>
+                        </div>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-step">
+                            <div className="flow-node-icon">🔍</div>
+                            <h3>Diagnóstico</h3>
+                            <p>Mapeamos gargalos em 30min</p>
+                            <span className="flow-badge">Gratuito</span>
+                        </div>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-step">
+                            <div className="flow-node-icon">⚡</div>
+                            <h3>Automação</h3>
+                            <p>IA + Apps em semanas</p>
+                            <span className="flow-badge">2-8 sem</span>
+                        </div>
+                        
+                        <div className="flow-arrow">→</div>
+                        
+                        <div className="flow-node flow-node-result">
+                            <div className="flow-node-icon">🚀</div>
+                            <h3>Escala</h3>
+                            <p>8h → 8min de trabalho</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 9. Entrar em contato */}
-            <section id="contato" className="section-dark">
+            {/* SEÇÃO 3: SOLUÇÕES (Visual Cards - 3 principais) */}
+            <section id="solucoes" className="section-dark landing-section">
                 <div className="container">
-                    <div className="text-center" style={{ marginBottom: 'var(--space-xl)' }}>
-                        <span className="hero-label">— ENTRE EM CONTATO</span>
-                        <h2>Receba uma análise gratuita do seu negócio</h2>
-                        <p style={{ fontSize: '1.05rem', maxWidth: '700px', margin: '0 auto', marginTop: 'var(--space-sm)' }}>
-                            Descubra como podemos ajudar a transformar desafios em oportunidades de crescimento.
-                        </p>
+                    <div className="section-header">
+                        <span className="section-label">— Soluções</span>
+                        <h2 className="section-title">Como podemos ajudar</h2>
                     </div>
-                    <ContactForm />
-                    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'var(--space-lg)' }}>
-                        <a
-                            href={`https://wa.me/5531993044867?text=${encodeURIComponent('Olá! Gostaria de falar com um consultor sobre meu caso.')}`}
-                            className="btn btn-secondary"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const href = `https://wa.me/5531993044867?text=${encodeURIComponent('Olá! Gostaria de falar com um consultor sobre meu caso.')}`;
-                                try { const opened = window.open(href, '_blank', 'noopener'); if (!opened) window.location.href = href; } catch { window.location.href = href; }
-                                try { trpc.sendWhatsapp.mutate({ text: 'Contato direto via WhatsApp', topic: 'consultoria' }); } catch {}
-                            }}
-                        >
-                            Falar com um consultor agora
-                        </a>
+                    
+                    <div className="solution-cards">
+                        <div className="solution-card solution-card-featured">
+                            <div className="solution-icon">🤖</div>
+                            <h3>Automação com IA</h3>
+                            <p>Conectamos seus sistemas e eliminamos tarefas repetitivas. +200 integrações prontas.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ Implementação em 2 semanas</li>
+                                <li>✓ Suporte 24/7 com IA</li>
+                            </ul>
+                        </div>
+                        
+                        <div className="solution-card">
+                            <div className="solution-icon">📱</div>
+                            <h3>Apps Sob Medida</h3>
+                            <p>Do zero ao app em 60 dias. Você é dono do código.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ MVP em 8 semanas</li>
+                                <li>✓ Deploy incluso</li>
+                            </ul>
+                        </div>
+                        
+                        <div className="solution-card">
+                            <div className="solution-icon">🎓</div>
+                            <h3>Capacitação IA</h3>
+                            <p>Seu time dominando IA em 30 dias com workshops práticos.</p>
+                            <ul className="solution-benefits">
+                                <li>✓ Certificação inclusa</li>
+                                <li>✓ Suporte pós-treinamento</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 10. Perguntas frequentes */}
-            <FAQ />
+            {/* SEÇÃO 4: METODOLOGIA (Timeline Visual) */}
+            <section id="metodologia" className="section-lighter landing-section">
+                <div className="container">
+                    <div className="section-header">
+                        <span className="section-label">— Metodologia</span>
+                        <h2 className="section-title">Como entregamos</h2>
+                    </div>
+                    
+                    <div className="timeline-flow">
+                        <div className="timeline-step">
+                            <div className="timeline-number">01</div>
+                            <div className="timeline-content">
+                                <h4>Descoberta</h4>
+                                <span className="timeline-duration">1-2 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">02</div>
+                            <div className="timeline-content">
+                                <h4>MVP</h4>
+                                <span className="timeline-duration">2-4 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">03</div>
+                            <div className="timeline-content">
+                                <h4>IA</h4>
+                                <span className="timeline-duration">2-3 sem</span>
+                            </div>
+                        </div>
+                        <div className="timeline-connector"></div>
+                        <div className="timeline-step">
+                            <div className="timeline-number">04</div>
+                            <div className="timeline-content">
+                                <h4>Go-live</h4>
+                                <span className="timeline-duration">1-2 sem</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Tech Stack as icons */}
+                    <div className="tech-stack-bar">
+                        <span className="tech-label">Stack:</span>
+                        <div className="tech-icons">
+                            <span title="Google AI Studio">🤖</span>
+                            <span title="GPT-4 / Claude">🧠</span>
+                            <span title="GitHub">💻</span>
+                            <span title="Vercel">▲</span>
+                            <span title="Railway">🚂</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SEÇÃO 5: CTA FINAL */}
+            <section id="contato" className="section-dark landing-section cta-section">
+                <div className="container">
+                    <div className="cta-content">
+                        <div className="section-header">
+                            <span className="section-label">— Vamos conversar</span>
+                            <h2 className="section-title">Diagnóstico Gratuito</h2>
+                            <p className="section-subtitle">
+                                Descubra os 3 processos que mais drenam tempo na sua empresa.
+                                <br />
+                                <strong>30 minutos. 100% gratuito.</strong>
+                            </p>
+                        </div>
+                        <ContactForm />
+                    </div>
+                </div>
+            </section>
         </>
     );
 }

@@ -9,8 +9,13 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  background: #000000;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1510 50%, #0a0a0a 100%);
   padding-top: 100px;
+}
+
+/* Lighter variant for better visual appeal */
+.revela-hero-light {
+  background: linear-gradient(135deg, #0f0f0f 0%, #1c1815 50%, #0f0f0f 100%);
 }
 
 /* Background Image Layer */
@@ -18,7 +23,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 60%;
+  width: 55%;
   height: 100%;
   z-index: 0;
   overflow: hidden;
@@ -29,6 +34,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center center;
+  opacity: 0.85;
 }
 
 .revela-hero-bg-overlay {
@@ -39,9 +45,10 @@
   bottom: 0;
   background: linear-gradient(
     90deg,
-    #000000 0%,
-    rgba(0, 0, 0, 0.8) 20%,
-    rgba(0, 0, 0, 0.3) 60%,
+    rgba(15, 15, 15, 1) 0%,
+    rgba(15, 15, 15, 0.95) 25%,
+    rgba(15, 15, 15, 0.7) 50%,
+    rgba(15, 15, 15, 0.3) 75%,
     transparent 100%
   );
 }
