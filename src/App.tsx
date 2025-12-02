@@ -145,6 +145,75 @@ function App() {
                 {/* Floating WhatsApp button visible on all routes */}
                 <WhatsAppButton />
 
+                        {/* LGPD Certification Seal */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: 'var(--space-lg)',
+                            flexWrap: 'wrap',
+                            padding: 'var(--space-lg) 0',
+                            borderTop: '1px solid var(--color-border)',
+                            marginTop: 'var(--space-lg)'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>🔒</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        CRIPTOGRAFIA SSL
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Dados Protegidos
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>🛡️</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        LGPD COMPLIANT
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Lei nº 13.709/2018
+                                    </div>
+                                </div>
+                            </div>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 'var(--space-sm)',
+                                padding: '12px 20px',
+                                background: 'rgba(255, 107, 53, 0.08)',
+                                border: '1px solid rgba(255, 107, 53, 0.2)',
+                                borderRadius: '8px'
+                            }}>
+                                <span style={{ fontSize: '1.5rem' }}>✓</span>
+                                <div>
+                                    <div style={{ fontSize: '0.75rem', fontWeight: '700', color: 'var(--color-primary)' }}>
+                                        SITE SEGURO
+                                    </div>
+                                    <div style={{ fontSize: '0.65rem', color: 'var(--color-text-muted)' }}>
+                                        Navegação Protegida
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div style={{
                             borderTop: '1px solid var(--color-border)',
                             paddingTop: 'var(--space-lg)',

@@ -114,12 +114,6 @@ export function Navigation({ onKaiaClick }: NavigationProps) {
               </Link>
             </li>
           </ul>
-
-          <div className="nav-date">
-            <span>
-              📅 {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'short' })}
-            </span>
-          </div>
         </nav>
       </div>
     </header>
