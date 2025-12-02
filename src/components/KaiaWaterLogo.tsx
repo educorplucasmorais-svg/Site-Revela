@@ -1,6 +1,7 @@
-'use client';
+                                                                                                            'use client';
 
 import { forwardRef } from 'react';
+import type React from 'react';
 
 export type KaiaWaterLogoProps = {
   className?: string;
@@ -44,7 +45,7 @@ export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ cl
       </defs>
 
       {/* Ícone Gráfico */}
-      <g transform="translate(50, 50) scale(0.8)">
+      <g transform="translate(40, 40) scale(0.9)">
         {/* Água / Ondas */}
         <g fill={`url(#${waterGradientId})`} opacity="0.9">
           <path d="M 50,300 Q 150,350 250,300 T 450,300 V 350 H 50 Z" />
@@ -74,6 +75,21 @@ export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ cl
           <circle cx="250" cy="350" r="5" fill="#fff" stroke="none" />
           <circle cx="175" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none" />
           <circle cx="325" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none" />
+
+          {/* Traços geométricos adicionais para densidade tecnológica */}
+          <path d="M 140,220 L 200,260 L 260,220" opacity="0.35" />
+          <path d="M 260,220 L 320,260 L 380,220" opacity="0.35" />
+          <path d="M 200,240 L 300,240" opacity="0.3" />
+          <path d="M 225,265 L 275,265" opacity="0.25" />
+          <circle cx="210" cy="230" r="3" opacity="0.5" />
+          <circle cx="290" cy="230" r="3" opacity="0.5" />
+        </g>
+
+        {/* Texto interno "KAIA" dentro do ícone */}
+        <g>
+          <text x="250" y="240" textAnchor="middle" dominantBaseline="middle" fontFamily="'Inter', sans-serif" fontSize="48" fontWeight="800" fill="#ffffff" letterSpacing="3" style={{ paintOrder: 'stroke' }}>
+            KAIA
+          </text>
         </g>
       </g>
 

@@ -20,6 +20,93 @@
 .kaia-page {
   position: relative;
   overflow-x: hidden;
+  z-index: 1; /* ensure content stacks above background */
+}
+
+/* Simple, lightweight background without canvas to avoid white screen */
+.kaia-simple-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(34,211,238,0.10), transparent 60%),
+    radial-gradient(800px 400px at 80% 10%, rgba(99,102,241,0.10), transparent 60%),
+    linear-gradient(180deg, #020814 0%, #061423 100%);
+  /* slight grain for depth */
+  background-blend-mode: screen, screen, normal;
+}
+
+/* Depth overlay: darker as you scroll down (ocean dive) */
+.kaia-depth {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 500vh;
+  z-index: 0;
+
+/* Oxygen-style CTA: subtle silver/white with soft bubble highlights */
+.kaia-btn-oxygen {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(230,236,244,0.9) 100%);
+  color: #0a1a28;
+  border: 1px solid rgba(200, 220, 240, 0.85);
+  box-shadow: 0 4px 18px rgba(180, 210, 240, 0.18), inset 0 1px 0 rgba(255,255,255,0.65);
+}
+.kaia-btn-oxygen:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(180, 210, 240, 0.24), inset 0 1px 0 rgba(255,255,255,0.75);
+}
+.kaia-btn-oxygen::before,
+.kaia-btn-oxygen::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(240,248,255,0.25) 60%, rgba(240,248,255,0) 70%);
+  opacity: 0.42;
+  animation: kaia-bubble 3.2s ease-in-out infinite;
+}
+.kaia-btn-oxygen::before { width: 18px; height: 18px; left: 12px; top: 6px; animation-delay: 0.1s; }
+.kaia-btn-oxygen::after  { width: 12px; height: 12px; right: 14px; bottom: 8px; animation-delay: 0.6s; }
+
+@keyframes kaia-bubble {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.42; }
+  50% { transform: translateY(-3px) scale(1.06); opacity: 0.6; }
+}
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(2,8,20,0.12) 18%,
+    rgba(2,8,20,0.28) 38%,
+    rgba(2,8,20,0.44) 62%,
+    rgba(2,8,20,0.62) 82%,
+    rgba(2,8,20,0.78) 100%
+  );
+}
+
+/* Intensity presets for depth overlay */
+.kaia-immersion-light .kaia-depth {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(2,8,20,0.08) 20%,
+    rgba(2,8,20,0.20) 40%,
+    rgba(2,8,20,0.32) 65%,
+    rgba(2,8,20,0.48) 85%,
+    rgba(2,8,20,0.60) 100%
+  );
+}
+
+.kaia-immersion-rich .kaia-depth {
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0%,
+    rgba(2,8,20,0.16) 16%,
+    rgba(2,8,20,0.34) 36%,
+    rgba(2,8,20,0.54) 60%,
+    rgba(2,8,20,0.74) 82%,
+    rgba(2,8,20,0.88) 100%
+  );
 }
 
 /* Background Tree Image */
@@ -303,6 +390,7 @@
 
 .kaia-badge::before {
   content: '✨';
+}
 
 /* Fallback ocean tech gradient if PNG is missing */
 .kaia-bg-tree {
@@ -310,7 +398,6 @@
   background-size: cover, cover;
   background-position: center, center;
   background-repeat: no-repeat;
-}
 }
 
 .kaia-hero h1 {
@@ -337,6 +424,54 @@
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+/* Hero teaser media */
+.kaia-hero-media {
+  max-width: 900px;
+  margin: 28px auto 0;
+}
+
+.kaia-media-tile {
+  position: relative;
+  border: 1px solid var(--kaia-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--kaia-bg-card);
+}
+
+.kaia-media-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16/9;
+}
+
+.kaia-media-fallback {
+  background: radial-gradient(120% 120% at 0% 0%, rgba(99,102,241,0.18) 0%, transparent 60%),
+              radial-gradient(120% 120% at 100% 100%, rgba(34,211,238,0.16) 0%, transparent 60%),
+              linear-gradient(135deg, #0b1a2b 0%, #0d2236 100%);
+}
+
+.kaia-media-content {
+  padding: 28px;
+  display: grid;
+  gap: 10px;
+  place-items: center;
+  min-height: clamp(180px, 28vw, 320px);
+}
+
+.kaia-media-eyebrow { 
+  font-size: 0.8rem; 
+  letter-spacing: 0.12em; 
+  text-transform: uppercase; 
+  color: var(--kaia-accent);
+}
+
+.kaia-media-title { 
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem); 
+  font-weight: 700; 
+  color: #e6f4ff; 
 }
 
 .kaia-btn {
@@ -418,8 +553,9 @@
 /* Features Section */
 .kaia-features {
   padding: 100px 20px;
-  background: var(--kaia-bg);
+  background: transparent;
   position: relative;
+  z-index: 2;
 }
 
 .kaia-section-header {
@@ -521,7 +657,9 @@
 /* Pricing Section */
 .kaia-pricing {
   padding: 100px 20px;
-  background: linear-gradient(180deg, var(--kaia-bg) 0%, #0A0A14 100%);
+  background: transparent;
+  position: relative;
+  z-index: 2;
 }
 
 .kaia-pricing-grid {
@@ -651,8 +789,9 @@
   padding: 120px 20px;
   text-align: center;
   position: relative;
-  background: var(--kaia-bg);
+  background: transparent;
   overflow: hidden;
+  z-index: 2;
 }
 
 .kaia-cta::before {
@@ -715,6 +854,41 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Trust strip */
+.kaia-trust {
+  padding: 22px 16px;
+  background: rgba(15, 15, 26, 0.6);
+  border-top: 1px solid var(--kaia-border);
+  border-bottom: 1px solid var(--kaia-border);
+  backdrop-filter: blur(8px);
+}
+
+.kaia-trust-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.kaia-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 600;
+}
+
+.kaia-trust-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(99,102,241,0.12);
+  border: 1px solid var(--kaia-border);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .kaia-hero {
@@ -757,3 +931,86 @@
 .kaia-animate-delay-2 { animation-delay: 0.2s; }
 .kaia-animate-delay-3 { animation-delay: 0.3s; }
 .kaia-animate-delay-4 { animation-delay: 0.4s; }
+
+/* Floating Seal — small clickable badge with water drop + ripple */
+.kaia-seal {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #dff3ff;
+  border-radius: 999px;
+  border: 1px solid var(--kaia-border);
+  background: linear-gradient(135deg, rgba(99,102,241,0.25) 0%, rgba(34,211,238,0.25) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.35);
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  overflow: hidden;
+  animation: kaia-seal-drop 1100ms cubic-bezier(.22,1.2,.36,1) 200ms both,
+             kaia-ripple 2400ms ease-out 1.2s 1,
+             kaia-seal-bob 6s ease-in-out 2.2s infinite;
+}
+
+.kaia-seal:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+  background: linear-gradient(135deg, rgba(99,102,241,0.35) 0%, rgba(34,211,238,0.35) 100%);
+}
+
+.kaia-seal:active { transform: translateY(0); }
+
+.kaia-seal::before, .kaia-seal::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56,189,248,0.55) 0%, rgba(56,189,248,0.0) 70%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.kaia-seal::before { animation: kaia-ripple 1700ms ease-out 800ms 1; }
+.kaia-seal::after  { animation: kaia-ripple 2200ms ease-out 1200ms 1; }
+
+@keyframes kaia-seal-drop {
+  0%   { transform: translateY(-70vh) scale(0.96); opacity: 0; }
+  65%  { transform: translateY(10px) scale(1.05); opacity: 1; }
+  78%  { transform: translateY(-8px) scale(0.99); }
+  90%  { transform: translateY(4px) scale(1.015); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes kaia-ripple {
+  0%   { width: 6px; height: 6px; opacity: 0.45; }
+  60%  { width: 140px; height: 140px; opacity: 0.12; }
+  100% { width: 220px; height: 220px; opacity: 0; }
+}
+
+@keyframes kaia-seal-bob {
+  0%   { transform: translateY(0) rotate(0deg); }
+  25%  { transform: translateY(-3px) rotate(-0.4deg); }
+  50%  { transform: translateY(0) rotate(0.2deg); }
+  75%  { transform: translateY(-2px) rotate(0deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+.kaia-seal-icon { filter: drop-shadow(0 2px 6px rgba(56,189,248,0.35)); }
+.kaia-seal-text { letter-spacing: .02em; white-space: nowrap; }
+
+@media (max-width: 480px) {
+  .kaia-seal { 
+    right: 12px; bottom: 12px; 
+    padding: 8px 12px; font-size: .85rem; 
+  }
+}

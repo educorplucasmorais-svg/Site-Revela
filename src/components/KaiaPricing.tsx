@@ -16,7 +16,7 @@ const plans: Plan[] = [
     id: 'kaia-starter',
     name: 'Me conhecer',
     desc: 'Teste comportamental',
-    price: 25,
+    price: 49.9,
     period: '/mês',
     features: [
       'DISC',
@@ -29,11 +29,11 @@ const plans: Plan[] = [
     id: 'kaia-pro',
     name: 'Crescimento saudável',
     desc: 'Para negócios em crescimento',
-    price: 69.99,
+    price: 89.9,
     period: '/mês',
     featured: true,
     features: [
-      '+opções anteriores',
+      '+ Me conhecer',
       'Softskills',
       'Liderança',
       'PDI'
@@ -44,10 +44,10 @@ const plans: Plan[] = [
     id: 'kaia-enterprise',
     name: 'Conselho bom a gente vende',
     desc: 'Soluções sob medida',
-    price: 120,
+    price: 109.9,
     period: '/mês',
     features: [
-      '+opções anteriores',
+      '+ Crescimento saudável',
       '2 consultorias (2 horas)',
       'Criação e automatização de soluções',
       '(Até 3 unidades)'
@@ -66,6 +66,8 @@ export function KaiaPricing() {
     const message = encodeURIComponent(`Olá! Tenho interesse no plano "${planName}". Gostaria de saber mais!`);
     window.open(`https://wa.me/5531993044867?text=${message}`, '_blank');
   };
+
+  const formatBRL = (v: number) => v.toFixed(2).replace('.', ',');
 
   return (
     <section id="pricing" className="kaia-pricing">
@@ -91,7 +93,7 @@ export function KaiaPricing() {
             
             <div className="kaia-price-amount">
               <span className="kaia-price-currency">R$</span>
-              <span className="kaia-price-value">{plan.price}</span>
+              <span className="kaia-price-value">{formatBRL(plan.price)}</span>
               <span className="kaia-price-period">{plan.period}</span>
             </div>
 
@@ -102,8 +104,8 @@ export function KaiaPricing() {
             </ul>
 
             <button
-              className={`kaia-btn ${plan.featured ? 'kaia-btn-primary' : 'kaia-btn-secondary'}`}
-              style={{ width: '100%', justifyContent: 'center' }}
+              className={`kaia-btn ${plan.id === 'kaia-starter' ? 'kaia-btn-oxygen' : (plan.featured ? 'kaia-btn-primary' : 'kaia-btn-secondary')}`}
+              style={{ width: '100%', justifyContent: 'center', padding: plan.id === 'kaia-starter' ? '16px 20px' : undefined, fontSize: plan.id === 'kaia-starter' ? '1.05rem' : undefined }}
               onClick={() => handleSelectPlan(plan.id, plan.name)}
             >
               {plan.cta}

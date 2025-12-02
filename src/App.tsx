@@ -13,13 +13,13 @@ import { WhatsAppButton } from './components/WhatsAppButton';
 import { Navigation } from './components/Navigation';
 import Diagnostics from './pages/Diagnostics';
 import './style.css';
+import KaiaProjeto from './pages/KaiaProjeto';
 
 function App() {
     useContentProtection();
-    const [location] = useLocation();
+    const [location, setLocation] = useLocation();
     const [showTransition, setShowTransition] = useState(false);
     const [pendingRoute, setPendingRoute] = useState<string | null>(null);
-    const [, setLocation] = useLocation();
 
     // Handle navigation to Kaia with transition
     const handleKaiaClick = (e: React.MouseEvent) => {
@@ -65,6 +65,7 @@ function App() {
                     <Route path="/kaia">
                         <Kaia />
                     </Route>
+                    <Route path="/kaia/projeto" component={KaiaProjeto} />
                     <Route path="/diagnostics">
                         <Diagnostics />
                     </Route>

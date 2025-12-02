@@ -36,6 +36,12 @@
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    /* Inline fallback to ensure dark background even if CSS/JS fail */
+    html, body { height: 100%; margin: 0; }
+    body { background: #061423; color: #fff; }
+    #root { min-height: 100%; }
+  </style>
 </head>
 
 <body>

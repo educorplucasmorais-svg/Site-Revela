@@ -1,33 +1,33 @@
 const features = [
-  { 
-    icon: '🤖',
-    title: 'Atendimento 24/7', 
-    desc: 'Bots inteligentes que respondem instantaneamente com contexto e personalidade da sua marca.' 
+  {
+    icon: '🧭',
+    title: 'Mapeamento Comportamental',
+    desc: 'DISC, QP e sinais de potencial em uma leitura unificada por pessoa e equipe.'
   },
-  { 
-    icon: '🎯',
-    title: 'Geração de Leads', 
-    desc: 'Qualifique e capture contatos automaticamente com perguntas estratégicas e scoring inteligente.' 
+  {
+    icon: '🧩',
+    title: 'PDI Inteligente',
+    desc: 'Planos de desenvolvimento personalizados com metas claras, prazos e rituais semanais.'
   },
-  { 
-    icon: '✨',
-    title: 'Personalização IA', 
-    desc: 'Ofertas e recomendações sob medida baseadas no comportamento e preferências de cada cliente.' 
+  {
+    icon: '🧠',
+    title: 'Rituais de Liderança',
+    desc: 'Sugestões de foco para 1:1, feedbacks e construção de cultura — consistência que vira hábito.'
   },
-  { 
+  {
+    icon: '📈',
+    title: 'People Analytics',
+    desc: 'Métricas de engajamento, aderência a PDIs e evolução por squad, capítulo e organização.'
+  },
+  {
+    icon: '🚨',
+    title: 'Risco de Saída',
+    desc: 'Sinais precoces de churn de talento com fatores de risco e plano de ação recomendado.'
+  },
+  {
     icon: '🔗',
-    title: 'Integração Simples', 
-    desc: 'Conecte em minutos com WhatsApp, Instagram, site, CRM e mais de 50 ferramentas.' 
-  },
-  { 
-    icon: '📊',
-    title: 'Analytics Avançado', 
-    desc: 'Dashboards em tempo real com métricas de conversão, satisfação e performance.' 
-  },
-  { 
-    icon: '🛡️',
-    title: 'Segurança Total', 
-    desc: 'Dados criptografados, LGPD compliant e infraestrutura enterprise-grade.' 
+    title: 'Integrações & Segurança',
+    desc: 'Conecta com ferramentas do time. LGPD, criptografia e infraestrutura monitorada 24/7.'
   }
 ];
 
@@ -36,11 +36,8 @@ export function KaiaFeatures() {
     <section id="features" className="kaia-features">
       <div className="kaia-section-header">
         <span className="kaia-section-label">Recursos</span>
-        <h2 className="kaia-section-title">Tudo que você precisa para escalar</h2>
-        <p className="kaia-section-desc">
-          A Kaia combina inteligência artificial avançada com facilidade de uso 
-          para transformar a experiência do seu cliente.
-        </p>
+        <h2 className="kaia-section-title">People Analytics que vira ação</h2>
+        <p className="kaia-section-desc">Do mapeamento ao PDI — um fluxo simples que cria rotina de evolução.</p>
       </div>
 
       <div className="kaia-features-grid">
@@ -56,32 +53,15 @@ export function KaiaFeatures() {
         ))}
       </div>
 
-      {/* CTA após Features */}
-      <div style={{ textAlign: 'center', marginTop: '60px' }}>
-        <a 
-          href="https://wa.me/5531993044867?text=Olá!%20Quero%20conhecer%20a%20Kaia%20e%20transformar%20meu%20atendimento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="kaia-btn kaia-btn-primary"
-          style={{ 
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '12px',
-            padding: '16px 32px',
-            fontSize: '1.1rem',
-            textDecoration: 'none'
-          }}
+      {/* Subtle inline CTA to keep page short */}
+      <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <a
+          href="#pricing"
+          className="kaia-btn kaia-btn-oxygen"
+          style={{ textDecoration: 'none' }}
         >
-          <span>💬</span>
-          Fale com um consultor agora
+          Ver planos e começar
         </a>
-        <p style={{ 
-          marginTop: '16px', 
-          fontSize: '0.9rem', 
-          color: 'rgba(255,255,255,0.6)' 
-        }}>
-          Resposta em menos de 2 minutos
-        </p>
       </div>
     </section>
   );

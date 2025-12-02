@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import ContactForm from '../components/ContactForm';
 import { RevelaHero } from '../components/RevelaHero';
+import { KaiaBanner } from '../components/KaiaBanner';
 import '../styles/landing-page.css';
 
 function Home() {
@@ -26,6 +27,7 @@ function Home() {
         <>
             {/* SEÇÃO 1: HERO */}
             <RevelaHero onContactClick={scrollToContact} />
+            <KaiaBanner />
 
             {/* SEÇÃO 2: FLUXO DE SERVIÇOS (Mind Map Style) */}
             <section id="servicos" className="section-lighter landing-section">
