@@ -354,3 +354,32 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Sombra Neon Laranja nos Icones Revela */
+.revela-icon-glow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.revela-icon-glow svg {
+  filter: drop-shadow(0 0 8px rgba(255, 140, 50, 0.6)) 
+          drop-shadow(0 0 20px rgba(255, 100, 30, 0.4))
+          drop-shadow(0 0 40px rgba(255, 80, 20, 0.2));
+  color: #FF8C32;
+  stroke: #FF8C32;
+  transition: all 0.3s ease;
+}
+
+.revela-icon-glow:hover svg {
+  filter: drop-shadow(0 0 12px rgba(255, 140, 50, 0.8)) 
+          drop-shadow(0 0 30px rgba(255, 100, 30, 0.6))
+          drop-shadow(0 0 50px rgba(255, 80, 20, 0.3));
+  transform: scale(1.1);
+}
+
+/* Tech Stack icons menores */
+.tech-icons .revela-icon-glow svg {
+  width: 28px;
+  height: 28px;
+}

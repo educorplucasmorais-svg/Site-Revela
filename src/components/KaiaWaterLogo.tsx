@@ -8,9 +8,10 @@ export type KaiaWaterLogoProps = {
   style?: React.CSSProperties;
   'aria-label'?: string;
   showText?: boolean;
+  animated?: boolean;
 } & React.SVGProps<SVGSVGElement>;
 
-export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ className, style, showText = true, ...props }, ref) => {
+export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ className, style, showText = true, animated = true, ...props }, ref) => {
   const cubeGradientId = 'kaia-cube-gradient';
   const waterGradientId = 'kaia-water-gradient';
 
@@ -26,8 +27,12 @@ export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ cl
     >
       <defs>
         <linearGradient id={cubeGradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00c6ff" stopOpacity="1" />
-          <stop offset="100%" stopColor="#0072ff" stopOpacity="1" />
+          <stop offset="0%" stopColor="#00c6ff" stopOpacity="1">
+            {animated && <animate attributeName="stopColor" values="#00c6ff;#22D3EE;#3B82F6;#00c6ff" dur="4s" repeatCount="indefinite" />}
+          </stop>
+          <stop offset="100%" stopColor="#0072ff" stopOpacity="1">
+            {animated && <animate attributeName="stopColor" values="#0072ff;#3B82F6;#8B5CF6;#0072ff" dur="4s" repeatCount="indefinite" />}
+          </stop>
         </linearGradient>
 
         <linearGradient id={waterGradientId} x1="0%" y1="100%" x2="100%" y2="0%">
@@ -36,26 +41,48 @@ export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ cl
         </linearGradient>
 
         <filter id="soft-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur">
+            {animated && <animate attributeName="stdDeviation" values="2;4;2" dur="3s" repeatCount="indefinite" />}
+          </feGaussianBlur>
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
+
+        <filter id="water-blur" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1" />
+        </filter>
       </defs>
 
       {/* Ícone Gráfico */}
       <g transform="translate(40, 40) scale(0.9)">
-        {/* Água / Ondas */}
+        {/* Água / Ondas com animação */}
         <g fill={`url(#${waterGradientId})`} opacity="0.9">
-          <path d="M 50,300 Q 150,350 250,300 T 450,300 V 350 H 50 Z" />
-          <path d="M 0,320 Q 120,280 250,320 T 500,320 V 380 H 0 Z" opacity="0.7" />
-          <path d="M 100,250 Q 50,280 50,320 L 150,320 Q 150,280 100,250 Z" />
+          <path d="M 50,300 Q 150,350 250,300 T 450,300 V 350 H 50 Z">
+            {animated && <animate attributeName="d" 
+              values="M 50,300 Q 150,350 250,300 T 450,300 V 350 H 50 Z;
+                      M 50,310 Q 150,340 250,310 T 450,310 V 350 H 50 Z;
+                      M 50,300 Q 150,350 250,300 T 450,300 V 350 H 50 Z"
+              dur="3s" repeatCount="indefinite" />}
+          </path>
+          <path d="M 0,320 Q 120,280 250,320 T 500,320 V 380 H 0 Z" opacity="0.7">
+            {animated && <animate attributeName="d"
+              values="M 0,320 Q 120,280 250,320 T 500,320 V 380 H 0 Z;
+                      M 0,315 Q 120,290 250,315 T 500,315 V 380 H 0 Z;
+                      M 0,320 Q 120,280 250,320 T 500,320 V 380 H 0 Z"
+              dur="2.5s" repeatCount="indefinite" />}
+          </path>
+          <path d="M 100,250 Q 50,280 50,320 L 150,320 Q 150,280 100,250 Z">
+            {animated && <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" repeatCount="indefinite" />}
+          </path>
         </g>
 
         {/* Cubo Tecnológico */}
         <g stroke={`url(#${cubeGradientId})`} strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" filter="url(#soft-glow)">
-          <path d="M 250,50 L 400,125 V 275 L 250,350 L 100,275 V 125 Z" />
+          <path d="M 250,50 L 400,125 V 275 L 250,350 L 100,275 V 125 Z">
+            {animated && <animate attributeName="stroke-width" values="3;4;3" dur="2s" repeatCount="indefinite" />}
+          </path>
           <path d="M 100,125 L 250,200 L 400,125" />
           <path d="M 250,200 V 350" />
 
@@ -68,28 +95,57 @@ export const KaiaWaterLogo = forwardRef<SVGSVGElement, KaiaWaterLogoProps>(({ cl
           <path d="M 350,150 V 250" opacity="0.6" />
           <path d="M 325,287.5 L 250,250" opacity="0.6" />
 
-          <circle cx="250" cy="50" r="5" fill="#fff" stroke="none" />
-          <circle cx="400" cy="125" r="5" fill="#fff" stroke="none" />
-          <circle cx="100" cy="125" r="5" fill="#fff" stroke="none" />
-          <circle cx="250" cy="200" r="7" fill="#fff" stroke="none" />
-          <circle cx="250" cy="350" r="5" fill="#fff" stroke="none" />
-          <circle cx="175" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none" />
-          <circle cx="325" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none" />
+          {/* Nós do cubo com pulso */}
+          <circle cx="250" cy="50" r="5" fill="#fff" stroke="none">
+            {animated && <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="400" cy="125" r="5" fill="#fff" stroke="none">
+            {animated && <animate attributeName="r" values="5;6;5" dur="2.3s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="100" cy="125" r="5" fill="#fff" stroke="none">
+            {animated && <animate attributeName="r" values="5;6;5" dur="2.1s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="250" cy="200" r="7" fill="#fff" stroke="none">
+            {animated && <animate attributeName="r" values="7;10;7" dur="1.8s" repeatCount="indefinite" />}
+            {animated && <animate attributeName="opacity" values="1;0.7;1" dur="1.8s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="250" cy="350" r="5" fill="#fff" stroke="none">
+            {animated && <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="175" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none">
+            {animated && <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="325" cy="162.5" r="4" fill={`url(#${cubeGradientId})`} stroke="none">
+            {animated && <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite" />}
+          </circle>
 
           {/* Traços geométricos adicionais para densidade tecnológica */}
-          <path d="M 140,220 L 200,260 L 260,220" opacity="0.35" />
-          <path d="M 260,220 L 320,260 L 380,220" opacity="0.35" />
+          <path d="M 140,220 L 200,260 L 260,220" opacity="0.35">
+            {animated && <animate attributeName="opacity" values="0.35;0.6;0.35" dur="3s" repeatCount="indefinite" />}
+          </path>
+          <path d="M 260,220 L 320,260 L 380,220" opacity="0.35">
+            {animated && <animate attributeName="opacity" values="0.6;0.35;0.6" dur="3s" repeatCount="indefinite" />}
+          </path>
           <path d="M 200,240 L 300,240" opacity="0.3" />
           <path d="M 225,265 L 275,265" opacity="0.25" />
-          <circle cx="210" cy="230" r="3" opacity="0.5" />
-          <circle cx="290" cy="230" r="3" opacity="0.5" />
-        </g>
-
-        {/* Texto interno "KAIA" dentro do ícone */}
-        <g>
-          <text x="250" y="240" textAnchor="middle" dominantBaseline="middle" fontFamily="'Inter', sans-serif" fontSize="48" fontWeight="800" fill="#ffffff" letterSpacing="3" style={{ paintOrder: 'stroke' }}>
-            KAIA
-          </text>
+          
+          {/* Partículas de dados flutuando */}
+          <circle cx="210" cy="230" r="3" opacity="0.5">
+            {animated && <animate attributeName="cy" values="230;220;230" dur="2s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="290" cy="230" r="3" opacity="0.5">
+            {animated && <animate attributeName="cy" values="230;240;230" dur="2s" repeatCount="indefinite" />}
+          </circle>
+          
+          {/* Novas partículas de dados */}
+          <circle cx="180" cy="180" r="2" opacity="0.4">
+            {animated && <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite" />}
+            {animated && <animate attributeName="cx" values="180;185;180" dur="2s" repeatCount="indefinite" />}
+          </circle>
+          <circle cx="320" cy="180" r="2" opacity="0.4">
+            {animated && <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1.5s" repeatCount="indefinite" />}
+            {animated && <animate attributeName="cx" values="320;315;320" dur="2s" repeatCount="indefinite" />}
+          </circle>
         </g>
       </g>
 
