@@ -19,7 +19,7 @@ export function KaiaCTA() {
             💬 Falar no WhatsApp
           </a>
           <a 
-            href="mailto:contato@revela.com.br?subject=Interesse na Kaia" 
+            href="mailto:contato@revelaia.tech?subject=Interesse na Kaia" 
             className="kaia-btn kaia-btn-secondary"
           >
             ✉️ Enviar Email
