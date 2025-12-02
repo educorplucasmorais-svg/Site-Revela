@@ -44,20 +44,8 @@ export default function AdminLogin() {
         setLoading(true);
         setError(null);
         try {
-            // If API_BASE_URL is empty or points to localhost in production, fallback to mock auth
-                    const isHttps = API_BASE_URL.startsWith('https://');
-                    const isApiUnavailable = !API_BASE_URL || (!isHttps && typeof window !== 'undefined' && location.origin.includes('vercel.app') && API_BASE_URL.includes('localhost'));
-
-            if (isApiUnavailable) {
-                if (username === 'admin' && password === (import.meta.env.SEED_ADMIN_PASSWORD || 'admin123')) {
-                    try { localStorage.setItem('revela_token', 'mock-token'); } catch (e) {}
-                    setLocation('/admin/app');
-                    return;
-                } else {
-                    throw new Error('API indisponível. Em produção: defina VITE_API_URL no Vercel para seu backend e reinicie. Temporário: use admin/admin123.');
-                }
-            }
-
+            // Always attempt server-side authentication via tRPC
+            // No client-side password validation for security reasons
             const res = await trpc.auth.login.mutate({ username, password });
             if (res?.token) {
                 try { localStorage.setItem('revela_token', res.token); } catch (e) {}
@@ -66,10 +54,10 @@ export default function AdminLogin() {
         } catch (err: any) {
             // Show clearer message when backend returns non-JSON or is unreachable
             const msg = (err?.message || '').toString();
-            if (msg.includes('Unexpected end of JSON input')) {
-                setError('Falha ao conectar à API. Verifique backend (deploy), VITE_API_URL no Vercel e CORS.');
+            if (msg.includes('Unexpected end of JSON input') || msg.includes('fetch')) {
+                setError('Falha ao conectar à API. Verifique se o backend está rodando e VITE_API_URL configurado no Vercel.');
             } else {
-                setError(err?.message || 'Falha ao autenticar');
+                setError(err?.message || 'Credenciais inválidas');
             }
         } finally {
             setLoading(false);
