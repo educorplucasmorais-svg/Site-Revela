@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { trpc } from '../lib/trpc';
 import { Link, useLocation } from 'wouter';
-import { KaiaLogo } from '../components/KaiaLogo';
+import { KaiaWaterLogo } from '../components/KaiaWaterLogo';
 import '../styles/kaia-theme.css';
 
 export default function AdminApp() {
@@ -52,7 +52,7 @@ export default function AdminApp() {
                 backgroundColor: 'hsl(var(--card))'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <KaiaLogo style={{ height: '32px', width: 'auto' }} />
+                    <KaiaWaterLogo style={{ height: '32px', width: 'auto' }} showText={false} />
                     <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>Admin</span>
                 </div>
                 <button className="kaia-btn" style={{ width: 'auto', padding: '0.5rem 1rem' }} onClick={handleLogout}>
