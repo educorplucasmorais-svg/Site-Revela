@@ -8,7 +8,7 @@ import { KaiaPricing } from '../components/KaiaPricing';
 import { KaiaTestimonials } from '../components/KaiaTestimonials';
 import { KaiaFAQ } from '../components/KaiaFAQ';
 import { KaiaCTA } from '../components/KaiaCTA';
-import { KaiaLogo } from '../components/KaiaLogo';
+import { KaiaWaterLogo } from '../components/KaiaWaterLogo';
 import '../styles/kaia.css';
 
 export default function KaiaPage() {
@@ -58,10 +58,10 @@ export default function KaiaPage() {
       {/* Kaia Logo Header */}
       <header className="kaia-header">
         <div className="kaia-logo">
-          <KaiaLogo style={{ height: '40px', width: 'auto' }} />
+          <KaiaWaterLogo style={{ height: '40px', width: 'auto' }} showText={false} />
         </div>
         <nav className="kaia-nav">
-          <Link href="/revela" className="kaia-nav-link">
+          <Link href="/" className="kaia-nav-link">
             ← Hub Revela
           </Link>
           <a href="#visao">Visão</a>

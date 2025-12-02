@@ -3,7 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { trpc } from '../lib/trpc';
 import { API_BASE_URL } from '../lib/api';
 import { useEffect } from 'react';
-import { KaiaLogo } from '../components/KaiaLogo';
+import { KaiaWaterLogo } from '../components/KaiaWaterLogo';
 import '../styles/kaia-theme.css';
 
 export default function AdminLogin() {
@@ -68,7 +68,7 @@ export default function AdminLogin() {
         <div className="kaia-theme light kaia-login-container">
             <div className="kaia-card">
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
-                    <KaiaLogo style={{ width: '80px', height: '80px' }} />
+                    <KaiaWaterLogo style={{ width: '80px', height: '80px' }} showText={false} />
                 </div>
                 
                 <h2 style={{ textAlign: 'center', marginBottom: '0.375rem', fontSize: '1.25rem', fontWeight: 'bold' }}>
