@@ -3,6 +3,7 @@ import Kaia from "./pages/Kaia";
 import AdminLogin from './pages/AdminLogin';
 import AdminApp from './pages/AdminApp';
 import KaiaHub from './pages/KaiaHub';
+import Products from './pages/Products';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
@@ -58,6 +59,9 @@ function App() {
             <main>
                 <Switch>
                     <Route path="/" component={Home} />
+                    <Route path="/produtos">
+                        <Products />
+                    </Route>
                     <Route path="/kaia">
                         <Kaia />
                     </Route>
