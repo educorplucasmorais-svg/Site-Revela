@@ -38,8 +38,8 @@ function App() {
         setShowTransition(false);
     };
 
-    // Check if current route is Kaia (root or /kaia)
-    const isKaiaRoute = location === '/' || location === '/kaia';
+    // Check if current route is Kaia
+    const isKaiaRoute = location === '/kaia';
 
     return (
         <>
@@ -57,8 +57,7 @@ function App() {
 
             <main>
                 <Switch>
-                    <Route path="/" component={Kaia} />
-                    <Route path="/revela" component={Home} />
+                    <Route path="/" component={Home} />
                     <Route path="/kaia">
                         <Kaia />
                     </Route>

@@ -27,7 +27,7 @@ export function Navigation({ onKaiaClick }: NavigationProps) {
     <header className="header" id="header">
       <div className="container">
         <nav className="nav">
-          <Link href="/revela" style={{ textDecoration: 'none' }}>
+          <Link href="/" style={{ textDecoration: 'none' }}>
             <div className="nav-logo">
               Revela<span className="nav-logo-ia">IA</span>
               <span className="nav-tagline">Hub de Inovação e Tecnologia</span>
@@ -42,7 +42,7 @@ export function Navigation({ onKaiaClick }: NavigationProps) {
           <ul className={`nav-links ${mobileMenuOpen ? 'nav-links-open' : ''}`}>
             {/* Home */}
             <li>
-              <Link href="/revela" className="nav-link">Home</Link>
+              <Link href="/" className="nav-link">Home</Link>
             </li>
 
             {/* Blog */}
@@ -84,7 +84,8 @@ export function Navigation({ onKaiaClick }: NavigationProps) {
                 </svg>
               </span>
               <ul className={`nav-dropdown-menu ${openDropdown === 'solucoes' ? 'show' : ''}`}>
-                <li><a href="/produtos" className="nav-dropdown-link">Produtos</a></li>
+                <li><a href="/kaia" className="nav-dropdown-link">Kaia - App de IA</a></li>
+                <li><a href="/produtos" className="nav-dropdown-link nav-dropdown-sub">Outros Produtos</a></li>
                 <li><a href="/esteira" className="nav-dropdown-link nav-dropdown-sub">Esteira de Processos</a></li>
                 <li><a href="/pitch" className="nav-dropdown-link nav-dropdown-sub">Pitch de Negócio</a></li>
               </ul>
