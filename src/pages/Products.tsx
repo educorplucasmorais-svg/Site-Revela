@@ -23,8 +23,8 @@ const products: Product[] = [
     tagline: 'Sua assistente de IA pessoal',
     description: 'Transforme conversas em ações. Kaia aprende com você e automatiza tarefas repetitivas, economizando horas do seu dia.',
     status: 'live',
-    theme: 'purple',
-    icon: '🤖',
+    theme: 'blue',
+    icon: '💧',
     features: [
       'Processamento de linguagem natural',
       'Automação de tarefas',

@@ -108,9 +108,9 @@ export function Navigation({ onKaiaClick }: NavigationProps) {
               </ul>
             </li>
 
-            {/* Acesso / Login */}
+            {/* Acesso Kaia */}
             <li>
-              <Link href="/admin/login" className="nav-link nav-link-accent">
+              <Link href="/kaia" className="nav-link nav-link-accent">
                 Acesso
               </Link>
             </li>

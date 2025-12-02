@@ -162,11 +162,16 @@
 }
 
 /* Theme variations */
+.product-card-blue:hover { 
+  border-color: #3b82f6;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+.product-card-blue:hover::before { 
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+}
+
 .product-card-purple:hover { border-color: #9333ea; }
 .product-card-purple:hover::before { background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%); }
-
-.product-card-blue:hover { border-color: #3b82f6; }
-.product-card-blue:hover::before { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
 
 .product-card-orange:hover { border-color: var(--color-primary); }
 .product-card-orange:hover::before { background: linear-gradient(135deg, var(--color-primary) 0%, #f97316 100%); }
