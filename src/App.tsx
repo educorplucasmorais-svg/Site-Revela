@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import { PageTransition } from './components/PageTransition';
 import { useContentProtection } from './hooks/useContentProtection';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { Navigation } from './components/Navigation';
 import Diagnostics from './pages/Diagnostics';
 import './style.css';
 
@@ -51,30 +52,7 @@ function App() {
             />
 
             {!isKaiaRoute && (
-                <header className="header" id="header">
-                    <div className="container">
-                        <nav className="nav">
-                            <Link href="/revela" style={{ textDecoration: 'none' }}>
-                                <div className="nav-logo">
-                                    Revela
-                                    <span className="nav-tagline">Consultoria e Crescimento</span>
-                                </div>
-                            </Link>
-                            <ul className="nav-links">
-                                <li><Link href="/revela" className="nav-link">Início</Link></li>
-                                <li><a href="#servicos" className="nav-link">Serviços</a></li>
-                                <li><a href="#contato" className="nav-link">Contato</a></li>
-                                <li><a href="/kaia" className="nav-link" onClick={handleKaiaClick}>Kaia</a></li>
-                                <li><Link href="/admin/login" className="nav-link">Acesso</Link></li>
-                            </ul>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-                                <span style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
-                                    📅 {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'short' })}
-                                </span>
-                            </div>
-                        </nav>
-                    </div>
-                </header>
+                <Navigation onKaiaClick={handleKaiaClick} />
             )}
 
             <main>
@@ -122,22 +100,34 @@ function App() {
                         }}>
                             <div>
                                 <h3 style={{ fontSize: '1.25rem', marginBottom: 'var(--space-md)', color: 'var(--color-primary)' }}>
-                                    Revela
+                                    RevelaIA
                                 </h3>
                                 <p style={{ fontSize: '0.95rem', marginBottom: '0' }}>
-                                    Potencializando negócios através de pessoas. Inteligência estratégica para
-                                    empresas que querem crescer de forma sustentável.
+                                    Hub de Inovação e Tecnologia. Automação inteligente e soluções 
+                                    com IA para empresas que querem escalar.
                                 </p>
                             </div>
 
                             <div>
                                 <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', fontWeight: '600' }}>
-                                    Links Rápidos
+                                    Educação Tech
                                 </h4>
                                 <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
-                                    <li><a href="#servicos" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Serviços</a></li>
-                                    <li><a href="#sobre" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Sobre</a></li>
-                                    <li><a href="#contato" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Contato</a></li>
+                                    <li><a href="/incubadora" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Incubadora</a></li>
+                                    <li><a href="/mentorias" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Mentorias</a></li>
+                                    <li><a href="/palestras" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Palestras</a></li>
+                                    <li><a href="/hackathon" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Hackathon</a></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 style={{ fontSize: '1rem', marginBottom: 'var(--space-md)', fontWeight: '600' }}>
+                                    Soluções TEC
+                                </h4>
+                                <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
+                                    <li><a href="/produtos" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Produtos</a></li>
+                                    <li><a href="/esteira" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Esteira de Processos</a></li>
+                                    <li><a href="/pitch" style={{ color: 'var(--color-text-muted)', textDecoration: 'none', fontSize: '0.95rem' }}>Pitch de Negócio</a></li>
                                 </ul>
                             </div>
 
@@ -146,7 +136,7 @@ function App() {
                                     Contato
                                 </h4>
                                 <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--space-sm)' }}>
-                                    <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📧 contato@revela.com.br</li>
+                                    <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📧 contato@relevaia.com.br</li>
                                     <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📱 +55 31 99304-4867</li>
                                     <li style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem' }}>📍 Atuação em todo o Brasil</li>
                                 </ul>
@@ -161,8 +151,8 @@ function App() {
                             textAlign: 'center'
                         }}>
                             <p style={{ color: 'var(--color-text-muted)', marginBottom: '0', fontSize: '0.9rem' }}>
-                                © {new Date().getFullYear()} Revela. Todos os direitos reservados.
-                                Consultoria para pequenas e médias empresas.
+                                © {new Date().getFullYear()} RevelaIA. Todos os direitos reservados.
+                                Hub de Inovação e Tecnologia com IA.
                             </p>
                         </div>
                     </div>
