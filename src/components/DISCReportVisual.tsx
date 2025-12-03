@@ -646,6 +646,7 @@ export interface SavedReportData {
 export function DISCFullReport({ report, userName = 'Participante', userEmail, onSaveReport }: DISCFullReportProps) {
   const [activeSection, setActiveSection] = useState<'overview' | 'analysis' | 'summary'>('overview');
   const [showEmailModal, setShowEmailModal] = useState(false);
+  const [showConfidenceModal, setShowConfidenceModal] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [saved, setSaved] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
@@ -810,9 +811,14 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
               </div>
             </div>
             
-            <div style={styles.coverBadge}>
-              <span style={{ color: '#22D3EE' }}></span>
-              <span>Validacao Cientifica: {report.confidence.toFixed(0)}%</span>
+            <div 
+              style={{ ...styles.coverBadge, cursor: 'pointer' }}
+              onClick={() => setShowConfidenceModal(true)}
+              title="Clique para saber mais sobre o nível de confiança"
+            >
+              <span style={{ color: '#22D3EE' }}>✓</span>
+              <span>Validação Científica: {report.confidence.toFixed(0)}%</span>
+              <span style={{ marginLeft: '8px', fontSize: '11px', opacity: 0.7, textDecoration: 'underline' }}>Saiba mais</span>
             </div>
           </div>
         </div>
@@ -970,8 +976,90 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
         </div>
       </div>
 
+      {/* MODAL DE EXPLICAÇÃO DO NÍVEL DE CONFIANÇA */}
+      {showConfidenceModal && (
+        <div style={styles.modalOverlay} onClick={() => setShowConfidenceModal(false)}>
+          <div 
+            style={{ ...styles.modalContent, maxWidth: '600px', maxHeight: '80vh', overflow: 'auto' }} 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+              <h2 style={{ ...styles.modalTitle, margin: 0 }}>O que significa "Validação Científica"?</h2>
+              <button 
+                onClick={() => setShowConfidenceModal(false)}
+                style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#64748B' }}
+              >×</button>
+            </div>
+            
+            <p style={{ fontSize: '14px', color: '#374151', lineHeight: 1.7, marginBottom: '20px' }}>
+              A <strong>Validação Científica</strong> representa o <strong>nível de confiança estatística</strong> do seu perfil DISC, 
+              calculado com base na consistência e qualidade das suas respostas. <em>Não é uma avaliação da metodologia DISC em si</em>, 
+              que possui décadas de validação científica.
+            </p>
+
+            <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#0F172A', marginBottom: '12px' }}>Como é calculado:</h3>
+              <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '13px', color: '#4B5563', lineHeight: 1.8 }}>
+                <li><strong>Consistência das respostas</strong> — Analisa se suas respostas são coerentes entre si ao longo do questionário.</li>
+                <li><strong>Dispersão dos scores</strong> — Perfis com traços bem diferenciados indicam maior clareza comportamental.</li>
+                <li><strong>Padrões de resposta</strong> — Detecta respostas aleatórias, muito rápidas ou sempre na mesma posição.</li>
+              </ul>
+            </div>
+
+            <div style={{ background: '#F8FAFC', padding: '16px', borderRadius: '12px', marginBottom: '20px' }}>
+              <h3 style={{ fontSize: '15px', fontWeight: 600, color: '#0F172A', marginBottom: '12px' }}>O que cada faixa significa:</h3>
+              <div style={{ display: 'grid', gap: '8px', fontSize: '13px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ padding: '4px 12px', background: '#10B981', color: '#fff', borderRadius: '6px', fontWeight: 600, minWidth: '80px', textAlign: 'center' }}>90-100%</span>
+                  <span style={{ color: '#374151' }}>Alta confiança — perfil muito consistente e diferenciado</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ padding: '4px 12px', background: '#22D3EE', color: '#0F172A', borderRadius: '6px', fontWeight: 600, minWidth: '80px', textAlign: 'center' }}>75-89%</span>
+                  <span style={{ color: '#374151' }}>Boa confiança — perfil confiável para uso profissional</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ padding: '4px 12px', background: '#F59E0B', color: '#0F172A', borderRadius: '6px', fontWeight: 600, minWidth: '80px', textAlign: 'center' }}>60-74%</span>
+                  <span style={{ color: '#374151' }}>Confiança moderada — pode indicar momento de transição</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ padding: '4px 12px', background: '#EF4444', color: '#fff', borderRadius: '6px', fontWeight: 600, minWidth: '80px', textAlign: 'center' }}>&lt;60%</span>
+                  <span style={{ color: '#374151' }}>Baixa confiança — recomenda-se refazer o questionário</span>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', padding: '16px', borderRadius: '12px', color: '#fff' }}>
+              <h3 style={{ fontSize: '14px', fontWeight: 600, marginBottom: '8px', color: '#22D3EE' }}>Por que mostramos isso?</h3>
+              <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.7, opacity: 0.9 }}>
+                É uma prática de <strong>transparência científica</strong> que diferencia ferramentas sérias de "testes de revista". 
+                Empresas como TTI Success Insights e Extended DISC usam métricas similares para validar resultados 
+                e recomendar (ou não) refazer a avaliação.
+              </p>
+            </div>
+
+            <button 
+              onClick={() => setShowConfidenceModal(false)}
+              style={{ 
+                marginTop: '20px', 
+                width: '100%', 
+                padding: '14px', 
+                background: 'linear-gradient(135deg, #0891B2, #0E7490)', 
+                color: '#fff', 
+                border: 'none', 
+                borderRadius: '10px', 
+                fontWeight: 600, 
+                fontSize: '14px',
+                cursor: 'pointer' 
+              }}
+            >
+              Entendi
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* MODAL DE EMAIL */}
-      <EmailModal 
+      <EmailModal
         isOpen={showEmailModal}
         onClose={() => setShowEmailModal(false)}
         onSend={handleSendEmail}
