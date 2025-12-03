@@ -479,8 +479,6 @@ export function TraitScoreCard({ trait, score }: { trait: 'D' | 'I' | 'S' | 'C';
     </div>
   )
 }
-}
-
 
 // ========== CITACOES ACADEMICAS ==========
 const citations = [
@@ -494,14 +492,14 @@ function CitationsSection() {
   return (
     <div style={{ ...styles.section, marginTop: '16px' }}>
       <div style={styles.sectionTitle}>
-        <div style={{ ...styles.sectionIcon, background: '#6366F1', color: '#fff' }}></div>
+        <div style={{ ...styles.sectionIcon, background: '#6366F1', color: '#fff' }}>📚</div>
         Referências e Citações
       </div>
       <div style={{ display: 'grid', gap: '12px' }}>
         {citations.map((c, i) => (
           <div key={i} style={{ padding: '12px', background: '#F8FAFC', borderRadius: '8px', borderLeft: '3px solid #6366F1' }}>
             <p style={{ fontSize: '13px', fontStyle: 'italic', color: '#334155', marginBottom: '6px', lineHeight: 1.6 }}>"{c.quote}"</p>
-            <div style={{ fontSize: '11px', color: '#64748B' }}> {c.author}  {c.context}</div>
+            <div style={{ fontSize: '11px', color: '#64748B' }}>— {c.author} • {c.context}</div>
           </div>
         ))}
       </div>
@@ -510,7 +508,7 @@ function CitationsSection() {
 }
 
 function DeepAnalysisSection({ primary, secondary }: { primary: 'D'|'I'|'S'|'C'; secondary?: 'D'|'I'|'S'|'C' }) {
-  const deepData = {
+  const deepData: Record<string, Record<'D'|'I'|'S'|'C', string[]>> = {
     stress: { D: ['Acelera decisões', 'Foco em controle', 'Menos tolerância a erros'], I: ['Busca apoio social', 'Mantém otimismo', 'Pode ignorar detalhes'], S: ['Retrai e observa', 'Evita conflitos', 'Mantém rotina para segurança'], C: ['Aumenta análise', 'Adere regras estritas', 'Eleva padrão de qualidade'] },
     communication: { D: ['Direto e objetivo', 'Se concentra em resultados', 'Pouco tempo para rodeios'], I: ['Entusiasta e persuasivo', 'Valorização de histórias', 'Foco em pessoas'], S: ['Calmo e paciente', 'Escuta ativa', 'Busca consenso'], C: ['Preciso e detalhado', 'Estrutura lógica', 'Baseado em dados'] },
     decision: { D: ['Decide rápido', 'Aceita riscos calculados', 'Responsável por metas'], I: ['Decide com pessoas', 'Influência do ambiente', 'Busca aprovação'], S: ['Decide com estabilidade', 'Prefere tempo para refletir', 'Evita mudanças bruscas'], C: ['Decide com dados', 'Minimiza riscos', 'Analisa impactos'] },
@@ -520,78 +518,20 @@ function DeepAnalysisSection({ primary, secondary }: { primary: 'D'|'I'|'S'|'C';
     risks: { D: ['Impaciência', 'Conflitos por pressão', 'Negligenciar detalhes'], I: ['Excesso de otimismo', 'Foco insuficiente', 'Promessas sem execução'], S: ['Resistência a mudanças', 'Evita confrontos necessários', 'Lentidão decisória'], C: ['Paralisia por análise', 'Rigidez', 'Baixa tolerância a ambiguidade'] },
     develop: { D: ['Praticar empatia', 'Delegar e ouvir mais', 'Planejar riscos'], I: ['Criar rotinas de foco', 'Mensurar resultados', 'Aprimorar escuta crítica'], S: ['Treinar adaptabilidade', 'Comunicação assertiva', 'Acelerar decisões com dados'], C: ['Flexibilizar padrões', 'Comunicar de forma simples', 'Tomar decisões com pragmatismo'] }
   };
-  const pick = (key: keyof typeof deepData) => { const primaryItems = deepData[key][primary] || []; const secondaryItems = secondary ? (deepData[key][secondary] || []) : []; return Array.from(new Set([...primaryItems, ...secondaryItems])).slice(0, 4); };
-  const DeepCard = ({ title, items }: { title: string; items: string[] }) => (
-    <div style={{ ...styles.analysisCard, borderLeft: '2px solid #CBD5E1' }}>
-      <div style={{ fontSize: '13px', fontWeight: 600, color: '#0F172A', marginBottom: '10px' }}>{title}</div>
-      <ul style={styles.analysisList}>{items.map((item, i) => (<li key={i} style={{ ...styles.analysisItem, fontSize: '12px' }}><span style={{ color: '#0891B2' }}></span> {item}</li>))}</ul>
-    </div>
-  );
-  return (
-    <div style={{ ...styles.section, marginTop: '16px' }}>
-      <div style={styles.sectionTitle}><div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}></div>Análise Comportamental Profunda</div>
-      <div style={styles.analysisGrid}>
-        <DeepCard title="Comportamento sob Estresse" items={pick('stress')} />
-        <DeepCard title="Estilo de Comunicação" items={pick('communication')} />
-        <DeepCard title="Tomada de Decisão" items={pick('decision')} />
-        <DeepCard title="Estilo de Liderança" items={pick('leadership')} />
-        <DeepCard title="Motivadores" items={pick('motivators')} />
-        <DeepCard title="Ambiente Ideal" items={pick('environment')} />
-        <DeepCard title="Riscos Potenciais" items={pick('risks')} />
-        <DeepCard title="Recomendações de Desenvolvimento" items={pick('develop')} />
-      </div>
-    </div>
-  );
-}
-
-// ========== CITACOES ACADEMICAS ==========
-const citations = [
-  { quote: 'Emoções são a base do comportamento humano e explicam como nos movemos em direção aos objetivos.', author: 'William Moulton Marston', context: 'Teoria das Emoções e fundamentos do DISC' },
-  { quote: 'Perfis comportamentais são mapas; pessoas são territórios. Use-os para orientar decisões, não para rotular.', author: 'John Geier', context: 'Aplicação prática do DISC em ambientes de trabalho' },
-  { quote: 'Alta performance acontece quando estilo, função e ambiente estão alinhados com motivadores individuais.', author: 'Tony Alessandra', context: 'Ajuste de estilo e liderança situacional' },
-  { quote: 'Feedback eficaz considera o estilo do receptor: clareza para C, foco em resultados para D, conexão para I e segurança para S.', author: 'Robert Rohm', context: 'Comunicação e gestão baseada em estilos' }
-];
-
-function CitationsSection() {
-  return (
-    <div style={{ ...styles.section, marginTop: '16px' }}>
-      <div style={styles.sectionTitle}>
-        <div style={{ ...styles.sectionIcon, background: '#6366F1', color: '#fff' }}></div>
-        Referências e Citações
-      </div>
-      <div style={{ display: 'grid', gap: '12px' }}>
-        {citations.map((c, i) => (
-          <div key={i} style={{ padding: '12px', background: '#F8FAFC', borderRadius: '8px', borderLeft: '3px solid #6366F1' }}>
-            <p style={{ fontSize: '13px', fontStyle: 'italic', color: '#334155', marginBottom: '6px', lineHeight: 1.6 }}>"{c.quote}"</p>
-            <div style={{ fontSize: '11px', color: '#64748B' }}> {c.author}  {c.context}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function DeepAnalysisSection({ primary, secondary }: { primary: 'D'|'I'|'S'|'C'; secondary?: 'D'|'I'|'S'|'C' }) {
-  const deepData = {
-    stress: { D: ['Acelera decisões', 'Foco em controle', 'Menos tolerância a erros'], I: ['Busca apoio social', 'Mantém otimismo', 'Pode ignorar detalhes'], S: ['Retrai e observa', 'Evita conflitos', 'Mantém rotina para segurança'], C: ['Aumenta análise', 'Adere regras estritas', 'Eleva padrão de qualidade'] },
-    communication: { D: ['Direto e objetivo', 'Se concentra em resultados', 'Pouco tempo para rodeios'], I: ['Entusiasta e persuasivo', 'Valorização de histórias', 'Foco em pessoas'], S: ['Calmo e paciente', 'Escuta ativa', 'Busca consenso'], C: ['Preciso e detalhado', 'Estrutura lógica', 'Baseado em dados'] },
-    decision: { D: ['Decide rápido', 'Aceita riscos calculados', 'Responsável por metas'], I: ['Decide com pessoas', 'Influência do ambiente', 'Busca aprovação'], S: ['Decide com estabilidade', 'Prefere tempo para refletir', 'Evita mudanças bruscas'], C: ['Decide com dados', 'Minimiza riscos', 'Analisa impactos'] },
-    leadership: { D: ['Orientado a performance', 'Competitivo', 'Cobra resultados com intensidade'], I: ['Inspirador', 'Motiva pelo entusiasmo', 'Constrói redes'], S: ['Serviço e apoio', 'Desenvolve pessoas com calma', 'Promove harmonia'], C: ['Excelência técnica', 'Padroniza processos', 'Garante conformidade'] },
-    motivators: { D: ['Autonomia', 'Desafios', 'Autoridade e impacto'], I: ['Reconhecimento', 'Interação social', 'Ambiente positivo'], S: ['Segurança', 'Pertencimento', 'Ritmo estável'], C: ['Qualidade', 'Precisão', 'Clareza de regras'] },
-    environment: { D: ['Metas agressivas', 'Liberdade para agir', 'Pouca burocracia'], I: ['Time colaborativo', 'Espaço para criatividade', 'Comunicação aberta'], S: ['Rotina clara', 'Equipes estáveis', 'Suporte consistente'], C: ['Processos definidos', 'Critérios objetivos', 'Ferramentas de qualidade'] },
-    risks: { D: ['Impaciência', 'Conflitos por pressão', 'Negligenciar detalhes'], I: ['Excesso de otimismo', 'Foco insuficiente', 'Promessas sem execução'], S: ['Resistência a mudanças', 'Evita confrontos necessários', 'Lentidão decisória'], C: ['Paralisia por análise', 'Rigidez', 'Baixa tolerância a ambiguidade'] },
-    develop: { D: ['Praticar empatia', 'Delegar e ouvir mais', 'Planejar riscos'], I: ['Criar rotinas de foco', 'Mensurar resultados', 'Aprimorar escuta crítica'], S: ['Treinar adaptabilidade', 'Comunicação assertiva', 'Acelerar decisões com dados'], C: ['Flexibilizar padrões', 'Comunicar de forma simples', 'Tomar decisões com pragmatismo'] }
+  const pick = (key: string) => {
+    const primaryItems = deepData[key][primary] || [];
+    const secondaryItems = secondary ? (deepData[key][secondary] || []) : [];
+    return Array.from(new Set([...primaryItems, ...secondaryItems])).slice(0, 4);
   };
-  const pick = (key: keyof typeof deepData) => { const primaryItems = deepData[key][primary] || []; const secondaryItems = secondary ? (deepData[key][secondary] || []) : []; return Array.from(new Set([...primaryItems, ...secondaryItems])).slice(0, 4); };
   const DeepCard = ({ title, items }: { title: string; items: string[] }) => (
     <div style={{ ...styles.analysisCard, borderLeft: '2px solid #CBD5E1' }}>
       <div style={{ fontSize: '13px', fontWeight: 600, color: '#0F172A', marginBottom: '10px' }}>{title}</div>
-      <ul style={styles.analysisList}>{items.map((item, i) => (<li key={i} style={{ ...styles.analysisItem, fontSize: '12px' }}><span style={{ color: '#0891B2' }}></span> {item}</li>))}</ul>
+      <ul style={styles.analysisList}>{items.map((item, i) => (<li key={i} style={{ ...styles.analysisItem, fontSize: '12px' }}><span style={{ color: '#0891B2' }}>•</span> {item}</li>))}</ul>
     </div>
   );
   return (
     <div style={{ ...styles.section, marginTop: '16px' }}>
-      <div style={styles.sectionTitle}><div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}></div>Análise Comportamental Profunda</div>
+      <div style={styles.sectionTitle}><div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}>🧠</div>Análise Comportamental Profunda</div>
       <div style={styles.analysisGrid}>
         <DeepCard title="Comportamento sob Estresse" items={pick('stress')} />
         <DeepCard title="Estilo de Comunicação" items={pick('communication')} />
@@ -709,7 +649,6 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
   const [downloading, setDownloading] = useState(false);
   const [saved, setSaved] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
-  const printableRef = useRef<HTMLDivElement>(null);
   
   const primaryTrait = report.analysis.primaryTrait as 'D' | 'I' | 'S' | 'C';
   const secondaryTrait = report.analysis.secondaryTrait as 'D' | 'I' | 'S' | 'C' | undefined;
@@ -717,10 +656,10 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
   
   // Gerar PDF
   const generatePDF = async (): Promise<jsPDF | null> => {
-    if (!printableRef.current) return null;
+    if (!reportRef.current) return null;
     
     try {
-      const canvas = await html2canvas(printableRef.current, {
+      const canvas = await html2canvas(reportRef.current, {
         scale: 2,
         useCORS: true,
         logging: false,
@@ -946,24 +885,25 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
 
         {/* SECAO: ANALISE DETALHADA */}
         {activeSection === 'analysis' && (
-          <div style={styles.section}>
-            <div style={styles.sectionTitle}>
-              <div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}></div>
-              Analise por Dimensao DISC
+          <>
+            <div style={styles.section}>
+              <div style={styles.sectionTitle}>
+                <div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}>🔍</div>
+                Analise por Dimensao DISC
+              </div>
+
+              <div style={styles.analysisGrid}>
+                {report.detailedNarrative.traitAnalyses.map((traitData) => (
+                  <TraitCard
+                    key={traitData.trait}
+                    trait={traitData.trait}
+                    analysis={traitData.analysis}
+                    strengths={traitData.strengths}
+                    challenges={traitData.challenges}
+                  />
+                ))}
+              </div>
             </div>
-            
-            <div style={styles.analysisGrid}>
-              {report.detailedNarrative.traitAnalyses.map((traitData) => (
-                <TraitCard
-                  key={traitData.trait}
-                  trait={traitData.trait}
-                  analysis={traitData.analysis}
-                  strengths={traitData.strengths}
-                  challenges={traitData.challenges}
-                />
-              ))}
-            </div>
-          </div>
             
             <DeepAnalysisSection primary={primaryTrait} secondary={secondaryTrait} />
             <CitationsSection />
@@ -1030,121 +970,6 @@ export function DISCFullReport({ report, userName = 'Participante', userEmail, o
         </div>
       </div>
 
-      {/* VIEW OCULTA PARA PDF: COMPOSICAO DE TODAS AS SECOES */}
-      <div ref={printableRef} style={{ ...styles.reportContainer, position: 'absolute', left: '-9999px', top: 0 }}>
-        {/* CAPA */}
-        <div style={styles.cover}>
-          <div style={styles.coverPattern}></div>
-          <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={styles.coverLogo}>KAIA Assessment</div>
-            <h1 style={styles.coverTitle}>Relatorio de Perfil DISC</h1>
-            <p style={styles.coverSubtitle}>Analise Comportamental Personalizada</p>
-            <div style={{ marginBottom: '32px' }}>
-              <div style={{ fontSize: '24px', fontWeight: 700 }}>{userName}</div>
-            </div>
-            <div style={styles.coverMeta}>
-              <div>
-                <span style={{ opacity: 0.5 }}>Data:</span>{' '}
-                <strong>{new Date(report.timestamp).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })}</strong>
-              </div>
-              <div>
-                <span style={{ opacity: 0.5 }}>ID:</span>{' '}
-                <strong>{report.checksum}</strong>
-              </div>
-            </div>
-            <div style={styles.coverBadge}>
-              <div style={{ ...styles.coverBadgeItem }}>
-                <div style={{ ...styles.coverBadgeIcon, background: primaryColor.primary }}>{primaryTrait}</div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '13px' }}>Perfil Dominante</div>
-                  <div style={{ fontSize: '12px', opacity: 0.8 }}>{primaryColor.name}</div>
-                </div>
-              </div>
-              <div style={{ ...styles.coverBadgeItem }}>
-                <div style={{ ...styles.coverBadgeIcon, background: '#22D3EE' }}>✓</div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: '13px' }}>Validacao</div>
-                  <div style={{ fontSize: '12px', opacity: 0.8 }}>{report.confidence.toFixed(0)}%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* VISAO GERAL */}
-        <div style={styles.section}>
-          <div style={styles.sectionTitle}>
-            <div style={{ ...styles.sectionIcon, background: '#0891B2', color: '#fff' }}>📊</div>
-            Grafico de Perfil DISC
-          </div>
-          <DISCBarChart natural={report.natural} />
-        </div>
-
-        {/* ANALISE DETALHADA */}
-        <div style={styles.section}>
-          <div style={styles.sectionTitle}>
-            <div style={{ ...styles.sectionIcon, background: '#8B5CF6', color: '#fff' }}>🔍</div>
-            Analise por Dimensao DISC
-          </div>
-          <div style={styles.analysisGrid}>
-            {report.detailedNarrative.traitAnalyses.map((traitData) => (
-              <TraitCard
-                key={traitData.trait}
-                trait={traitData.trait}
-                analysis={traitData.analysis}
-                strengths={traitData.strengths}
-                challenges={traitData.challenges}
-              />
-            ))}
-          </div>
-        </div>
-        <DeepAnalysisSection primary={primaryTrait} secondary={secondaryTrait} />
-        <CitationsSection />
-
-        {/* SUMARIO EXECUTIVO */}
-        <div style={styles.section}>
-          <div style={styles.sectionTitle}>
-            <div style={{ ...styles.sectionIcon, background: '#059669', color: '#fff' }}>🧾</div>
-            Sumario Executivo
-          </div>
-          <p style={styles.summaryText}>{report.executiveSummary}</p>
-          <div style={styles.summaryHighlight}>
-            <div style={{ ...styles.summaryBox, borderLeft: '4px solid #10B981' }}>
-              <div style={{ ...styles.summaryBoxTitle, color: '#059669' }}>Principais Forcas</div>
-              <ul style={styles.analysisList}>
-                {report.detailedNarrative.traitAnalyses
-                  .filter(t => t.trait === primaryTrait)
-                  .flatMap(t => t.strengths.slice(0, 3))
-                  .map((s, i) => (
-                    <li key={i} style={{ ...styles.analysisItem, color: '#374151' }}>
-                      <span style={{ color: '#10B981', fontWeight: 700 }}>•</span> {s}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-            <div style={{ ...styles.summaryBox, borderLeft: '4px solid #F59E0B' }}>
-              <div style={{ ...styles.summaryBoxTitle, color: '#D97706' }}>Oportunidades de Desenvolvimento</div>
-              <ul style={styles.analysisList}>
-                {report.detailedNarrative.traitAnalyses
-                  .filter(t => t.trait === primaryTrait)
-                  .flatMap(t => t.challenges.slice(0, 3))
-                  .map((c, i) => (
-                    <li key={i} style={{ ...styles.analysisItem, color: '#374151' }}>
-                      <span style={{ color: '#F59E0B', fontWeight: 700 }}>•</span> {c}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* RODAPE */}
-        <div style={styles.footer}>
-          <div><strong>KAIA</strong> | Analise Comportamental DISC</div>
-          <div>Checksum: {report.checksum} | Validacao: {report.confidence.toFixed(0)}%</div>
-        </div>
-      </div>
-
       {/* MODAL DE EMAIL */}
       <EmailModal 
         isOpen={showEmailModal}
@@ -1169,6 +994,3 @@ export function useDISCReport(natural: DISCScores, adapted?: DISCScores, confide
 }
 
 export default DISCFullReport;
-
-
-
