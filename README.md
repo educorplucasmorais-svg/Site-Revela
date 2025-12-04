@@ -336,6 +336,9 @@ Verifique se o proxy está configurado corretamente no `vite.config.ts`.
 ### Erro de conexão com Supabase
 Verifique se as variáveis de ambiente estão corretas no arquivo `.env`.
 
+### Copilot Chat não funciona
+Execute `fix-vscode.bat` ou veja o guia completo em **COPILOT-CHAT-GUIA.md**.
+
 ## 📚 Documentação Adicional
 
 - **QUICKSTART.md** - Guia de início rápido (5 minutos)
@@ -343,6 +346,7 @@ Verifique se as variáveis de ambiente estão corretas no arquivo `.env`.
 - **SEO-MARKETING.md** - Guia de SEO e marketing digital
 - **CONTRIBUTING.md** - Guia de contribuição
 - **CHANGELOG.md** - Histórico de versões
+- **COPILOT-CHAT-GUIA.md** - Guia de configuração do GitHub Copilot Chat
 
 ## 📝 Licença
 
