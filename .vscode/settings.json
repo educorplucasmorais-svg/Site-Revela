@@ -19,7 +19,6 @@
   "github.copilot.chat.useProjectTemplates": true,
   "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.showToolbar": "always",
-  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.associations": {
     "*.tsx": "typescriptreact",

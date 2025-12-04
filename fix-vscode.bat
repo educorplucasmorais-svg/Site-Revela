@@ -41,10 +41,19 @@ echo.
 
 echo [4/6] Verificando extensões do Copilot...
 echo Instalando/atualizando GitHub Copilot...
-code --install-extension github.copilot --force 2>nul
+code --install-extension github.copilot --force
+if %errorlevel% == 0 (
+    echo ✓ GitHub Copilot instalado/atualizado
+) else (
+    echo ⚠ Falha ao instalar GitHub Copilot. Verifique se o VS Code está instalado.
+)
 echo Instalando/atualizando GitHub Copilot Chat...
-code --install-extension github.copilot-chat --force 2>nul
-echo ✓ Extensões verificadas
+code --install-extension github.copilot-chat --force
+if %errorlevel% == 0 (
+    echo ✓ GitHub Copilot Chat instalado/atualizado
+) else (
+    echo ⚠ Falha ao instalar GitHub Copilot Chat. Verifique se o VS Code está instalado.
+)
 echo.
 
 echo [5/6] Limpando node_modules...

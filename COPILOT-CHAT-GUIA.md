@@ -78,6 +78,11 @@ code --install-extension github.copilot-chat
    code --uninstall-extension github.copilot-chat
    code --install-extension github.copilot-chat
    ```
+   
+   **Possíveis erros durante instalação:**
+   - "Command 'code' not found": Adicione o VS Code ao PATH ou abra via menu (View → Command Palette → Install 'code' command in PATH)
+   - "Extension not found": Verifique sua conexão com internet
+   - "Cannot install": Tente executar como administrador
 
 3. **Reinicie o VS Code**:
    ```
