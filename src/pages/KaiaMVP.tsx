@@ -1239,6 +1239,42 @@ export default function KaiaMVP() {
               }}>
                 <h2 style={{ fontSize: '1.25rem', marginBottom: '20px' }}> Comece sua jornada</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                  {/* MVP TESTAR - Destaque Premium */}
+                  <button
+                    onClick={() => setActiveTool('diagnostic')}
+                    style={{
+                      padding: '20px',
+                      background: 'linear-gradient(135deg, #22D3EE 0%, #0891B2 100%)',
+                      border: '2px solid rgba(34, 211, 238, 0.5)',
+                      borderRadius: '12px',
+                      color: '#fff',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      transition: 'all 0.2s',
+                      boxShadow: '0 0 20px rgba(34, 211, 238, 0.3)',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 30px rgba(34, 211, 238, 0.6)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = '0 0 20px rgba(34, 211, 238, 0.3)';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    <div style={{ position: 'absolute', top: '-50%', right: '-50%', width: '100px', height: '100px', background: 'rgba(255,255,255,0.1)', borderRadius: '50%', animation: 'pulse 3s ease-in-out infinite' }} />
+                    <span style={{ fontSize: '2rem', display: 'block', marginBottom: '4px' }}>🎯</span>
+                    <h3 style={{ margin: '8px 0 4px', fontSize: '1.1rem', fontWeight: '700' }}>TESTAR MVP</h3>
+                    <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '0.85rem', margin: 0 }}>
+                      Mapeamento DISC completo
+                    </p>
+                    <span style={{ display: 'inline-block', marginTop: '8px', fontSize: '0.75rem', background: 'rgba(255,255,255,0.2)', padding: '4px 8px', borderRadius: '4px' }}>
+                      ⚡ Grátis por 7 dias
+                    </span>
+                  </button>
+
                   <button
                     onClick={() => setActiveTool('diagnostic')}
                     style={{
@@ -1278,6 +1314,13 @@ export default function KaiaMVP() {
                     </p>
                   </button>
                 </div>
+
+                <style>{`
+                  @keyframes pulse {
+                    0%, 100% { opacity: 0.3; }
+                    50% { opacity: 0.6; }
+                  }
+                `}</style>
               </div>
             </div>
           )}
