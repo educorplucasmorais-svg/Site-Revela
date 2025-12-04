@@ -7,13 +7,10 @@ import Products from './pages/Products';
 import { Route, Switch, Link, useLocation } from 'wouter';
 import { Toaster } from 'sonner';
 import Home from './pages/Home';
-import { PageTransition } from './components/PageTransition';
 import { useContentProtection } from './hooks/useContentProtection';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { Navigation } from './components/Navigation';
-import Diagnostics from './pages/Diagnostics';
 import './style.css';
-import KaiaProjeto from './pages/KaiaProjeto';
 
 function App() {
     useContentProtection();
@@ -64,10 +61,6 @@ function App() {
                     </Route>
                     <Route path="/kaia">
                         <Kaia />
-                    </Route>
-                    <Route path="/kaia/projeto" component={KaiaProjeto} />
-                    <Route path="/diagnostics">
-                        <Diagnostics />
                     </Route>
                     <Route path="/kaia/hub">
                         <KaiaHub />
