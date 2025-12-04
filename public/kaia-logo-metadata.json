@@ -1,0 +1,133 @@
+﻿{
+    "reactComponent":  {
+                           "props":  {
+                                         "showText":  "boolean (default: true)",
+                                         "animated":  "boolean (default: true)",
+                                         "className":  "string",
+                                         "style":  "React.CSSProperties"
+                                     },
+                           "path":  "src/components/KaiaWaterLogo.tsx",
+                           "name":  "KaiaWaterLogo",
+                           "examples":  [
+                                            "With text and animation: \u003cKaiaWaterLogo /\u003e",
+                                            "Icon only: \u003cKaiaWaterLogo showText={false} /\u003e",
+                                            "Static version: \u003cKaiaWaterLogo animated={false} /\u003e"
+                                        ]
+                       },
+    "files":  [
+                  {
+                      "name":  "kaia-logo-hd.svg",
+                      "fileSize":  "4.61 KB",
+                      "quality":  "100%",
+                      "resolution":  "Vetorial",
+                      "path":  "/public/kaia-logo-hd.svg",
+                      "useCase":  "Web, logos escaláveis, impressão profissional",
+                      "format":  "SVG"
+                  },
+                  {
+                      "name":  "kaia-logo-1024.png",
+                      "fileSize":  "2.35 KB",
+                      "quality":  "95%",
+                      "resolution":  "10241024 px",
+                      "path":  "/public/kaia-logo-1024.png",
+                      "useCase":  "Redes sociais, favicons, ícones, web",
+                      "format":  "PNG"
+                  },
+                  {
+                      "name":  "kaia-logo-2048.png",
+                      "fileSize":  "6.89 KB",
+                      "quality":  "95%",
+                      "resolution":  "20482048 px",
+                      "path":  "/public/kaia-logo-2048.png",
+                      "useCase":  "Apresentações, sites, impressão média",
+                      "format":  "PNG"
+                  },
+                  {
+                      "name":  "kaia-logo-4096.png",
+                      "fileSize":  "23.51 KB",
+                      "quality":  "95%",
+                      "resolution":  "40964096 px",
+                      "path":  "/public/kaia-logo-4096.png",
+                      "useCase":  "Impressão grande formato, material marketing",
+                      "format":  "PNG"
+                  }
+              ],
+    "design":  {
+                   "dimensions":  {
+                                      "viewBox":  "0 0 500 500",
+                                      "scale":  "0.9 (interno)",
+                                      "aspectRatio":  "1:1 (quadrado)",
+                                      "padding":  "40px (em todos os lados)"
+                                  },
+                   "elements":  {
+                                    "typography":  "Tipografia Inter 800 com gradiente",
+                                    "waves":  "Ondas de água (fluidez, movimento)",
+                                    "particles":  "Nós e partículas (conexões, dados)",
+                                    "cube":  "Cubo tecnológico 3D (inovação, estrutura)"
+                                },
+                   "colors":  {
+                                  "waterGradient":  "linear-gradient(from #005bea to #00c6ff)",
+                                  "textGradient":  "linear-gradient(135deg, #00c6ff 0%, #0072ff 100%)",
+                                  "cubeGradient":  "linear-gradient(from #00c6ff to #0072ff)"
+                              }
+               },
+    "tools":  {
+                  "pngQuality":  "95%",
+                  "pngEffort":  "9 (maximum compression)",
+                  "format":  "Padded to white background, contained fit",
+                  "generator":  "Node.js Sharp library"
+              },
+    "metadata":  {
+                     "date":  "2025-12-04",
+                     "brand":  {
+                                   "name":  "Kaia",
+                                   "tagline":  "Plataforma de Desenvolvimento de Pessoas",
+                                   "colors":  {
+                                                  "accent":  "#22D3EE",
+                                                  "primary":  "#6366F1",
+                                                  "gradient":  "linear-gradient(135deg, #00c6ff 0%, #0072ff 100%)"
+                                              }
+                               },
+                     "description":  "Logo em alta definição da Kaia - Plataforma de Desenvolvimento de Pessoas",
+                     "name":  "Kaia Logo",
+                     "version":  "1.0"
+                 },
+    "usage":  {
+                  "recommended":  [
+                                      "Usar em fundo branco para máximo contraste",
+                                      "SVG para web (melhor performance)",
+                                      "PNG 2048 para apresentações",
+                                      "PNG 4096 para impressão profissional",
+                                      "Manter proporções 1:1"
+                                  ],
+                  "avoid":  [
+                                "Não distorcer (quebra aspecto 1:1)",
+                                "Não alterar cores do gradiente original",
+                                "Não usar em fundo de baixo contraste",
+                                "Não rotacionar para ângulos não-padrão",
+                                "Não adicionar efeitos não aprovados"
+                            ]
+              },
+    "responsiveSizes":  {
+                            "print":  {
+                                          "breakpoint":  "HQ Print",
+                                          "format":  "PNG 4096 ou SVG",
+                                          "size":  "300300+ px"
+                                      },
+                            "tablet":  {
+                                           "breakpoint":  "480-1024px",
+                                           "format":  "PNG 2048 ou SVG",
+                                           "size":  "100100 - 150150 px"
+                                       },
+                            "desktop":  {
+                                            "breakpoint":  "\u003e 1024px",
+                                            "format":  "PNG 2048/4096 ou SVG",
+                                            "size":  "150150 - 300300 px"
+                                        },
+                            "mobile":  {
+                                           "breakpoint":  "\u003c 480px",
+                                           "format":  "PNG 1024 ou SVG",
+                                           "size":  "6464 - 8080 px"
+                                       }
+                        }
+}

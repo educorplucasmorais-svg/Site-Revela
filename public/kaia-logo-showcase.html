@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Kaia - Alta Definição</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #001220 0%, #002855 50%, #001530 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(15, 15, 26, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #6366F1 0%, #22D3EE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+        .header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(34, 211, 238, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
+        }
+        .card img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 12px;
+        }
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #22D3EE;
+        }
+        .card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #22D3EE 0%, #0891B2 100%);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(34, 211, 238, 0.4);
+        }
+        .features {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .features h2 {
+            color: #22D3EE;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .feature-item {
+            padding: 15px;
+            background: rgba(15, 15, 26, 0.5);
+            border-radius: 12px;
+            border-left: 3px solid #22D3EE;
+        }
+        .feature-item h4 {
+            color: #22D3EE;
+            margin-bottom: 8px;
+        }
+        .feature-item p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        .preview-section {
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(34, 211, 238, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+        .preview-section h2 {
+            color: #22D3EE;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .preview-container img {
+            max-height: 300px;
+            width: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Logo Kaia em Alta Definição</h1>
+            <p>Pacote completo com múltiplas resoluções e formatos</p>
+        </div>
+
+        <div class="features">
+            <h2> Características Técnicas</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h4> Design Moderno</h4>
+                    <p>Cubo tecnológico com ondas em gradiente</p>
+                </div>
+                <div class="feature-item">
+                    <h4> Escalável</h4>
+                    <p>Funciona perfeitamente em qualquer tamanho</p>
+                </div>
+                <div class="feature-item">
+                    <h4> Gradientes Premium</h4>
+                    <p>Cores vibrantes: Cyan (#22D3EE) e Azul (#0072ff)</p>
+                </div>
+                <div class="feature-item">
+                    <h4> Múltiplos Formatos</h4>
+                    <p>SVG vetorial + PNG rasterizado</p>
+                </div>
+                <div class="feature-item">
+                    <h4> Otimizado</h4>
+                    <p>Comprimido com máxima qualidade</p>
+                </div>
+                <div class="feature-item">
+                    <h4> Pronto para Uso</h4>
+                    <p>Inclui marca e subtítulo</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2> Visualização em Tempo Real</h2>
+            <div class="preview-container">
+                <img src="kaia-logo-2048.png" alt="Logo Kaia em Alta Definição">
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="card">
+                <img src="kaia-logo-hd.svg" alt="Logo SVG">
+                <h3>Versão SVG</h3>
+                <p>Formato vetorial escalável infinitamente</p>
+                <p style="font-size: 0.8rem; color: #22D3EE;">4.61 KB</p>
+                <a href="kaia-logo-hd.svg" download class="download-btn"> Download SVG</a>
+            </div>
+
+            <div class="card">
+                <img src="kaia-logo-1024.png" alt="Logo 1024x1024">
+                <h3>1024  1024 px</h3>
+                <p>Ideal para redes sociais e ícones web</p>
+                <p style="font-size: 0.8rem; color: #22D3EE;">2.35 KB</p>
+                <a href="kaia-logo-1024.png" download class="download-btn"> Download PNG</a>
+            </div>
+
+            <div class="card">
+                <img src="kaia-logo-2048.png" alt="Logo 2048x2048">
+                <h3>2048  2048 px</h3>
+                <p>Para apresentações e impressão média</p>
+                <p style="font-size: 0.8rem; color: #22D3EE;">6.89 KB</p>
+                <a href="kaia-logo-2048.png" download class="download-btn"> Download PNG</a>
+            </div>
+
+            <div class="card">
+                <img src="kaia-logo-4096.png" alt="Logo 4096x4096">
+                <h3>4096  4096 px</h3>
+                <p>Para grande formato e impressão profissional</p>
+                <p style="font-size: 0.8rem; color: #22D3EE;">23.51 KB</p>
+                <a href="kaia-logo-4096.png" download class="download-btn"> Download PNG</a>
+            </div>
+        </div>
+
+        <div style="background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(34, 211, 238, 0.2); border-radius: 16px; padding: 20px; text-align: center; color: rgba(255, 255, 255, 0.7);">
+            <p><strong> Dica:</strong> Use a versão SVG para web e logotipos escaláveis. Use PNG para mídias sociais, apresentações e impressão.</p>
+        </div>
+    </div>
+</body>
+</html>
