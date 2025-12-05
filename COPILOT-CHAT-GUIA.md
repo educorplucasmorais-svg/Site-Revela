@@ -12,9 +12,13 @@ Este guia ajuda a configurar e resolver problemas do GitHub Copilot Chat no Visu
 
 ### Método 1: Automático (Recomendado)
 
-Execute o script de correção:
+Execute o script de correção no PowerShell ou CMD:
 
-```batch
+```powershell
+# PowerShell (requer .\ antes do nome do script)
+.\fix-vscode.bat
+
+# CMD (pode executar diretamente)
 fix-vscode.bat
 ```
 

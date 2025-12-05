@@ -337,7 +337,7 @@ Verifique se o proxy está configurado corretamente no `vite.config.ts`.
 Verifique se as variáveis de ambiente estão corretas no arquivo `.env`.
 
 ### Copilot Chat não funciona
-Execute `fix-vscode.bat` ou veja o guia completo em **COPILOT-CHAT-GUIA.md**.
+Execute `.\fix-vscode.bat` (PowerShell) ou `fix-vscode.bat` (CMD) ou veja o guia completo em **COPILOT-CHAT-GUIA.md**.
 
 ## 📚 Documentação Adicional
 
