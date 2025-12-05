@@ -17,6 +17,7 @@
   "github.copilot.chat.localeOverride": "pt-BR",
   "github.copilot.chat.welcomeMessage": "enabled",
   "github.copilot.chat.useProjectTemplates": true,
+  "github.copilot.chat.agent.maxTurnRequests": 25,
   "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.showToolbar": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,

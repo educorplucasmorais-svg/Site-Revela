@@ -108,12 +108,72 @@ code --install-extension github.copilot-chat
 
 ### Chat está lento ou não responde
 
-1. **Verifique sua conexão com a internet**
-2. **Verifique o status do GitHub Copilot**: https://www.githubstatus.com/
-3. **Limpe o cache**:
-   ```batch
-   fix-vscode.bat
+**🚨 SOLUÇÃO RÁPIDA - Chat não responde a mensagens:**
+
+1. **Reinicie o VS Code completamente**:
+   - Feche todas as janelas do VS Code
+   - Abra novamente
+
+2. **Force a reconexão do Copilot**:
    ```
+   Ctrl+Shift+P → "Developer: Reload Window"
+   ```
+
+3. **Faça logout e login novamente**:
+   ```
+   Ctrl+Shift+P → "GitHub Copilot: Sign Out"
+   Ctrl+Shift+P → "GitHub Copilot: Sign In"
+   ```
+
+4. **Limpe o cache do Copilot Chat** (PowerShell como Admin):
+   ```powershell
+   # Feche o VS Code primeiro!
+   Remove-Item -Recurse -Force "$env:APPDATA\Code\User\globalStorage\github.copilot" -ErrorAction SilentlyContinue
+   Remove-Item -Recurse -Force "$env:APPDATA\Code\User\globalStorage\github.copilot-chat" -ErrorAction SilentlyContinue
+   Remove-Item -Recurse -Force "$env:APPDATA\Code\Cache" -ErrorAction SilentlyContinue
+   Remove-Item -Recurse -Force "$env:APPDATA\Code\CachedData" -ErrorAction SilentlyContinue
+   ```
+
+5. **Reinstale as extensões**:
+   ```powershell
+   code --uninstall-extension github.copilot-chat
+   code --uninstall-extension github.copilot
+   code --install-extension github.copilot
+   code --install-extension github.copilot-chat
+   ```
+
+6. **Ou execute o script automático** (na pasta do projeto):
+   ```powershell
+   .\fix-vscode.bat
+   ```
+
+7. **Verifique sua conexão com a internet**
+8. **Verifique o status do GitHub Copilot**: https://www.githubstatus.com/
+
+### Configuração de Limites do Agente
+
+Se aparecer a mensagem: **"Copilot has been working on this problem for a while..."**, isso significa que o limite de requests foi atingido.
+
+**Para configurar o limite:**
+
+1. Clique em **"Configure max requests"** na mensagem, OU
+2. Vá em `Ctrl+Shift+P` → "Preferences: Open Settings (JSON)" e adicione:
+
+```json
+{
+  "github.copilot.chat.agent.maxTurnRequests": 25
+}
+```
+
+**Valores recomendados:**
+| Valor | Uso |
+|-------|-----|
+| **10** | Mais controle, pede confirmação frequentemente |
+| **15-20** | Equilíbrio (recomendado para maioria) |
+| **25-30** | Para tarefas complexas |
+| **50** | Menos interrupções, tarefas muito longas |
+
+**Dica**: Comece com **20** e ajuste conforme sua necessidade.
 
 ### "Copilot is not available"
 
