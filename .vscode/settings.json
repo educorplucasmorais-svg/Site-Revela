@@ -1,0 +1,28 @@
+{
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true,
+    "typescript": true,
+    "javascript": true,
+    "json": true,
+    "css": true,
+    "html": true,
+    "typescriptreact": true,
+    "javascriptreact": true
+  },
+  "github.copilot.chat.enabled": true,
+  "github.copilot.chat.localeOverride": "pt-BR",
+  "github.copilot.chat.welcomeMessage": "enabled",
+  "github.copilot.chat.useProjectTemplates": true,
+  "github.copilot.chat.agent.maxTurnRequests": 25,
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "always",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.associations": {
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript"
+  }
+}
